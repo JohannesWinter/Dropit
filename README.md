@@ -1,6 +1,7 @@
-Dropit - UnityProectFile
+Dropit - UnityProjectFile
 
 Does contain:
+
 -> Scripts: Assets/Scripts
 -> Textures & UI: Assets/Textures
 -> Sound Files: Assets/Sounds
@@ -8,17 +9,21 @@ Does contain:
 -> Project Settings
 
 Does NOT contain:
+
 -> Library Files
 -> Scene Files (>50mb)
 -> User Settings
 
 Script Folder Structure:
+
 --Factory
  ---FacButtons
  ---Gnomes
  ---Objects
  ---Utils
+
 --Managers
+
 --Panels
  ---Ask
  ---Halls
@@ -33,6 +38,9 @@ Script Folder Structure:
   ----Sound
  ---Stats
 --Shop
+
 --Story
+
 --Testing
+
 --Visuals
