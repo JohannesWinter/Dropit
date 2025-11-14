@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0322a59098553774985b77133eb8efad, type: 3}
+  m_Name: Node Data
+  m_EditorClassIdentifier: 
+  nodeTypes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f0000003000000031000000320000003300000034000000
+  tooltipData:
+  - title: Color
+    tooltipContent: Outputs a color value
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/color-node/
+  - title: Float
+    tooltipContent: Outputs a float value
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/float-node-2/
+  - title: RGBA Vector
+    tooltipContent: Outputs a Vector4 of floats
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/rgba-vector-node-2/
+  - title: Texture
+    tooltipContent: Imports a texture into the project
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/texture-node-2/
+  - title: Abs
+    tooltipContent: Outputs the absolute value of the input
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/abs-node-2/
+  - title: Clamp
+    tooltipContent: Clamps the input between Min & Max
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/clamp-node-2/
+  - title: Clamp 0-1
+    tooltipContent: Clamps the input between 0 & 1
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/clamp-0-1-node-2/
+  - title: Fract
+    tooltipContent: Outputs the fractional portion of the input
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/fract-node-2/
+  - title: Lerp
+    tooltipContent: Lerps between A & B based on Alpha
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/lerp-node-2/
+  - title: Math
+    tooltipContent: Performs basic arithmetic operations on A & B
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/math-node-2/
+  - title: Min/Max
+    tooltipContent: Outputs either the minimum or the maximum of A & B
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/min-max-node-2/
+  - title: Negate
+    tooltipContent: Outputs the input multiplied by -1
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/negate-node-2/
+  - title: One Minus
+    tooltipContent: Outputs 1 minus the input value
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/one-minus-node-2/
+  - title: Power
+    tooltipContent: Base to the Exp-th power of the input
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/power-node-2/
+  - title: Remap
+    tooltipContent: Remaps the input from one range to another
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/remap-node-2/
+  - title: Round
+    tooltipContent: Rounds the input to the next highest, lowest or nearest integer
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/round-node-2/
+  - title: Sqrt
+    tooltipContent: Outputs the square root of the input
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/sqrt-node-2/
+  - title: Step
+    tooltipContent: Outputs 0 if A > B, outputs 1 if A <= B
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/step-node-2/
+  - title: AO From Height
+    tooltipContent: Extracts an ambient occlusion map from height data
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/ao-from-height-node-2/
+  - title: Blur
+    tooltipContent: Blurs the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/blur-node-2/
+  - title: Brightness
+    tooltipContent: Manipulates the brightness of the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/brightness-node-2/
+  - title: Contrast
+    tooltipContent: Manipulates the contrast of the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/contrast-node-2/
+  - title: Distortion
+    tooltipContent: Distorts the Source texture based on the Destination texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/distortion-node-2/
+  - title: Grayscale
+    tooltipContent: Converts the input texture to grayscale
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/grayscale-node-2/
+  - title: Level
+    tooltipContent: Adjusts the level of the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/level-node-2/
+  - title: Normals From Height
+    tooltipContent: Extracts a normal map from height data
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/normals-from-height-node-2/
+  - title: Pixelate
+    tooltipContent: Pixelates the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/pixelate-node-2/
+  - title: Posterize
+    tooltipContent: Applies a posterizing effect on the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/posterize-node-2/
+  - title: Saturation
+    tooltipContent: Manipulates the saturation of the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/saturation-node-2/
+  - title: Shadow Filter
+    tooltipContent: Filters shadows out of the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/shadow-filter-node-2/
+  - title: Base Shape
+    tooltipContent: Generates a primitive shape on a texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/base-shape-node-2/
+  - title: Gradient
+    tooltipContent: Generates a gradient texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/gradient-node-2/
+  - title: Noise
+    tooltipContent: Basic noise texture generator
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/noise-node-2/
+  - title: Plasma
+    tooltipContent: Basic multi-color noise generator
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/plasma-node-2/
+  - title: Voronoi
+    tooltipContent: Basic voronoi texture generator
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/voronoi-node-2/
+  - title: Append
+    tooltipContent: Appends single channel inputs to an RGBA-output
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/append-node-2/
+  - title: Blend
+    tooltipContent: Layer blending operation based on the selected mode
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/blend-node-2/
+  - title: Channel Breakup
+    tooltipContent: Breaks the input into it's channels (R, G, B, A)
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/channel-breakup-node-2/
+  - title: Channel Mask
+    tooltipContent: Only outputs selected channels of the input
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/channel-mask-node-2/
+  - title: Cross
+    tooltipContent: Treats pixels as vectors. Outputs the cross product of A & B
+      for each pixel
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/cross-node-2/
+  - title: Dot
+    tooltipContent: Treats pixels as vectors. Outputs the dot product of A & B for
+      each pixel
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/dot-node-2/
+  - title: Length
+    tooltipContent: Treats pixels as vectors. Outputs the length of each vector
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/length-node-2/
+  - title: Normalize
+    tooltipContent: Treats pixels as vectors. Rescales them to a length of 1
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/normalize-node-2/
+  - title: Inlay
+    tooltipContent: Turns the input into a pattern or a partial pattern
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/inlay-node-2/
+  - title: Mirror
+    tooltipContent: Mirrors the input texture vertically and horizontally
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/mirror-node-2/
+  - title: Rotate
+    tooltipContent: Rotates the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/rotate-node-2/
+  - title: Seamless Mapping
+    tooltipContent: Maps the input texture seamlessly to make it tilable
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/seamless-mapping-node-2/
+  - title: Shrink
+    tooltipContent: Shrinks or grows the input texture without repetition
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/shrink-node-2/
+  - title: Tiling & Offset
+    tooltipContent: Manipulates the tiling and offset of the input texture
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/tiling-and-offset-node-2/
+  - title: Get Variable
+    tooltipContent: Outputs a variable that has previously been stored by another
+      node
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/get-variable-node-2/
+  - title: Relay
+    tooltipContent: Outputs the input as it is
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/relay-node-2/
+  - title: Set Variable
+    tooltipContent: Stores the input as a variable that can be picked op by another
+      node
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/set-variable-node/
+  - title: Master Node
+    tooltipContent: Exports the final result for each inputted map
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/master-node-2/

@@ -1,0 +1,587 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8432641389302426920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4e9837b338392428edae88d0fd9c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isSelected: 0
+  m_highlightReference: 0
+  m_nodeName: Master Node
+  m_parentProject: {fileID: 11400000}
+  m_nodeRect:
+    serializedVersion: 2
+    x: 1588.7781
+    y: 738.5974
+    width: 160
+    height: 32
+  m_scaledNodeRect:
+    serializedVersion: 2
+    x: 1588.7781
+    y: 738.5974
+    width: 224
+    height: 32
+  m_inputs:
+  - isOccupied: 1
+    inputtingNode: {fileID: -7197087364303743990}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 1288.7781
+      y: 756.5974
+      width: 24
+      height: 24
+    inputLabel: Albedo
+  - isOccupied: 0
+    inputtingNode: {fileID: 0}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 1288.7781
+      y: 788.5974
+      width: 24
+      height: 24
+    inputLabel: Normal Map
+  - isOccupied: 0
+    inputtingNode: {fileID: 0}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 1288.7781
+      y: 820.5974
+      width: 24
+      height: 24
+    inputLabel: Displacement Map
+  - isOccupied: 0
+    inputtingNode: {fileID: 0}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 1288.7781
+      y: 852.5974
+      width: 24
+      height: 24
+    inputLabel: Ambient Occlusion Map
+  - isOccupied: 0
+    inputtingNode: {fileID: 0}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 1288.7781
+      y: 884.5974
+      width: 24
+      height: 24
+    inputLabel: Specular Map
+  m_outputs: []
+  m_connectionRelays: []
+  doubleClicked: 0
+  m_originNode: {fileID: 0}
+  m_sourceNodeIndex: 10000
+  m_nodeSkin: {fileID: 0}
+  m_nodeStyle: NodeHeaderBrown
+  m_connectorStyles:
+  - ConnectorWhiteUnconnected
+  - ConnectorWhiteConnected
+  m_nodeType: 52
+  m_overrideInputConnectorRendering: 0
+  m_overrideOutputConnectorRendering: 0
+  m_nodeTooltip:
+    m_title: Master Node
+    m_content: Exports the final result for each inputted map
+    m_targetURL: https://derive.dogmatic.tech/knowledge-base/node-reference/master-node-2/
+    m_activateTimer: 0
+    m_mousePos: {x: 0, y: 0}
+    m_contextBoxRect:
+      serializedVersion: 2
+      x: -243.22223
+      y: -295.7779
+      width: 0
+      height: 0
+    m_contentRect:
+      serializedVersion: 2
+      x: -243.22223
+      y: -295.7779
+      width: 0
+      height: 0
+    m_linkButtonRect:
+      serializedVersion: 2
+      x: -243.22223
+      y: -295.7779
+      width: 0
+      height: 0
+  m_scrollPos: {x: 0, y: 0}
+  m_scaledNodeRectTotal:
+    serializedVersion: 2
+    x: 1588.7781
+    y: 738.5974
+    width: 224
+    height: 208
+  m_expandNodePreview: 0
+  m_hasNodePreview: 0
+  m_checkForRecursion: 0
+  m_recursionCandidate: {fileID: 0}
+  m_pendingConnector:
+    isOccupied: 1
+    inputtingNode: {fileID: -7197087364303743990}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 1288.7781
+      y: 756.5974
+      width: 24
+      height: 24
+    inputLabel: Albedo
+  m_outputHasChanged: 0
+  m_redoCalculation: 0
+  m_showResolutionSettings: 1
+  m_editorResolution: 2
+  m_exportResolution: 3
+  m_outputFormats: 0100000001000000010000000100000001000000
+  m_showExportSettings: 1
+  m_exportMaps: 0100000000
+  m_inputOccupied: 0100000000
+  m_exportMapNames:
+  - Albedo
+  - Normal Map
+  - Displacement Map
+  - Ambient Occlusion Map
+  - Specular Map
+  m_shaderPropNamesUnity:
+  - _MainTex
+  - _BumpMap
+  - _ParallaxMap
+  - _OcclusionMap
+  - _SpecGlossMap
+  m_shaderPropNamesDerive:
+  - _MainTex
+  - _NormalMap
+  - _DisplacementMap
+  - _AmbientOcclusionMap
+  - _SpecularMap
+  m_outputName: Local variables
+  m_outputPath: Assets/Dogmatic/
+  m_createSampleMaterials: 1
+--- !u!114 &-7468346988269894932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0583a4ae4b01436438ee7563a681c5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isSelected: 0
+  m_highlightReference: 0
+  m_nodeName: Plasma
+  m_parentProject: {fileID: 11400000}
+  m_nodeRect:
+    serializedVersion: 2
+    x: 974.7781
+    y: 358.2221
+    width: 160
+    height: 32
+  m_scaledNodeRect:
+    serializedVersion: 2
+    x: 974.7781
+    y: 358.2221
+    width: 160
+    height: 32
+  m_inputs: []
+  m_outputs:
+  - isOccupied: 1
+    connectionStartPoint: {x: 834.7781, y: 388.2221}
+    outputRect:
+      serializedVersion: 2
+      x: 810.7781
+      y: 376.2221
+      width: 24
+      height: 24
+    outputLabel: Output
+    outputDataType: 1
+    outputFloat: 0
+    outputTexture: {fileID: 0}
+    outputTextureBytes: 
+  m_connectionRelays: []
+  doubleClicked: 0
+  m_originNode: {fileID: 0}
+  m_sourceNodeIndex: 10000
+  m_nodeSkin: {fileID: 0}
+  m_nodeStyle: NodeHeaderTeal
+  m_connectorStyles:
+  - ConnectorWhiteUnconnected
+  - ConnectorWhiteConnected
+  m_nodeType: 33
+  m_overrideInputConnectorRendering: 0
+  m_overrideOutputConnectorRendering: 0
+  m_nodeTooltip:
+    m_title: Plasma
+    m_content: Basic multi-color noise generator
+    m_targetURL: https://derive.dogmatic.tech/knowledge-base/node-reference/plasma-node-2/
+    m_activateTimer: 0
+    m_mousePos: {x: 0, y: 0}
+    m_contextBoxRect:
+      serializedVersion: 2
+      x: 626.6666
+      y: 247
+      width: 268.6667
+      height: 80
+    m_contentRect:
+      serializedVersion: 2
+      x: 626.6666
+      y: 281
+      width: 268.6667
+      height: 20
+    m_linkButtonRect:
+      serializedVersion: 2
+      x: 626.6666
+      y: 305
+      width: 268.6667
+      height: 20
+  m_scrollPos: {x: 0, y: 0}
+  m_scaledNodeRectTotal:
+    serializedVersion: 2
+    x: 974.7781
+    y: 358.2221
+    width: 160
+    height: 80
+  m_expandNodePreview: 1
+  m_hasNodePreview: 1
+  m_checkForRecursion: 0
+  m_recursionCandidate: {fileID: 0}
+  m_pendingConnector:
+    isOccupied: 0
+    inputtingNode: {fileID: 0}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    inputLabel: 
+  m_outputHasChanged: 0
+  m_redoCalculation: 1
+  m_seed: 18492130
+  m_scale: 1
+  m_octaves: 4
+  m_tiling: {x: 1, y: 1}
+  m_redChannel: {r: 1, g: 0, b: 0, a: 1}
+  m_greenChannel: {r: 0, g: 1, b: 0, a: 1}
+  m_blueChannel: {r: 0, g: 0, b: 1, a: 1}
+--- !u!114 &-7197087364303743990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7a741e1134aba48888d870044c4420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isSelected: 0
+  m_highlightReference: 0
+  m_nodeName: Local Variable Example*
+  m_parentProject: {fileID: 11400000}
+  m_nodeRect:
+    serializedVersion: 2
+    x: 1222.778
+    y: 735.2224
+    width: 160
+    height: 32
+  m_scaledNodeRect:
+    serializedVersion: 2
+    x: 1222.778
+    y: 735.2224
+    width: 254
+    height: 32
+  m_inputs: []
+  m_outputs:
+  - isOccupied: 1
+    connectionStartPoint: {x: 1176.778, y: 765.2224}
+    outputRect:
+      serializedVersion: 2
+      x: 1152.778
+      y: 753.2224
+      width: 24
+      height: 24
+    outputLabel: Out
+    outputDataType: 1
+    outputFloat: 0
+    outputTexture: {fileID: 0}
+    outputTextureBytes: 
+  m_connectionRelays: []
+  doubleClicked: 0
+  m_originNode: {fileID: 0}
+  m_sourceNodeIndex: 0
+  m_nodeSkin: {fileID: 0}
+  m_nodeStyle: NodeHeaderPurple
+  m_connectorStyles:
+  - ConnectorWhiteUnconnected
+  - ConnectorWhiteConnected
+  m_nodeType: 49
+  m_overrideInputConnectorRendering: 0
+  m_overrideOutputConnectorRendering: 0
+  m_nodeTooltip:
+    m_title: Get Variable
+    m_content: Outputs a variable that has previously been stored by another node
+    m_targetURL: https://derive.dogmatic.tech/knowledge-base/node-reference/get-variable-node-2/
+    m_activateTimer: 0
+    m_mousePos: {x: 0, y: 0}
+    m_contextBoxRect:
+      serializedVersion: 2
+      x: 874.3333
+      y: 632
+      width: 525.3334
+      height: 80
+    m_contentRect:
+      serializedVersion: 2
+      x: 874.3333
+      y: 666
+      width: 525.3334
+      height: 20
+    m_linkButtonRect:
+      serializedVersion: 2
+      x: 874.3333
+      y: 690
+      width: 525.3334
+      height: 20
+  m_scrollPos: {x: 0, y: 0}
+  m_scaledNodeRectTotal:
+    serializedVersion: 2
+    x: 1222.778
+    y: 735.2224
+    width: 254
+    height: 80
+  m_expandNodePreview: 1
+  m_hasNodePreview: 1
+  m_checkForRecursion: 0
+  m_recursionCandidate: {fileID: 0}
+  m_pendingConnector:
+    isOccupied: 1
+    inputtingNode: {fileID: -7197087364303743990}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 1288.7781
+      y: 756.5974
+      width: 24
+      height: 24
+    inputLabel: Albedo
+  m_outputHasChanged: 0
+  m_redoCalculation: 1
+  m_registeredNode: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13fd0782cf4c0814baf9c5ac31e72437, type: 3}
+  m_Name: Local variables
+  m_EditorClassIdentifier: 
+  m_nodes:
+  - {fileID: -7468346988269894932}
+  - {fileID: -8432641389302426920}
+  - {fileID: -7197087364303743990}
+  - {fileID: 5283717732923786321}
+  m_boxSelect: 0
+  m_selectionRect:
+    serializedVersion: 2
+    x: 2293
+    y: 1204
+    width: -0
+    height: -0
+  m_selectedNodes: []
+  m_registeredNodes:
+  - {fileID: 5283717732923786321}
+  m_registeredVariableNames:
+  - Local Variable Example
+  m_wantsConnection: 0
+  m_connectionAwaitingNewNode: 0
+  m_movingExistingConnection: 0
+  m_inverseConnection: 0
+  m_clearAllOutputConnectors: 0
+  m_connectionAttemptingNode: {fileID: 0}
+  m_outputIndex: 0
+  m_connectionStart: {x: 835.77795, y: 757.22235}
+  m_connectionColor: {r: 0.8, g: 0.2, b: 1, a: 1}
+  m_inverseConnectionAttemptingInput:
+    isOccupied: 0
+    inputtingNode: {fileID: 0}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    inputLabel: 
+  m_relayCache: []
+  m_zoomFactor: 1
+  m_enableNodeDragging: 0
+  m_canvasOffset: {x: 0, y: 0}
+  m_consoleAlpha: 0
+  m_consoleMessage: 
+  m_projectSettings:
+    resolution: 1024
+  m_preview:
+    m_previewContent: 1
+    m_lightSetup: 1
+    m_previewMesh: 0
+    m_renderingPath: 1
+    m_previewShader: 1
+    m_SpecularColorSource: 0
+    m_specularMapSource: 0
+    m_mesh: {fileID: 0}
+    m_tiling: 1
+    m_normalStrength: 0
+    m_specColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.2}
+    m_specStrength: 0
+    m_gloss: 0
+    m_displacement: 0
+    m_ambientOcclusion: 0
+    m_tessellation: 1
+    m_showMap: 0100000000
+    m_mapNames:
+    - Albedo
+    - Normal Map
+    - Displacement Map
+    - Ambient Occlusion
+    - Specular Map
+    m_renderObjectRotation: {x: 340, y: 9.999999, z: 0}
+    m_lightObjectRotation: {x: 50, y: 9.999993, z: -0.00000332059}
+    m_cameraPosition: {x: 0, y: 0, z: -3}
+    m_fOV: 60
+    m_masterNode: {fileID: -8432641389302426920}
+    m_surfMat: {fileID: 0}
+    m_zoomFactor: 1
+    m_camera: {fileID: 0}
+--- !u!114 &5283717732923786321
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bda51f67d5f21d4abb2317804efb36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isSelected: 0
+  m_highlightReference: 0
+  m_nodeName: Local Variable Example
+  m_parentProject: {fileID: 11400000}
+  m_nodeRect:
+    serializedVersion: 2
+    x: 1213.7781
+    y: 356.2221
+    width: 160
+    height: 32
+  m_scaledNodeRect:
+    serializedVersion: 2
+    x: 1213.7781
+    y: 356.2221
+    width: 244
+    height: 32
+  m_inputs:
+  - isOccupied: 1
+    inputtingNode: {fileID: -7468346988269894932}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 913.7781
+      y: 374.2221
+      width: 24
+      height: 24
+    inputLabel: In
+  m_outputs:
+  - isOccupied: 0
+    connectionStartPoint: {x: 1157.7781, y: 386.2221}
+    outputRect:
+      serializedVersion: 2
+      x: 1133.7781
+      y: 374.2221
+      width: 24
+      height: 24
+    outputLabel: Out
+    outputDataType: 1
+    outputFloat: 0
+    outputTexture: {fileID: 0}
+    outputTextureBytes: 
+  m_connectionRelays: []
+  doubleClicked: 0
+  m_originNode: {fileID: 0}
+  m_sourceNodeIndex: 10000
+  m_nodeSkin: {fileID: 0}
+  m_nodeStyle: NodeHeaderPurple
+  m_connectorStyles:
+  - ConnectorWhiteUnconnected
+  - ConnectorWhiteConnected
+  m_nodeType: 51
+  m_overrideInputConnectorRendering: 0
+  m_overrideOutputConnectorRendering: 0
+  m_nodeTooltip:
+    m_title: Set Variable
+    m_content: Stores the input as a variable that can be picked op by another node
+    m_targetURL: https://derive.dogmatic.tech/knowledge-base/node-reference/set-variable-node/
+    m_activateTimer: 0
+    m_mousePos: {x: 0, y: 0}
+    m_contextBoxRect:
+      serializedVersion: 2
+      x: 778
+      y: 234
+      width: 532
+      height: 80
+    m_contentRect:
+      serializedVersion: 2
+      x: 778
+      y: 268
+      width: 532
+      height: 20
+    m_linkButtonRect:
+      serializedVersion: 2
+      x: 778
+      y: 292
+      width: 532
+      height: 20
+  m_scrollPos: {x: 0, y: 0}
+  m_scaledNodeRectTotal:
+    serializedVersion: 2
+    x: 1213.7781
+    y: 356.2221
+    width: 244
+    height: 80
+  m_expandNodePreview: 1
+  m_hasNodePreview: 1
+  m_checkForRecursion: 0
+  m_recursionCandidate: {fileID: 0}
+  m_pendingConnector:
+    isOccupied: 0
+    inputtingNode: {fileID: 0}
+    outputIndex: 0
+    inputRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    inputLabel: 
+  m_outputHasChanged: 0
+  m_redoCalculation: 0
+  m_registeredNode: {fileID: 0}

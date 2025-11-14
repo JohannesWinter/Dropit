@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa10e97955c262346890b012a22cdfe2, type: 3}
+  m_Name: Resource Data
+  m_EditorClassIdentifier: 
+  newsFeedUrl: http://smokefreeaces.com/newsFeed.txt
+  newsFeedCheckUrl: https://derive.dogmatic.tech
+  checkdateNews: 20222402
+  highlightNewsTab: 0
+  newsFeedObjects:
+  - date: 2021-09-17
+    title: Almost There!
+    content: Derive is only a few days away from its launch. However it began as
+      something completely different.
+    url: https://derive.dogmatic.tech/news/almost-there-2/
+  socialButtonObjects:
+  - text: 
+    tooltip: Twitter
+    icon: {fileID: 2800000, guid: 821e620d410030644887bed6f151a286, type: 3}
+    url: https://twitter.com/intent/tweet?text=My%20latest%20artwork.%0A%0A%23madewithderive%20%23unity3d%20%23gamedesign%0A%40DogmaticGaming%20%40IndieGameDevBot
+    urlCheck: https://twitter.com
+  - text: 
+    tooltip: Facebook
+    icon: {fileID: 2800000, guid: e5ff688af54537542807eca8a92557fe, type: 3}
+    url: https://facebook.com
+    urlCheck: https://facebook.com
+  - text: 
+    tooltip: Unity Forum
+    icon: {fileID: 2800000, guid: 9d1875f032cb54e47887db13ecfc543d, type: 3}
+    url: https://forum.unity3d.com
+    urlCheck: https://forum.unity3d.com
+  - text: 
+    tooltip: Imgur
+    icon: {fileID: 2800000, guid: 43316bd9ac0b8a748b061bb1f8b89df8, type: 3}
+    url: https://imgur.com/upload
+    urlCheck: https://imgur.com
+  - text: 
+    tooltip: Pinterest
+    icon: {fileID: 2800000, guid: ded545fefab30bf4d81090e49b51c47c, type: 3}
+    url: https://pinterest.com/pin-builder/
+    urlCheck: https://pinterest.com
+  - text: 
+    tooltip: Reddit
+    icon: {fileID: 2800000, guid: 5eef2ff27ab681d4687888ba5e81304a, type: 3}
+    url: https://reddit.com/r/Derive/
+    urlCheck: https://reddit.com
+  deriveSubmissionObject:
+    text: Submit >>
+    tooltip: Submit to Dogmatic
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/content-gallery/share-your-work/
+    urlCheck: https://derive.dogmatic.tech
+  knowledgeBaseObjects:
+  - text: Manual
+    tooltip: 
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/knowledge-base/manual/
+    urlCheck: https://derive.dogmatic.tech
+  - text: Beginner's Guide
+    tooltip: 
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/knowledge-base/beginners-guide/
+    urlCheck: https://derive.dogmatic.tech
+  - text: Node Reference
+    tooltip: 
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/knowledge-base/node-reference/
+    urlCheck: https://derive.dogmatic.tech
+  - text: Video Tutorials
+    tooltip: 
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/knowledge-base/examples-and-tutorials/
+    urlCheck: https://derive.dogmatic.tech
+  feedbackObject:
+    text: Leave a Review
+    tooltip: 
+    icon: {fileID: 0}
+    url: http://assetstore.unity3d.com
+    urlCheck: http://assetstore.unity3d.com
+  resourcesFeedUrl: http://smokefreeaces.com/resourceFeed.txt
+  resourceFeedCheckUrl: https://assetstore.unity3d.com
+  checkdateResources: 20220602
+  highlightResourcesTab: 0
+  resourcePackageObjects: []
+  deriveFAQObject:
+    text: FAQ
+    tooltip: Frequently asked questions
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/support/faq/
+    urlCheck: https://derive.dogmatic.tech
+  supportForumObjects:
+  - text: Derive Forum
+    tooltip: 
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/forum/
+    urlCheck: https://derive.dogmatic.tech
+  - text: Unity Forum
+    tooltip: 
+    icon: {fileID: 0}
+    url: https://forum.unity.com/threads/derive-node-based-pbr-editor-beta.1239712/
+    urlCheck: https://forum.unity.com
+  deriveIssueTrackerObject:
+    text: Issue Tracker
+    tooltip: 
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/support/issue-tracker/
+    urlCheck: https://derive.dogmatic.tech
+  deriveContactFormObject:
+    text: Contact Form
+    tooltip: 
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/support/contact/
+    urlCheck: https://derive.dogmatic.tech
+  changelogObject:
+    text: View Full Change Log
+    tooltip: Read the full change log including previous versions on the Derive website.
+    icon: {fileID: 0}
+    url: https://derive.dogmatic.tech/changelog
+    urlCheck: https://derive.dogmatic.tech
