@@ -87,7 +87,7 @@ public sealed class Manager : MonoBehaviour
     public bool editMode_sell;
     public bool editMode_placeDropper;
     public bool editMode_placeMachine;
-    public bool repairMode;
+    public bool editMode_repair;
     public bool inOptionSave;
     public bool inOptionLoad;
     public bool inOptionClear;
@@ -393,7 +393,7 @@ public sealed class Manager : MonoBehaviour
                 incomeLastSecond = 0;
                 incomeLastMinute = new List<double>();
                 currentCost = 0;
-                repairMode = false;
+                editMode_repair = false;
                 money = startMoney;
                 playTime = 0;
                 dropperRotation = 180;
@@ -625,7 +625,7 @@ public sealed class Manager : MonoBehaviour
                 {
                     Cursor.SetCursor(buildCursor, Vector2.zero, CursorMode.Auto);
                 }
-                else if (repairMode)
+                else if (editMode_repair)
                 {
                     Cursor.SetCursor(repairCursor, Vector2.zero, CursorMode.Auto);
                 }
@@ -1171,7 +1171,7 @@ public sealed class Manager : MonoBehaviour
             autoRepairMachines[i] = false;
         }
         GameObject[] o = GameObject.FindGameObjectsWithTag("Ore");
-        repairMode = false;
+        editMode_repair = false;
         for (int i = 0; i < o.Length; i++)
         {
             o[i].SetActive(false);

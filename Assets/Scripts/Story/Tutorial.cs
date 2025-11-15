@@ -519,7 +519,7 @@ public class Tutorial : MonoBehaviour
                     Manager.m.editMode_placeDropper = false;
                     Manager.m.editMode_placeMachine = false;
                     Manager.m.editMode = false;
-                    Manager.m.repairMode = false;
+                    Manager.m.editMode_repair = false;
                     tutorial2Trigger = factoryObject[i];
                     steps2[1].SetActive(true);
                 }
@@ -598,7 +598,7 @@ public class Tutorial : MonoBehaviour
         }
         if (steps2[8].activeSelf == true)
         {
-            if (Manager.m.repairMode == true)
+            if (Manager.m.editMode_repair == true)
             {
                 steps2[8].SetActive(false);
                 steps2[10].SetActive(true);
@@ -631,7 +631,7 @@ public class Tutorial : MonoBehaviour
         //Tutorial 3
         if (Manager.m.level >= 2 && Manager.m.inMainMenu == false && steps3[1].activeSelf == false && finishedTutorial3 == false && inTutorial == false && inTutorial2 == false && inTutorial3 == false && Manager.m.changeSaveTimer == 0 && Manager.m.inUIMenu() == false)
         {
-            Manager.m.repairMode = false;
+            Manager.m.editMode_repair = false;
             steps3[1].SetActive(true);
             waitingTime = Time.time + 1f;
             inTutorial3 = true;

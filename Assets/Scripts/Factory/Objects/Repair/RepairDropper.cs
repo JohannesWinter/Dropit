@@ -186,7 +186,7 @@ public class RepairDropper : MonoBehaviour
                 }
             }
         }
-        if (Manager.m.repairMode == true && Manager.m.editMode == false && Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
+        if (Manager.m.editMode_repair == true && Manager.m.editMode == false && Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
         {
             if (Manager.m.money >= repairCost && durability < 99.9f)
             {
@@ -206,7 +206,7 @@ public class RepairDropper : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        if (Manager.m.repairMode == true && sold == false && this.gameObject.tag == "FactoryObject" && Manager.m.inUIMenu() == false)
+        if (Manager.m.editMode_repair == true && sold == false && this.gameObject.tag == "FactoryObject" && Manager.m.inUIMenu() == false)
         {
             if (Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
             {
@@ -524,7 +524,7 @@ public class RepairDropper : MonoBehaviour
                 durability = -999;
                 Destroy(instantiatedWrench, Time.deltaTime);
             }
-            if (Manager.m.repairMode == true && sold == false && this.gameObject.tag == "FactoryObject" && isScrap == false)
+            if (Manager.m.editMode_repair == true && sold == false && this.gameObject.tag == "FactoryObject" && isScrap == false)
             {
                 if (durability == 0)
                 {

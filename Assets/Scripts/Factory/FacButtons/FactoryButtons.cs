@@ -58,6 +58,7 @@ public class FactoryButtons : MonoBehaviour
 
     public TextMeshProUGUI sellingTMP;
     public TextMeshProUGUI placingTMP;
+    public TextMeshProUGUI repairingTMP;
     int editRotation;
     void Start()
     {
@@ -479,17 +480,6 @@ public class FactoryButtons : MonoBehaviour
             optionsButton.SetActive(true);
             changeHallArrows.SetActive(true);
 
-            if (Manager.m.repairMode == false)
-            {
-                repairOn.SetActive(false);
-                repairOff.SetActive(true);
-            }
-            else
-            {
-                repairOn.SetActive(true);
-                repairOff.SetActive(false);
-            }
-
             int currentHall = Manager.m.getCurrentFactoryHall() + 1;
             if (currentHall != 5 && currentHall != 10 && Manager.m.level >= currentHall + 1)
             {
@@ -523,7 +513,16 @@ public class FactoryButtons : MonoBehaviour
             {
                 changeHallUp.SetActive(false);
             }
-
+            if (Manager.m.editMode_repair == false)
+            {
+                repairOn.SetActive(false);
+                repairOff.SetActive(true);
+            }
+            else
+            {
+                repairOn.SetActive(true);
+                repairOff.SetActive(false);
+            }
             if (Manager.m.editMode)
             {
                 editOnButton.SetActive(true);
@@ -555,6 +554,7 @@ public class FactoryButtons : MonoBehaviour
                     shop2Button.SetActive(false);
                     doneButton.SetActive(true);
                     sellingTMP.gameObject.SetActive(false);
+                    repairingTMP.gameObject.SetActive(false);
                     if (Manager.m.editMode_placeDropper)
                     {
                         placingTMP.text = "Building: " + Manager.m.dropperIdentifications[Manager.m.dropperNumber - 1];
@@ -571,10 +571,19 @@ public class FactoryButtons : MonoBehaviour
                     shop1Button.SetActive(true);
                     shop2Button.SetActive(true);
                     doneButton.SetActive(false);
-                    sellingTMP.gameObject.SetActive(true);
+                    if (Manager.m.editMode_repair)
+                    {
+                        repairingTMP.gameObject.SetActive(true);
+                        sellingTMP.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        sellingTMP.gameObject.SetActive(true);
+                        repairingTMP.gameObject.SetActive(false);
+                    }
                     placingTMP.gameObject.SetActive (false);
                 }
-                if (Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
+                if (Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false && Manager.m.editMode_repair == false)
                 {
                     Manager.m.editMode_sell = true;
                 }
@@ -658,15 +667,15 @@ public class FactoryButtons : MonoBehaviour
         else
         {
             Manager.m.effectSpeaker.click();
-            if (Manager.m.repairMode == false)
+            if (Manager.m.editMode_repair == false)
             {
-                Manager.m.repairMode = true;
+                Manager.m.editMode_repair = true;
                 repairOn.SetActive(true);
                 repairOff.SetActive(false);
             }
             else
             {
-                Manager.m.repairMode = false;
+                Manager.m.editMode_repair = false;
                 repairOn.SetActive(false);
                 repairOff.SetActive(true);
             }
