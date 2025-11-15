@@ -105,7 +105,6 @@ public class RepairDropper : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        print("Mouseover");
         if (Manager.m.editMode_sell == true)
         {
             //dropper.transform.Translate(0, 3f, 0);
