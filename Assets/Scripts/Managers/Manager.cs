@@ -558,7 +558,7 @@ public sealed class Manager : MonoBehaviour
                 qTEUltimateProduction = false;
                 qTEUltimateWipeout = false;
 
-                introScene.PlayIntroScene();
+                //introScene.PlayIntroScene();
             }
             else if (m != this) Destroy(gameObject);
         }
