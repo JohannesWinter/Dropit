@@ -105,6 +105,7 @@ public class RepairDropper : MonoBehaviour
     }
     private void OnMouseEnter()
     {
+        print("Mouseover");
         if (Manager.m.editMode_sell == true)
         {
             //dropper.transform.Translate(0, 3f, 0);
@@ -208,140 +209,132 @@ public class RepairDropper : MonoBehaviour
     {
         if (Manager.m.editMode_repair == true && sold == false && this.gameObject.tag == "FactoryObject" && Manager.m.inUIMenu() == false)
         {
-            if (Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
+            Manager.m.dropperInformationBox.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor - 0.15f, Manager.m.graphicManager.gUIScaleFactor - 0.15f, Manager.m.graphicManager.gUIScaleFactor - 0.15f);
+            if (dropperNumber != 0)
             {
-                Manager.m.dropperInformationBox.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor - 0.15f, Manager.m.graphicManager.gUIScaleFactor - 0.15f, Manager.m.graphicManager.gUIScaleFactor - 0.15f);
-                if (dropperNumber != 0)
+                double durabilityMinutes = (timeperpercent * durability) / 60;
+                double durabilitySeconds = 60 * (durabilityMinutes - Mathf.Floor((float)durabilityMinutes));
+                durabilityMinutes = Mathf.Floor((float)durabilityMinutes);
+                durabilitySeconds = Mathf.Floor((float)durabilitySeconds);
+                string _0;
+                if (durabilitySeconds < 10)
                 {
-                    double durabilityMinutes = (timeperpercent * durability) / 60;
-                    double durabilitySeconds = 60 * (durabilityMinutes - Mathf.Floor((float)durabilityMinutes));
-                    durabilityMinutes = Mathf.Floor((float)durabilityMinutes);
-                    durabilitySeconds = Mathf.Floor((float)durabilitySeconds);
-                    string _0;
-                    if (durabilitySeconds < 10)
-                    {
-                        _0 = "0";
-                    }
-                    else
-                    {
-                        _0 = "";
-                    }
-                    if (durabilitySeconds < 0)
-                    {
-                        durabilitySeconds = 0;
-                    }
-                    string repairCostChange = "";
-                    if (quickTimeEventRepairs < 0.99)
-                    {
-                        repairCostChange = "(-" + (1 - quickTimeEventRepairs) * 100 + "%)";
-                    }
-                    else if (quickTimeEventRepairs > 1.01)
-                    {
-                        repairCostChange = "(+" + (quickTimeEventRepairs - 1) * 100 + "%)";
-                    }
-                    Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = 
-                        "<size=25><b>Identification:</b><br> " + identification + "<br>" + 
-                        ("<size=10> <size=25><br>") + "<b>Maintenance:</b><br> " + Money.NumberToUnit((float)costPerSecond) + "/sec<br>" + 
-                        ("<size=10> <size=25><br>") + ("<b>Durability:</b><br> " + Mathf.Round((float)durability * 10) / 10 + "%<br>") + 
-                        ("<size=10> <size=25><br>") + ("<b>Working Time:</b><br> " + durabilityMinutes + ":" + _0 + durabilitySeconds + "Min<br>") + 
-                        ("<size=10> <size=25><br>") + "<b>Value:</b><br> " + Money.NumberToUnit(sellValue) + "<br>" + 
-                        ("<size=10> <size=25><br>") + "<b>Repair:</b><br> " + repairCostChange + Money.NumberToUnit(repairCost) + "<br>" + 
-                        ("<size=10> <size=25><br>") + "<b>Storage:</b><br> ";
-                    bool noStorage = true;
-                    for (int i = 0; i < Manager.m.dropConsumeOres[Array.IndexOf(Manager.m.dropperIdentifications, identification)].Length; i++)
-                    {
-                        if (Manager.m.dropConsumeOres[Array.IndexOf(Manager.m.dropperIdentifications, identification)][i] > 0)
-                        {
-                            Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text += Mathf.Round(inputOres[i] * 100) / 100 + "/" + Manager.m.dropInputCapacitys[Array.IndexOf(Manager.m.dropperIdentifications, identification)][i] + " " + Manager.m.dropperIdentifications[i] + "<br> ";
-                            Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text.Replace("Electronic Parts", "Electornics");
-                            noStorage = false;
-                        }
-                    }
-                    if (noStorage == true)
-                    {
-                        Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text += "--";
-                    }
-                }
-                else if (furnaceMultiplier > 0)
-                {
-                    string repairCostChange = "";
-                    if (quickTimeEventRepairs < 0.99)
-                    {
-                        repairCostChange = "(-" + (1 - quickTimeEventRepairs) * 100 + "%)";
-                    }
-                    else if (quickTimeEventRepairs > 1.01)
-                    {
-                        repairCostChange = "(+" + (quickTimeEventRepairs - 1) * 100 + "%)";
-                    }
-                    Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = 
-                        "<size=25><b>Identification:</b><br> " + identification + "<br>" + 
-                        ("<size=10> <size=25><br>") + "<b>Maintenance:</b><br> " + Money.NumberToUnit((float)costPerSecond) + "/sec<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Durability:</b><br> " + Mathf.Round((float)durability * 10) / 10 + "%<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Value:</b><br> " + Money.NumberToUnit((float)cost * 0.5f) + "<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Repair:</b><br> " + repairCostChange + Money.NumberToUnit(repairCost) + "<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Modifier:</b><br> +" + furnaceMultiplier * 100 + "%";
-                }
-                else if (upgradeLevelMax > 0)
-                {
-                    string repairCostChange = "";
-                    if (quickTimeEventRepairs < 0.99)
-                    {
-                        repairCostChange = "(-" + (1 - quickTimeEventRepairs) * 100 + "%)";
-                    }
-                    else if (quickTimeEventRepairs > 1.01)
-                    {
-                        repairCostChange = "(+" + (quickTimeEventRepairs - 1) * 100 + "%)";
-                    }
-                    Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = 
-                        "<size=25><b>Identification:</b><br> " + identification + "<br>" + 
-                        ("<size=10> <size=25><br>") + "<b>Maintenance:</b><br> " + Money.NumberToUnit((float)costPerSecond) + "/sec<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Durability:</b><br> " + Mathf.Round((float)durability * 10) / 10 + "%<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Value:</b><br> " + Money.NumberToUnit((float)cost * 0.5f) + "<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Repair:</b><br> " + repairCostChange + Money.NumberToUnit(repairCost) + "<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Level:</b><br> " + ("0-" + upgradeLevelMax + "(+" + Manager.m.upgradeMultipliers[upgradeLevelMax] * 100  + "%");
-                }
-                else if (conveyorBeltSpeed > 0)
-                {
-                    string repairCostChange = "";
-                    if (quickTimeEventRepairs < 0.99)
-                    {
-                        repairCostChange = "(-" + (1 - quickTimeEventRepairs) * 100 + "%)";
-                    }
-                    else if (quickTimeEventRepairs > 1.01)
-                    {
-                        repairCostChange = "(+" + (quickTimeEventRepairs - 1) * 100 + "%)";
-                    }
-                    Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text =
-                        "<size=25><b>Identification:</b><br> " + identification + "<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Maintenance:</b><br> " + Money.NumberToUnit((float)costPerSecond) + "/sec<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Durability:</b><br> " + Mathf.Round((float)durability * 10) / 10 + "%<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Value:</b><br> " + Money.NumberToUnit((float)cost * 0.5f) + "<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Repair:</b><br> " + repairCostChange + Money.NumberToUnit(repairCost) + "<br>" +
-                        ("<size=10> <size=25><br>") + "<b>Speed</b><br> " + conveyorBeltSpeed + "km/h";
-;
-                }
-                else if (isScrap == true)
-                {
-                    Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = 
-                        "<size=25><b>Identification:</b><br> " + identification + "<br>" + 
-                        ("<size=10> <size=25><br>") + "<b>Removal:</b><br> -" + Money.NumberToUnit((float)cost) + "";
-                }
-
-                if (Input.mousePosition.x > Manager.m.canvas.GetComponent<RectTransform>().rect.width / 2)
-                {
-                    Manager.m.dropperInformationBox.transform.localPosition = new Vector3(-380, -30, 0);
+                    _0 = "0";
                 }
                 else
                 {
-                    Manager.m.dropperInformationBox.transform.localPosition = new Vector3(380, -30, 0);
+                    _0 = "";
                 }
-                Manager.m.dropperInformationBox.SetActive(true);
+                if (durabilitySeconds < 0)
+                {
+                    durabilitySeconds = 0;
+                }
+                string repairCostChange = "";
+                if (quickTimeEventRepairs < 0.99)
+                {
+                    repairCostChange = "(-" + (1 - quickTimeEventRepairs) * 100 + "%)";
+                }
+                else if (quickTimeEventRepairs > 1.01)
+                {
+                    repairCostChange = "(+" + (quickTimeEventRepairs - 1) * 100 + "%)";
+                }
+                Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = 
+                    "<size=25><b>Identification:</b><br> " + identification + "<br>" + 
+                    ("<size=10> <size=25><br>") + "<b>Maintenance:</b><br> " + Money.NumberToUnit((float)costPerSecond) + "/sec<br>" + 
+                    ("<size=10> <size=25><br>") + ("<b>Durability:</b><br> " + Mathf.Round((float)durability * 10) / 10 + "%<br>") + 
+                    ("<size=10> <size=25><br>") + ("<b>Working Time:</b><br> " + durabilityMinutes + ":" + _0 + durabilitySeconds + "Min<br>") + 
+                    ("<size=10> <size=25><br>") + "<b>Value:</b><br> " + Money.NumberToUnit(sellValue) + "<br>" + 
+                    ("<size=10> <size=25><br>") + "<b>Repair:</b><br> " + repairCostChange + Money.NumberToUnit(repairCost) + "<br>" + 
+                    ("<size=10> <size=25><br>") + "<b>Storage:</b><br> ";
+                bool noStorage = true;
+                for (int i = 0; i < Manager.m.dropConsumeOres[Array.IndexOf(Manager.m.dropperIdentifications, identification)].Length; i++)
+                {
+                    if (Manager.m.dropConsumeOres[Array.IndexOf(Manager.m.dropperIdentifications, identification)][i] > 0)
+                    {
+                        Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text += Mathf.Round(inputOres[i] * 100) / 100 + "/" + Manager.m.dropInputCapacitys[Array.IndexOf(Manager.m.dropperIdentifications, identification)][i] + " " + Manager.m.dropperIdentifications[i] + "<br> ";
+                        Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text.Replace("Electronic Parts", "Electornics");
+                        noStorage = false;
+                    }
+                }
+                if (noStorage == true)
+                {
+                    Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text += "--";
+                }
+            }
+            else if (furnaceMultiplier > 0)
+            {
+                string repairCostChange = "";
+                if (quickTimeEventRepairs < 0.99)
+                {
+                    repairCostChange = "(-" + (1 - quickTimeEventRepairs) * 100 + "%)";
+                }
+                else if (quickTimeEventRepairs > 1.01)
+                {
+                    repairCostChange = "(+" + (quickTimeEventRepairs - 1) * 100 + "%)";
+                }
+                Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = 
+                    "<size=25><b>Identification:</b><br> " + identification + "<br>" + 
+                    ("<size=10> <size=25><br>") + "<b>Maintenance:</b><br> " + Money.NumberToUnit((float)costPerSecond) + "/sec<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Durability:</b><br> " + Mathf.Round((float)durability * 10) / 10 + "%<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Value:</b><br> " + Money.NumberToUnit((float)cost * 0.5f) + "<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Repair:</b><br> " + repairCostChange + Money.NumberToUnit(repairCost) + "<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Modifier:</b><br> +" + furnaceMultiplier * 100 + "%";
+            }
+            else if (upgradeLevelMax > 0)
+            {
+                string repairCostChange = "";
+                if (quickTimeEventRepairs < 0.99)
+                {
+                    repairCostChange = "(-" + (1 - quickTimeEventRepairs) * 100 + "%)";
+                }
+                else if (quickTimeEventRepairs > 1.01)
+                {
+                    repairCostChange = "(+" + (quickTimeEventRepairs - 1) * 100 + "%)";
+                }
+                Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = 
+                    "<size=25><b>Identification:</b><br> " + identification + "<br>" + 
+                    ("<size=10> <size=25><br>") + "<b>Maintenance:</b><br> " + Money.NumberToUnit((float)costPerSecond) + "/sec<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Durability:</b><br> " + Mathf.Round((float)durability * 10) / 10 + "%<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Value:</b><br> " + Money.NumberToUnit((float)cost * 0.5f) + "<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Repair:</b><br> " + repairCostChange + Money.NumberToUnit(repairCost) + "<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Level:</b><br> " + ("0-" + upgradeLevelMax + "(+" + Manager.m.upgradeMultipliers[upgradeLevelMax] * 100  + "%");
+            }
+            else if (conveyorBeltSpeed > 0)
+            {
+                string repairCostChange = "";
+                if (quickTimeEventRepairs < 0.99)
+                {
+                    repairCostChange = "(-" + (1 - quickTimeEventRepairs) * 100 + "%)";
+                }
+                else if (quickTimeEventRepairs > 1.01)
+                {
+                    repairCostChange = "(+" + (quickTimeEventRepairs - 1) * 100 + "%)";
+                }
+                Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text =
+                    "<size=25><b>Identification:</b><br> " + identification + "<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Maintenance:</b><br> " + Money.NumberToUnit((float)costPerSecond) + "/sec<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Durability:</b><br> " + Mathf.Round((float)durability * 10) / 10 + "%<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Value:</b><br> " + Money.NumberToUnit((float)cost * 0.5f) + "<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Repair:</b><br> " + repairCostChange + Money.NumberToUnit(repairCost) + "<br>" +
+                    ("<size=10> <size=25><br>") + "<b>Speed</b><br> " + conveyorBeltSpeed + "km/h";
+;
+            }
+            else if (isScrap == true)
+            {
+                Manager.m.dropperInformationText.GetComponent<TextMeshProUGUI>().text = 
+                    "<size=25><b>Identification:</b><br> " + identification + "<br>" + 
+                    ("<size=10> <size=25><br>") + "<b>Removal:</b><br> -" + Money.NumberToUnit((float)cost) + "";
+            }
+
+            if (Input.mousePosition.x > Manager.m.canvas.GetComponent<RectTransform>().rect.width / 2)
+            {
+                Manager.m.dropperInformationBox.transform.localPosition = new Vector3(-380, -30, 0);
             }
             else
             {
-                Manager.m.dropperInformationBox.SetActive(false);
+                Manager.m.dropperInformationBox.transform.localPosition = new Vector3(380, -30, 0);
             }
-
+            Manager.m.dropperInformationBox.SetActive(true);
         }
     }
 
