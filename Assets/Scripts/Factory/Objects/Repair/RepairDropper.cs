@@ -206,9 +206,9 @@ public class RepairDropper : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        if (Manager.m.repairMode == true && sold == false && this.gameObject.tag == "FactoryObject" && Manager.m.inMainMenu == false && Manager.m.inSettings == false && Manager.m.inFactoryHalls == false && Manager.m.inMarket == false && Manager.m.inMissions == false)
+        if (Manager.m.repairMode == true && sold == false && this.gameObject.tag == "FactoryObject" && Manager.m.inUIMenu() == false)
         {
-            if (Manager.m.repairMode == true && Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
+            if (Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
             {
                 Manager.m.dropperInformationBox.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor - 0.15f, Manager.m.graphicManager.gUIScaleFactor - 0.15f, Manager.m.graphicManager.gUIScaleFactor - 0.15f);
                 if (dropperNumber != 0)
@@ -389,16 +389,16 @@ public class RepairDropper : MonoBehaviour
         if (durability < 60) { sellValue = (float)cost * 0.3f; }
         if (durability < 20) { sellValue = (float)cost * 0f; }
         if (durability <= 0) { sellValue = (float)cost * -0.2f; }
-        if (Manager.m.paused == false)
+        for (int i = 0; i < inputOres.Length; i++)
         {
-            for (int i = 0; i < inputOres.Length; i++)
+            if (inputOres[i] < 0)
             {
-                if (inputOres[i] < 0)
-                {
-                    inputOres[i] = 0;
-                }
+                inputOres[i] = 0;
             }
-            if (Manager.m.creative == false)
+        }
+        if (Manager.m.creative == false)
+        {
+            if (Manager.m.paused == false)
             {
                 if (Manager.m.money >= repairCost && durability <= 90f && sold == false && isScrap == false && this.gameObject.tag == "FactoryObject")
                 {
@@ -421,274 +421,274 @@ public class RepairDropper : MonoBehaviour
                         }
                     }
                 }
-                if (durability <= 0 && gameObject.tag != "Destroyed" && isScrap == false && sold == false)
+            }
+            if (durability <= 0 && gameObject.tag != "Destroyed" && isScrap == false && sold == false)
+            {
+                GameObject scrap = null;
+                if (this.dropperNumber != 0)
                 {
-                    GameObject scrap = null;
-                    if (this.dropperNumber != 0)
-                    {
-                        scrap = (GameObject)Instantiate(Manager.m.ScrapDropper1, transform.position, transform.rotation);
-                        scrap.transform.position = new Vector3(this.gameObject.transform.position.x, 102.1f, this.gameObject.transform.position.z);
-                        scrap.transform.SetParent(Manager.m.scrapFolder.transform);
-                    }
-                    else if (this.machineNumber == 1 || this.machineNumber == 4 || this.machineNumber == 7 || this.machineNumber == 3)
-                    {
-                        scrap = (GameObject)Instantiate(Manager.m.ScrapConveyorBelt1, transform.position, transform.rotation);
-                        scrap.transform.position = new Vector3(this.gameObject.transform.position.x, 100f, this.gameObject.transform.position.z);
-                        scrap.transform.SetParent(Manager.m.scrapFolder.transform);
-                    }
-                    else if (this.machineNumber == 2 || this.machineNumber == 5 || this.machineNumber == 8 || this.machineNumber == 6)
-                    {
-                        scrap = (GameObject)Instantiate(Manager.m.ScrapFurnace1, transform.position, transform.rotation);
-                        scrap.transform.position = new Vector3(this.gameObject.transform.position.x, 101.3f, this.gameObject.transform.position.z);
-                        scrap.transform.SetParent(Manager.m.scrapFolder.transform);
-                    }
-                    else if (this.machineNumber == 9)
-                    {
-                        scrap = (GameObject)Instantiate(Manager.m.ScrapUpgrader1, transform.position, transform.rotation);
-                        scrap.transform.position = new Vector3(this.gameObject.transform.position.x, 100.1f, this.gameObject.transform.position.z);
-                        scrap.transform.SetParent(Manager.m.scrapFolder.transform);
-                    }
-                    if (scrap != null)
-                    {
-                        scrap.GetComponent<RepairDropper>().cost = this.cost * 0.2f;
-                    }
-                    Manager.m.factorySpeaker.destroy(nextCam);
-                    gameObject.transform.Translate(0, -100, 0);
-                    working = false;
-                    sold = true;
-                    gameObject.tag = "Destroyed";
-                    Destroy(this.gameObject, Time.deltaTime);
-                    Destroy(instantiatedWrench, Time.deltaTime);
-                    instantiatedWrench.SetActive(false);
-                    Manager.m.notificationManager.AddNotification("!Info!\nA machine broke down\nin hall " + factoryHall, Manager.m.eventImages[27]);
+                    scrap = (GameObject)Instantiate(Manager.m.ScrapDropper1, transform.position, transform.rotation);
+                    scrap.transform.position = new Vector3(this.gameObject.transform.position.x, 102.1f, this.gameObject.transform.position.z);
+                    scrap.transform.SetParent(Manager.m.scrapFolder.transform);
                 }
-                float basicRepairCost = (float)cost * 0.01f;
-                float additionalCost = 0;
+                else if (this.machineNumber == 1 || this.machineNumber == 4 || this.machineNumber == 7 || this.machineNumber == 3)
+                {
+                    scrap = (GameObject)Instantiate(Manager.m.ScrapConveyorBelt1, transform.position, transform.rotation);
+                    scrap.transform.position = new Vector3(this.gameObject.transform.position.x, 100f, this.gameObject.transform.position.z);
+                    scrap.transform.SetParent(Manager.m.scrapFolder.transform);
+                }
+                else if (this.machineNumber == 2 || this.machineNumber == 5 || this.machineNumber == 8 || this.machineNumber == 6)
+                {
+                    scrap = (GameObject)Instantiate(Manager.m.ScrapFurnace1, transform.position, transform.rotation);
+                    scrap.transform.position = new Vector3(this.gameObject.transform.position.x, 101.3f, this.gameObject.transform.position.z);
+                    scrap.transform.SetParent(Manager.m.scrapFolder.transform);
+                }
+                else if (this.machineNumber == 9)
+                {
+                    scrap = (GameObject)Instantiate(Manager.m.ScrapUpgrader1, transform.position, transform.rotation);
+                    scrap.transform.position = new Vector3(this.gameObject.transform.position.x, 100.1f, this.gameObject.transform.position.z);
+                    scrap.transform.SetParent(Manager.m.scrapFolder.transform);
+                }
+                if (scrap != null)
+                {
+                    scrap.GetComponent<RepairDropper>().cost = this.cost * 0.2f;
+                }
+                Manager.m.factorySpeaker.destroy(nextCam);
+                gameObject.transform.Translate(0, -100, 0);
+                working = false;
+                sold = true;
+                gameObject.tag = "Destroyed";
+                Destroy(this.gameObject, Time.deltaTime);
+                Destroy(instantiatedWrench, Time.deltaTime);
+                instantiatedWrench.SetActive(false);
+                Manager.m.notificationManager.AddNotification("!Info!\nA machine broke down\nin hall " + factoryHall, Manager.m.eventImages[27]);
+            }
+            float basicRepairCost = (float)cost * 0.01f;
+            float additionalCost = 0;
 
-                float toRepair = 100 - (float)durability;
+            float toRepair = 100 - (float)durability;
 
-                if (toRepair > 0)
+            if (toRepair > 0)
+            {
+                if (toRepair <= 10)
                 {
-                    if (toRepair <= 10)
-                    {
-                        additionalCost += (toRepair / 100) * (float)cost * 0.3f;
-                        toRepair -= toRepair;
-                    }
-                    else
-                    {
-                        additionalCost += (10f / 100) * (float)cost * 0.3f + (float)cost * 0.01f;
-                        toRepair -= 10;
-                    }
-                }
-                if (toRepair > 0)
-                {
-                    if (toRepair <= 30)
-                    {
-                        additionalCost += (toRepair / 100) * (float)cost * 0.5f;
-                        toRepair -= toRepair;
-                    }
-                    else
-                    {
-                        additionalCost += (30f / 100) * (float)cost * 0.8f + (float)cost * 0.03f;
-                        toRepair -= 30;
-                    }
-                }
-                if (toRepair > 0)
-                {
-                    if (toRepair <= 40)
-                    {
-                        additionalCost += (toRepair / 100) * (float)cost * 0.7f;
-                        toRepair -= toRepair;
-                    }
-                    else
-                    {
-                        additionalCost += (40f / 100) * (float)cost * 1f + (float)cost * 0.03f;
-                        toRepair -= 40;
-                    }
-                }
-                if (toRepair > 0)
-                {
-                    additionalCost += (toRepair / 100) * (float)cost * 0.9f;
-                    if (toRepair >= 20)
-                    {
-                        additionalCost += (float)cost * 0.05f;
-                    }
+                    additionalCost += (toRepair / 100) * (float)cost * 0.3f;
                     toRepair -= toRepair;
                 }
-
-                repairCost = (basicRepairCost + additionalCost) * quickTimeEventRepairs;
-
-                if (sold == true)
+                else
                 {
-                    durability = -999;
-                    Destroy(instantiatedWrench, Time.deltaTime);
-                }
-                if (Manager.m.repairMode == true && sold == false && this.gameObject.tag == "FactoryObject" && isScrap == false)
-                {
-                    if (durability == 0)
-                    {
-                        if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
-                        {
-                            instantiatedWrench.SetActive(true);
-                            if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
-                            {
-                                instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
-                            }
-                            instantiatedWrench.GetComponent<RawImage>().color = Color.red;
-                        }
-                        else
-                        {
-                            instantiatedWrench.SetActive(false);
-                        }
-                    }
-                    else if (working == true && durability < 20)
-                    {
-                        if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
-                        {
-                            instantiatedWrench.SetActive(true);
-                            if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
-                            {
-                                instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
-                            }
-                            instantiatedWrench.GetComponent<RawImage>().color = new Color(1, 120f / 255, 0);
-                        }
-                        else
-                        {
-                            instantiatedWrench.SetActive(false);
-                        }
-                    }
-                    else if (working == true && durability < 60)
-                    {
-                        if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
-                        {
-                            instantiatedWrench.SetActive(true);
-                            if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
-                            {
-                                instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
-                            }
-                            instantiatedWrench.GetComponent<RawImage>().color = new Color(1, 1, 0);
-                        }
-                        else
-                        {
-                            instantiatedWrench.SetActive(false);
-                        }
-                    }
-                    else if (working == true && durability < 90)
-                    {
-                        if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
-                        {
-                            instantiatedWrench.SetActive(true);
-                            if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
-                            {
-                                instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
-                            }
-                            instantiatedWrench.GetComponent<RawImage>().color = new Color(150f / 255, 240f / 255, 0);
-                        }
-                        else
-                        {
-                            instantiatedWrench.SetActive(false);
-                        }
-                    }
-                    else if (working == true)
-                    {
-                        if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
-                        {
-                            instantiatedWrench.SetActive(true);
-                            if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
-                            {
-                                instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
-                            }
-                            instantiatedWrench.GetComponent<RawImage>().color = new Color(0, 170f / 255, 0);
-                        }
-                        else
-                        {
-                            instantiatedWrench.SetActive(false);
-                        }
-                    }
-                }
-                else if (working == true && this.gameObject.tag == "FactoryObject")
-                {
-                    instantiatedWrench.SetActive(false);
-                }
-
-                if (Time.time > cuncurrenttime && timeperpercent != 0)
-                {
-                    cuncurrenttime = Time.time + 1;
-
-
-
-                    if (durability > 0 && working == true && dropperNumber != 0)
-                    {
-                        durability -= 1 / timeperpercent;
-                        if (Manager.m.qTEUltimateWipeout)
-                            durability -= 0.20f;
-
-                        if (durability < 0)
-                        {
-                            durability = 0;
-                        }
-                    }
-                    else
-                    {
-                        working = false;
-                    }
-                }
-                if (Time.time > cuncurrenttime2 && sold == false && (costPerSecond > 0 || timeperpercent != 0)) // && working == true
-                {
-                    if (working == true) //Manager.m.money >= costPerSecond
-                    {
-                        cuncurrenttime2 = Time.time + 1;
-                        if (Manager.m.qTEMaintenanceBoost == 0)
-                        {
-                            Manager.m.money -= costPerSecond;
-                            Manager.m.incomeLastSecond -= costPerSecond;
-                        }
-                        else
-                        {
-                            Manager.m.money += costPerSecond * Manager.m.qTEMaintenanceBoost;
-                            Manager.m.incomeLastSecond += costPerSecond * Manager.m.qTEMaintenanceBoost;
-                        }
-                        if (timeperpercent != 0)
-                        {
-                            float repairCostPerSecond = 0;
-                            if (durability >= 90)
-                            {
-                                repairCostPerSecond = (float)cost * 0.3f * (1f / (100 * (float)timeperpercent));
-                                repairCostPerSecond += (float)cost * 0.01f * (1f / (100 * (float)timeperpercent));
-                            }
-                            else if (durability >= 60)
-                            {
-                                repairCostPerSecond = (float)cost * 0.8f * (1f / (100 * (float)timeperpercent));
-                                repairCostPerSecond += (float)cost * 0.01f * (1f / (100 * (float)timeperpercent));
-                            }
-                            else if (durability >= 20)
-                            {
-                                repairCostPerSecond = (float)cost * 1f * (1f / (100 * (float)timeperpercent));
-                                repairCostPerSecond += (float)cost * 0.01f * (1f / (100 * (float)timeperpercent));
-                            }
-                            else // (durability >= 0)
-                            {
-                                repairCostPerSecond = (float)cost * 2f * (1f / (100 * (float)timeperpercent));
-                                repairCostPerSecond += (float)cost * 0.01f * (1f / (100 * (float)timeperpercent));
-                            }
-                            Manager.m.incomeLastSecond -= repairCostPerSecond;
-                        }
-                    }
-                    else
-                    {
-                        //working = false;
-                    }
-                }
-                if (durability > 0 && Manager.m.money >= costPerSecond)
-                {
-                    working = true;
+                    additionalCost += (10f / 100) * (float)cost * 0.3f + (float)cost * 0.01f;
+                    toRepair -= 10;
                 }
             }
-            else
+            if (toRepair > 0)
+            {
+                if (toRepair <= 30)
+                {
+                    additionalCost += (toRepair / 100) * (float)cost * 0.5f;
+                    toRepair -= toRepair;
+                }
+                else
+                {
+                    additionalCost += (30f / 100) * (float)cost * 0.8f + (float)cost * 0.03f;
+                    toRepair -= 30;
+                }
+            }
+            if (toRepair > 0)
+            {
+                if (toRepair <= 40)
+                {
+                    additionalCost += (toRepair / 100) * (float)cost * 0.7f;
+                    toRepair -= toRepair;
+                }
+                else
+                {
+                    additionalCost += (40f / 100) * (float)cost * 1f + (float)cost * 0.03f;
+                    toRepair -= 40;
+                }
+            }
+            if (toRepair > 0)
+            {
+                additionalCost += (toRepair / 100) * (float)cost * 0.9f;
+                if (toRepair >= 20)
+                {
+                    additionalCost += (float)cost * 0.05f;
+                }
+                toRepair -= toRepair;
+            }
+
+            repairCost = (basicRepairCost + additionalCost) * quickTimeEventRepairs;
+
+            if (sold == true)
+            {
+                durability = -999;
+                Destroy(instantiatedWrench, Time.deltaTime);
+            }
+            if (Manager.m.repairMode == true && sold == false && this.gameObject.tag == "FactoryObject" && isScrap == false)
+            {
+                if (durability == 0)
+                {
+                    if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
+                    {
+                        instantiatedWrench.SetActive(true);
+                        if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
+                        {
+                            instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
+                        }
+                        instantiatedWrench.GetComponent<RawImage>().color = Color.red;
+                    }
+                    else
+                    {
+                        instantiatedWrench.SetActive(false);
+                    }
+                }
+                else if (working == true && durability < 20)
+                {
+                    if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
+                    {
+                        instantiatedWrench.SetActive(true);
+                        if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
+                        {
+                            instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
+                        }
+                        instantiatedWrench.GetComponent<RawImage>().color = new Color(1, 120f / 255, 0);
+                    }
+                    else
+                    {
+                        instantiatedWrench.SetActive(false);
+                    }
+                }
+                else if (working == true && durability < 60)
+                {
+                    if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
+                    {
+                        instantiatedWrench.SetActive(true);
+                        if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
+                        {
+                            instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
+                        }
+                        instantiatedWrench.GetComponent<RawImage>().color = new Color(1, 1, 0);
+                    }
+                    else
+                    {
+                        instantiatedWrench.SetActive(false);
+                    }
+                }
+                else if (working == true && durability < 90)
+                {
+                    if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
+                    {
+                        instantiatedWrench.SetActive(true);
+                        if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
+                        {
+                            instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
+                        }
+                        instantiatedWrench.GetComponent<RawImage>().color = new Color(150f / 255, 240f / 255, 0);
+                    }
+                    else
+                    {
+                        instantiatedWrench.SetActive(false);
+                    }
+                }
+                else if (working == true)
+                {
+                    if (nextCam != null && nextCam == Manager.m.getCurrentCamera())
+                    {
+                        instantiatedWrench.SetActive(true);
+                        if (instantiatedWrench.transform.position != nextCam.WorldToScreenPoint(this.transform.position))
+                        {
+                            instantiatedWrench.transform.position = nextCam.WorldToScreenPoint(this.transform.position);
+                        }
+                        instantiatedWrench.GetComponent<RawImage>().color = new Color(0, 170f / 255, 0);
+                    }
+                    else
+                    {
+                        instantiatedWrench.SetActive(false);
+                    }
+                }
+            }
+            else if (working == true && this.gameObject.tag == "FactoryObject")
+            {
+                instantiatedWrench.SetActive(false);
+            }
+
+            if (Time.time > cuncurrenttime && timeperpercent != 0)
+            {
+                cuncurrenttime = Time.time + 1;
+
+
+
+                if (durability > 0 && working == true && dropperNumber != 0)
+                {
+                    durability -= 1 / timeperpercent;
+                    if (Manager.m.qTEUltimateWipeout)
+                        durability -= 0.20f;
+
+                    if (durability < 0)
+                    {
+                        durability = 0;
+                    }
+                }
+                else
+                {
+                    working = false;
+                }
+            }
+            if (Time.time > cuncurrenttime2 && sold == false && (costPerSecond > 0 || timeperpercent != 0)) // && working == true
+            {
+                if (working == true) //Manager.m.money >= costPerSecond
+                {
+                    cuncurrenttime2 = Time.time + 1;
+                    if (Manager.m.qTEMaintenanceBoost == 0)
+                    {
+                        Manager.m.money -= costPerSecond;
+                        Manager.m.incomeLastSecond -= costPerSecond;
+                    }
+                    else
+                    {
+                        Manager.m.money += costPerSecond * Manager.m.qTEMaintenanceBoost;
+                        Manager.m.incomeLastSecond += costPerSecond * Manager.m.qTEMaintenanceBoost;
+                    }
+                    if (timeperpercent != 0)
+                    {
+                        float repairCostPerSecond = 0;
+                        if (durability >= 90)
+                        {
+                            repairCostPerSecond = (float)cost * 0.3f * (1f / (100 * (float)timeperpercent));
+                            repairCostPerSecond += (float)cost * 0.01f * (1f / (100 * (float)timeperpercent));
+                        }
+                        else if (durability >= 60)
+                        {
+                            repairCostPerSecond = (float)cost * 0.8f * (1f / (100 * (float)timeperpercent));
+                            repairCostPerSecond += (float)cost * 0.01f * (1f / (100 * (float)timeperpercent));
+                        }
+                        else if (durability >= 20)
+                        {
+                            repairCostPerSecond = (float)cost * 1f * (1f / (100 * (float)timeperpercent));
+                            repairCostPerSecond += (float)cost * 0.01f * (1f / (100 * (float)timeperpercent));
+                        }
+                        else // (durability >= 0)
+                        {
+                            repairCostPerSecond = (float)cost * 2f * (1f / (100 * (float)timeperpercent));
+                            repairCostPerSecond += (float)cost * 0.01f * (1f / (100 * (float)timeperpercent));
+                        }
+                        Manager.m.incomeLastSecond -= repairCostPerSecond;
+                    }
+                }
+                else
+                {
+                    //working = false;
+                }
+            }
+            if (durability > 0 && Manager.m.money >= costPerSecond)
             {
                 working = true;
-                durability = 100;
             }
+        }
+        else
+        {
+            working = true;
+            durability = 100;
         }
     }
 }

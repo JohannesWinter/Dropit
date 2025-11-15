@@ -651,9 +651,9 @@ public class FactoryButtons : MonoBehaviour
     }
     void Repair()
     {
-        if (Manager.m.editMode_placeDropper || Manager.m.editMode_placeMachine || Manager.m.acessRepair == false)
+        if (Manager.m.acessRepair == false && Manager.m.inUIMenu() == false)
         {
-            Manager.m.effectSpeaker.error();
+            //Manager.m.effectSpeaker.error();
         }
         else
         {
