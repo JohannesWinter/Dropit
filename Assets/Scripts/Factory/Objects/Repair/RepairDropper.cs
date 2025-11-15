@@ -102,6 +102,7 @@ public class RepairDropper : MonoBehaviour
                 factoryHall = i + 1;
             }
         }
+        Physics.SyncTransforms();
     }
     private void OnMouseEnter()
     {
