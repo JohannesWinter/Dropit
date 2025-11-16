@@ -780,51 +780,6 @@ public sealed class Manager : MonoBehaviour
                 {
                     declinedMission = 0;
                 }
-
-
-                //Creating random missions
-                if (missionManager.missions.Count == 0)
-                {
-                    if (tutorial.inTutorial == false)
-                    {
-                        if (declinedMission != 0)
-                        {
-                            if (UnityEngine.Random.Range(0, 60) < 1)
-                            {
-                                createMission();
-                            }
-                        }
-                        else
-                        {
-                            if (UnityEngine.Random.Range(0, 10) < 1)
-                            {
-                                createMission();
-                            }
-                        }
-                    }
-                }
-                else
-                if (missionManager.missions.Count == 1)
-                {
-                    if ((UnityEngine.Random.Range(0, 60) < 1 && tutorial.inTutorial == false))
-                    {
-                        createMission();
-                    }
-                }
-                if (missionManager.missions.Count == 2)
-                {
-                    if ((UnityEngine.Random.Range(0, 120) < 1 && tutorial.inTutorial == false))
-                    {
-                        createMission();
-                    }
-                }
-                if (missionManager.missions.Count >= 3)
-                {
-                    if ((UnityEngine.Random.Range(0, 180) < 1 && tutorial.inTutorial == false))
-                    {
-                        createMission();
-                    }
-                }
             }
 
             //button / functionalities acess
