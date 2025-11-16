@@ -430,18 +430,6 @@ public class FactoryButtons : MonoBehaviour
             repairOn.GetComponent<RawImage>().texture = lockIcon;
         }
 
-
-
-        if (Manager.m.inMarket == true)
-        {
-            market.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor - 0.2f, Manager.m.graphicManager.gUIScaleFactor - 0.2f, Manager.m.graphicManager.gUIScaleFactor - 0.2f);
-            market.SetActive(true);
-        }
-        else
-        {
-            market.SetActive(false);
-        }
-
         if (Manager.m.hideFactoryButtons == true)
         {
             overlay.SetActive(false);

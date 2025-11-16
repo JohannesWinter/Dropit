@@ -74,13 +74,10 @@ public class Market : MonoBehaviour
     public GameObject showallBar3;
     public GameObject showallButton;
 
-    public GameObject exit;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        exit.GetComponent<Button>().onClick.AddListener(Exit);
         selectUpgrade0.GetComponent<Button>().onClick.AddListener(SelectUpgrade0);
         selectUpgrade1.GetComponent<Button>().onClick.AddListener(SelectUpgrade1);
         selectUpgrade2.GetComponent<Button>().onClick.AddListener(SelectUpgrade2);
@@ -401,7 +398,7 @@ public class Market : MonoBehaviour
                 selectUpgrade2.transform.SetParent(folder3.transform);
                 selectUpgrade3.transform.SetParent(folder4.transform);
 
-                Manager.m.effectSpeaker.accept();
+                Manager.m.effectSpeaker.click();
             }
             else
             {
@@ -435,7 +432,7 @@ public class Market : MonoBehaviour
                     selectUpgrade2.transform.SetParent(folder3.transform);
                     selectUpgrade3.transform.SetParent(folder4.transform);
 
-                    Manager.m.effectSpeaker.accept();
+                    Manager.m.effectSpeaker.click();
                 }
                 else
                 {
@@ -476,7 +473,7 @@ public class Market : MonoBehaviour
                     selectUpgrade1.transform.SetParent(folder3.transform);
                     selectUpgrade0.transform.SetParent(folder4.transform);
 
-                    Manager.m.effectSpeaker.accept();
+                    Manager.m.effectSpeaker.click();
                 }
                 else
                 {
@@ -517,7 +514,7 @@ public class Market : MonoBehaviour
                     selectUpgrade1.transform.SetParent(folder3.transform);
                     selectUpgrade0.transform.SetParent(folder4.transform);
 
-                    Manager.m.effectSpeaker.accept();
+                    Manager.m.effectSpeaker.click();
                 }
                 else
                 {
@@ -560,15 +557,5 @@ public class Market : MonoBehaviour
             showAllBars = false;
             showallButton.GetComponent<RawImage>().texture = marketDisabled;
         }
-    }
-
-
-    void Exit()
-    {
-        if (dropNumber == 1)
-        {
-            Manager.m.effectSpeaker.click();
-        }
-        Manager.m.inMarket = false;
     }
 }

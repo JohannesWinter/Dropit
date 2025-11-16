@@ -10,11 +10,11 @@ public class QTEUltimateProduction : QuickTimeEvent
     }
     override public void start()
     {
-        for (int i = 0; i < Manager.m.dropValueMultipliers.Length; i++)
+        for (int i = 0; i < Manager.m.marketManager.dropValueMultipliers.Length; i++)
         {
-            for (int x = 0; x < Manager.m.dropValueMultipliers[i].Length; x++)
+            for (int x = 0; x < Manager.m.marketManager.dropValueMultipliers[i].Length; x++)
             {
-                Manager.m.dropValueMultipliers[i][x] = 2;
+                Manager.m.marketManager.dropValueMultipliers[i][x] = 2;
             }
         }
         generateDisplay();

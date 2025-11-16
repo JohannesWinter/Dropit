@@ -69,6 +69,7 @@ public sealed class Manager : MonoBehaviour
     public ShopCamera shopCamera;
     public Hotkeys hotkeys;
     public GameSaveManager saveGameManager;
+    public MarketManager marketManager;
     public MissionManager missionManager;
     public FactoryHallsManager factoryHallsManager;
     public QuickTimeEventManager quickTimeEventManager;
@@ -199,9 +200,6 @@ public sealed class Manager : MonoBehaviour
     public string[] keyActions;
     public string[] keyActionTrigger;
     public string[] standardKeyActionTrigger;
-
-    public float[][] dropValueMultipliers;
-    public GameObject[] marketDrops;
 
     public GameObject[] droppers;
     public GameObject[] machines;
@@ -370,18 +368,6 @@ public sealed class Manager : MonoBehaviour
                 autoRepairMachines = new bool[machines.Length];
                 frameCounter = 0;
 
-
-                //dropValueMultiplier = new float[marketDrops.Length];
-                dropValueMultipliers = new float[maxUpgradeNumber + 1][];
-                for (int i = 0; i < dropValueMultipliers.Length; i++)
-                {
-                    dropValueMultipliers[i] = new float[marketDrops.Length];
-
-                    for (int x = 0; x < marketDrops.Length; x++)
-                    {
-                        dropValueMultipliers[i][x] = 1;
-                    }
-                }
                 for (int i = 0; i < startScraps.Length; i++)
                 {
                     GameObject s = Instantiate(scraps[startScraps[i]]);
@@ -761,14 +747,6 @@ public sealed class Manager : MonoBehaviour
             {
                 StartCoroutine(ContinueTime());
             }
-
-            for (int i = 0; i <= maxUpgradeNumber; i++) //updating marketplace to values in Manager
-            {
-                for (int x = 0; x < marketDrops.Length; x++)
-                {
-                    marketDrops[x].GetComponent<Market>().valueMultipliers[i] = dropValueMultipliers[i][x];
-                }
-            }
             if (incomeLastMinute.Count > 60)
             {
                 incomeLastMinute.RemoveAt(0);
@@ -803,129 +781,7 @@ public sealed class Manager : MonoBehaviour
                     declinedMission = 0;
                 }
 
-                for (int i = 0; i < dropValueMultipliers.Length; i++)
-                {
-                    for (int x = 0; x < dropValueMultipliers[i].Length; x++)
-                    {
-                        {
-                            float averageMultiplier;
 
-                            float allMultipliers = 0;
-                            int amountMultipliers = 0;
-
-                            for (int y = 0; y < dropValueMultipliers.Length; y++)
-                            {
-                                allMultipliers += dropValueMultipliers[y][x];
-                                amountMultipliers++;
-                            }
-                            averageMultiplier = allMultipliers / amountMultipliers;
-
-                            float diffrenceMultiplier = averageMultiplier - dropValueMultipliers[i][x];
-
-                            dropValueMultipliers[i][x] += diffrenceMultiplier / 50;
-                        }
-
-                        if (UnityEngine.Random.Range(0, 1000 - Mathf.Round(dropValueMultipliers[i][x] * 100)) < 1) //Rare event on marketplace: Random value; highter Chance on higher current value
-                        {
-                            float random;
-                            random = UnityEngine.Random.Range(60, 150);
-                            dropValueMultipliers[i][x] = random / 100;
-                        }
-                        if (UnityEngine.Random.Range(0, 2400) < 1)
-                        {
-                            dropValueMultipliers[i][x] = (float)UnityEngine.Random.Range(50, 70) / 100;
-                        }
-                        if (UnityEngine.Random.Range(0, 2400) < 1)
-                        {
-                            dropValueMultipliers[i][x] = (float)UnityEngine.Random.Range(180, 200) / 100;
-                        }
-                        if (dropValueMultipliers[i][x] > 1.5f)
-                        {
-                            if (UnityEngine.Random.Range(0, 30) < 1)
-                            {
-                                if (UnityEngine.Random.Range(0, 10) > 1)
-                                {
-                                    dropValueMultipliers[i][x] -= (float)UnityEngine.Random.Range(1, 5) / 100;
-                                }
-                                else
-                                {
-                                    dropValueMultipliers[i][x] -= (float)UnityEngine.Random.Range(10, 30) / 100;
-                                }
-                            }
-                        }
-                        if (dropValueMultipliers[i][x] > 1.9f)
-                        {
-                            if (UnityEngine.Random.Range(0, 5) < 1)
-                            {
-                                if (UnityEngine.Random.Range(0, 10) > 1)
-                                {
-                                    dropValueMultipliers[i][x] -= (float)UnityEngine.Random.Range(1, 3) / 100;
-                                }
-                                else
-                                {
-                                    dropValueMultipliers[i][x] -= (float)UnityEngine.Random.Range(40, 80) / 100;
-                                }
-                            }
-                        }
-                        if (qTEMarketCrash == 0)
-                        {
-                            if (dropValueMultipliers[i][x] < 0.9f)
-                            {
-                                if (UnityEngine.Random.Range(0, 30) < 1)
-                                {
-                                    if (UnityEngine.Random.Range(0, 10) > 1)
-                                    {
-                                        dropValueMultipliers[i][x] += (float)UnityEngine.Random.Range(1, 5) / 100;
-                                    }
-                                    else
-                                    {
-                                        dropValueMultipliers[i][x] += (float)UnityEngine.Random.Range(10, 30) / 100;
-                                    }
-                                }
-                            }
-                            if (dropValueMultipliers[i][x] < 2) //Natural increase of drop value
-                            {
-                                dropValueMultipliers[i][x] += (0.001f * (UnityEngine.Random.Range(-600, 900) / 100)) / (1 + 0.05f * i);
-                            }
-                        }
-                        else
-                        {
-                            if (dropValueMultipliers[i][x] > 1)
-                            {
-                                dropValueMultipliers[i][x] = 1;
-                            }
-                            if (dropValueMultipliers[i][x] < 2) //Natural decrease of drop value in crash
-                            {
-                                dropValueMultipliers[i][x] -= (0.001f * (UnityEngine.Random.Range(-600, 900) / 100)) / (1 + 0.05f * i) * qTEMarketCrash;
-                            }
-                        }
-
-                        if (dropValueMultipliers[i][x] < 0.75f)
-                        {
-                            if (UnityEngine.Random.Range(0, 15) < 1)
-                            {
-                                if (UnityEngine.Random.Range(0, 20) > 1)
-                                {
-                                    dropValueMultipliers[i][x] += (float)UnityEngine.Random.Range(1, 3) / 100;
-                                }
-                                else
-                                {
-                                    dropValueMultipliers[i][x] += (float)UnityEngine.Random.Range(10, 30) / 100;
-                                }
-                            }
-                        }
-
-
-                        if (dropValueMultipliers[i][x] > 2)
-                        {
-                            dropValueMultipliers[i][x] = 2;
-                        }
-                        if (dropValueMultipliers[i][x] < 0.5f)
-                        {
-                            dropValueMultipliers[i][x] = 0.5f;
-                        }
-                    }
-                }
                 //Creating random missions
                 if (missionManager.missions.Count == 0)
                 {
@@ -1235,11 +1091,11 @@ public sealed class Manager : MonoBehaviour
         declinedMission = 0;
         try
         {
-            for (int i = 0; i < dropValueMultipliers.Length; i++)
+            for (int i = 0; i < marketManager.dropValueMultipliers.Length; i++)
             {
-                for (int x = 0; x < dropValueMultipliers[i].Length; x++)
+                for (int x = 0; x < marketManager.dropValueMultipliers[i].Length; x++)
                 {
-                    dropValueMultipliers[i][x] = 1;
+                    marketManager.dropValueMultipliers[i][x] = 1;
                 }
             }
         }

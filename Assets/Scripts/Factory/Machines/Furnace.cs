@@ -54,50 +54,50 @@ public class Furnace : MonoBehaviour
                 }
                 float marketMultiplier = 1;
 
-                for (int i = 0; i < Manager.m.marketDrops.Length; i++)
+                for (int i = 0; i < Manager.m.marketManager.marketDrops.Length; i++)
                 {
                     if (collision.gameObject.name == ("Dropper" + (i + 1) + "Drop(Clone)"))
                     {
                         int upgradeLevel = collision.gameObject.GetComponent<Ore>().upgradeLevel;
                         if (Manager.m.qTEMarketBoost == 0)
                         {
-                            if (Manager.m.dropValueMultipliers[upgradeLevel][i] > 1.5)
+                            if (Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] > 1.5)
                             {
-                                Manager.m.dropValueMultipliers[upgradeLevel][i] -= 0.001f * Manager.m.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed;
+                                Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] -= 0.001f * Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed;
                             }
-                            else if (Manager.m.dropValueMultipliers[upgradeLevel][i] > 1)
+                            else if (Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] > 1)
                             {
-                                Manager.m.dropValueMultipliers[upgradeLevel][i] -= 0.0005f * Manager.m.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed;
+                                Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] -= 0.0005f * Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed;
                             }
-                            else if (Manager.m.dropValueMultipliers[upgradeLevel][i] > 0.75)
+                            else if (Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] > 0.75)
                             {
-                                Manager.m.dropValueMultipliers[upgradeLevel][i] -= 0.0002f * Manager.m.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed;
+                                Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] -= 0.0002f * Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed;
                             }
-                            else if (Manager.m.dropValueMultipliers[upgradeLevel][i] > 0.5)
+                            else if (Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] > 0.5)
                             {
-                                Manager.m.dropValueMultipliers[upgradeLevel][i] -= 0.0001f * Manager.m.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed;
+                                Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] -= 0.0001f * Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed;
                             }
                         }
                         else
                         {
-                            if (Manager.m.dropValueMultipliers[upgradeLevel][i] > 1.5)
+                            if (Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] > 1.5)
                             {
-                                Manager.m.dropValueMultipliers[upgradeLevel][i] += 0.0001f * Manager.m.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed * Manager.m.qTEMarketBoost;
+                                Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] += 0.0001f * Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed * Manager.m.qTEMarketBoost;
                             }
-                            else if (Manager.m.dropValueMultipliers[upgradeLevel][i] > 1)
+                            else if (Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] > 1)
                             {
-                                Manager.m.dropValueMultipliers[upgradeLevel][i] += 0.0002f * Manager.m.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed * Manager.m.qTEMarketBoost;
+                                Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] += 0.0002f * Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed * Manager.m.qTEMarketBoost;
                             }
-                            else if (Manager.m.dropValueMultipliers[upgradeLevel][i] > 0.75)
+                            else if (Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] > 0.75)
                             {
-                                Manager.m.dropValueMultipliers[upgradeLevel][i] += 0.0005f * Manager.m.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed * Manager.m.qTEMarketBoost;
+                                Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] += 0.0005f * Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed * Manager.m.qTEMarketBoost;
                             }
-                            else if (Manager.m.dropValueMultipliers[upgradeLevel][i] > 0.5)
+                            else if (Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] > 0.5)
                             {
-                                Manager.m.dropValueMultipliers[upgradeLevel][i] += 0.001f * Manager.m.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed * Manager.m.qTEMarketBoost;
+                                Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] += 0.001f * Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i] * (1 + 0.01f * i) * Manager.m.droppers[i].GetComponent<RepairDropper>().dropSpeed * Manager.m.qTEMarketBoost;
                             }
                         }
-                        marketMultiplier = Manager.m.dropValueMultipliers[upgradeLevel][i];
+                        marketMultiplier = Manager.m.marketManager.dropValueMultipliers[upgradeLevel][i];
                     }
                 }
                 int inversion = 1;

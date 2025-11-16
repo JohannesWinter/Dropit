@@ -406,7 +406,7 @@ public class Tutorial : MonoBehaviour
                 {
                     steps[25].SetActive(false);
                     steps[26].SetActive(true);
-                    Signal(Manager.m.marketDrops[0].GetComponent<Market>().exit.gameObject.GetComponent<RawImage>(), 1);
+                    Signal(Manager.m.marketManager.exit.gameObject.GetComponent<RawImage>(), 1);
                 }
             }
             if (steps[26].activeSelf == true)

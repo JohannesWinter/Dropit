@@ -684,13 +684,13 @@ public class GameSave : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         //save market state
-        for (int i = 0; i < Manager.m.dropValueMultipliers.Length; i++)
+        for (int i = 0; i < Manager.m.marketManager.dropValueMultipliers.Length; i++)
         {
-            for (int y = 0; y < Manager.m.marketDrops.Length; y++)
+            for (int y = 0; y < Manager.m.marketManager.marketDrops.Length; y++)
             {
-                PlayerPrefs.SetFloat(Manager.m.version + "_" + "Save" + saveNumber + "_Drop" + (i + 1) + "_UpgradeLevel" + i + "_ValueMult", Manager.m.dropValueMultipliers[i][y]);
+                PlayerPrefs.SetFloat(Manager.m.version + "_" + "Save" + saveNumber + "_Drop" + (i + 1) + "_UpgradeLevel" + i + "_ValueMult", Manager.m.marketManager.dropValueMultipliers[i][y]);
             }
-            loadingScreen.setStatus(0, 1, "Lorem", percentPerStep * progress + percentPerStep * 5 * ((float)i / Manager.m.marketDrops.Length));
+            loadingScreen.setStatus(0, 1, "Lorem", percentPerStep * progress + percentPerStep * 5 * ((float)i / Manager.m.marketManager.marketDrops.Length));
             yield return new WaitForEndOfFrame();
         }
         progress += 5;
@@ -1188,11 +1188,11 @@ public class GameSave : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         //load market state
-        for (int i = 0; i < Manager.m.dropValueMultipliers.Length; i++)
+        for (int i = 0; i < Manager.m.marketManager.dropValueMultipliers.Length; i++)
         {
-            for (int y = 0; y < Manager.m.marketDrops.Length; y++)
+            for (int y = 0; y < Manager.m.marketManager.marketDrops.Length; y++)
             {
-                Manager.m.dropValueMultipliers[i][y] = PlayerPrefs.GetFloat(Manager.m.version + "_" + "Save" + saveNumber + "_Drop" + (i + 1) + "_UpgradeLevel" + i + "_ValueMult");
+                Manager.m.marketManager.dropValueMultipliers[i][y] = PlayerPrefs.GetFloat(Manager.m.version + "_" + "Save" + saveNumber + "_Drop" + (i + 1) + "_UpgradeLevel" + i + "_ValueMult");
             }
         }
         progress += 3;
