@@ -14,6 +14,7 @@ public class Hotkeys : MonoBehaviour
     float toMove = 0;
     float localScollValue;
     public Button resetKeys;
+    public Button alreadyResetKeys;
     public float beepCooldown;
     bool onHotkeyEnter;
 
@@ -38,6 +39,16 @@ public class Hotkeys : MonoBehaviour
                 toMove = 0;
                 localScollValue = 0;
                 scrollbar.value = 0;
+            }
+            if (OriginalKeys())
+            {
+                alreadyResetKeys.gameObject.SetActive(true);
+                resetKeys.gameObject.SetActive(false);
+            }
+            else
+            {
+                alreadyResetKeys.gameObject.SetActive(false);
+                resetKeys.gameObject.SetActive(true);
             }
 
             bool needBlock = false;
@@ -215,5 +226,20 @@ public class Hotkeys : MonoBehaviour
                 entries[i].GetComponent<ChangeHotkey>().hotkey = Manager.m.standardKeyActionTrigger[Array.IndexOf(Manager.m.keyActions, entries[i].GetComponent<ChangeHotkey>().hotkeyDef)];
             }
         }
+    }
+
+    bool OriginalKeys()
+    {
+        for (int i = 0; i < entries.Length; i++)
+        {
+            if (entries[i].GetComponent<ChangeHotkey>().hotkeyDef != "")
+            {
+                if (entries[i].GetComponent<ChangeHotkey>().hotkey != Manager.m.standardKeyActionTrigger[Array.IndexOf(Manager.m.keyActions, entries[i].GetComponent<ChangeHotkey>().hotkeyDef)])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
