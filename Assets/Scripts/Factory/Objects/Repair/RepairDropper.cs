@@ -187,7 +187,7 @@ public class RepairDropper : MonoBehaviour
                 }
             }
         }
-        if (Manager.m.editMode_repair == true && Manager.m.editMode == false && Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
+        if (Manager.m.editMode_repair == true)
         {
             if (Manager.m.money >= repairCost && durability < 99.9f)
             {
