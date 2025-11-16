@@ -5,7 +5,6 @@ using UnityEngine;
 public class EditHistoryManager : MonoBehaviour
 {
     int currentPosition = -1;
-
     public List<EditEvent> editHistory = new List<EditEvent>();
     // Start is called before the first frame update
     void Start()
@@ -16,7 +15,6 @@ public class EditHistoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void ResetEditHistory()
