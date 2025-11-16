@@ -51,7 +51,6 @@ public sealed class Manager : MonoBehaviour
     public int machineMax;
     public int dropperRotation;
     public int changeSaveTimer;
-    public int declinedMission;
     public int maxUpgradeNumber;
     public double incomeLastSecond;
     public Texture2D cursor;
@@ -384,7 +383,6 @@ public sealed class Manager : MonoBehaviour
                 playTime = 0;
                 dropperRotation = 180;
                 chainLock.GetComponent<Button>().onClick.AddListener(Lock);
-                declinedMission = 0;
 
                 factoryVolume.publicVolume = 1    ;
                 effectsVolume.publicVolume = 1;
@@ -771,15 +769,6 @@ public sealed class Manager : MonoBehaviour
 
                 incomeLastMinute.Add(incomeLastSecond);
                 incomeLastSecond = 0;
-
-                if (declinedMission > 0)
-                {
-                    declinedMission -= 1;
-                }
-                else
-                {
-                    declinedMission = 0;
-                }
             }
 
             //button / functionalities acess
@@ -802,70 +791,6 @@ public sealed class Manager : MonoBehaviour
                 acessRepair = false;
             }
         }
-    }
-
-    public void createMission()
-    {
-        System.Random rand = new System.Random();
-        int missionOreMax = getHighestUnlockedType();
-        int missionOre = missionOreMax;
-        float changeProbability = 55;
-        for (int i = 0; i < missionOreMax; i++)
-        {
-            if (UnityEngine.Random.Range(0,100) > changeProbability)
-            {
-                break;
-            }
-            else
-            {
-                changeProbability = changeProbability * 0.7f;
-                missionOre--;
-            }
-        }
-        if (missionOre < 0)
-            missionOre = 0;
-        else if (missionOre > 9)
-            missionOre = 9;
-
-        int unlockedUpgrades = (int)Mathf.Floor((missionOreMax + 1) / 3);
-        int missionUpgrade = rand.Next(0, unlockedUpgrades + 1);
-        if (missionUpgrade > 3)
-        {
-            missionUpgrade = 3;
-        }
-        else if (missionUpgrade < 0)
-        {
-            missionUpgrade = 0;
-        }
-
-        float timeDifficulty = UnityEngine.Random.Range(0.15f, 1.2f);
-        float missionTimePerOre = timeDifficulty * droppers[missionOre].GetComponent<RepairDropper>().dropSpeed;
-
-        int missionQuantity = (int)UnityEngine.Random.Range(0, 200 * (1 / droppers[missionOre].GetComponent<RepairDropper>().dropSpeed)) + (int)(100 / droppers[missionOre].GetComponent<RepairDropper>().dropSpeed * timeDifficulty);
-        if (missionQuantity < 1000)
-        {
-            missionQuantity = (int)Mathf.Round((float)missionQuantity / 10) * 10;
-        }
-        else if (missionQuantity >= 1000)
-        {
-            missionQuantity = (int)Mathf.Round((float)missionQuantity / 100) * 100;
-        }
-        int missionTime = (int)Mathf.Round(missionQuantity * missionTimePerOre);
-        if (missionTime > 600)
-        {
-            missionTime = 600;
-        }
-        string identification = droppers[missionOre].gameObject.name;
-        identification = identification.Replace("Dropper", "");
-        identification = identification.Replace("(Clone)", "");
-        double MissionReward = (droppers[missionOre].GetComponent<RepairDropper>().oreValue * missionQuantity * (1 + upgradeMultipliers[missionUpgrade])) / timeDifficulty;
-
-        missionManager.AddMission(missionOre, missionUpgrade, missionQuantity, missionTime, MissionReward);
-    }
-
-    public void createMission(int missionOre, int missionUpgrade, int missionQuantity, int missionTime, double missionReward)
-    {
-        missionManager.AddMission(missionOre, missionUpgrade, missionQuantity, missionTime, missionReward);
     }
 
     public void setKamera(int nummer, int list)
@@ -995,6 +920,7 @@ public sealed class Manager : MonoBehaviour
         incomeLastSecond = 0;
         incomeLastMinute = new List<double>();
         missionManager.missions.Clear();
+        missionManager.declinedMission = 0;
         if (restartGame)
         {
             missionManager.AddMission(0, 0, 50, 600, 200);
@@ -1043,7 +969,6 @@ public sealed class Manager : MonoBehaviour
         gnomeManager.gnomeList.Clear();
 
         shopCamera.ResetCameraPosition();
-        declinedMission = 0;
         try
         {
             for (int i = 0; i < marketManager.dropValueMultipliers.Length; i++)

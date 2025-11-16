@@ -13,6 +13,7 @@ public class MissionManager : MonoBehaviour
     public GameObject noMissions;
     public GameObject missionFolder;
     public bool containsFinishedMission;
+    public int declinedMission;
     float currenttime;
     //public ObjectGlow objectGlow;
 
@@ -20,6 +21,8 @@ public class MissionManager : MonoBehaviour
     {
         exitButton.GetComponent<Button>().onClick.AddListener(Exit);
         missions = new List<GameObject>();
+        currenttime = Time.time;
+        declinedMission = 0;
     }
 
     // Update is called once per frame
@@ -82,23 +85,32 @@ public class MissionManager : MonoBehaviour
         {
             currenttime = Time.time + 1;
 
+            if (declinedMission > 0)
+            {
+                declinedMission -= 1;
+            }
+            else
+            {
+                declinedMission = 0;
+            }
+
             //Creating random missions
             if (missions.Count == 0)
             {
                 if (Manager.m.tutorial.inTutorial == false)
                 {
-                    if (Manager.m.declinedMission != 0)
+                    if (declinedMission != 0)
                     {
                         if (UnityEngine.Random.Range(0, 60) < 1)
                         {
-                            Manager.m.createMission();
+                            createMission();
                         }
                     }
                     else
                     {
                         if (UnityEngine.Random.Range(0, 10) < 1)
                         {
-                            Manager.m.createMission();
+                            createMission();
                         }
                     }
                 }
@@ -108,21 +120,21 @@ public class MissionManager : MonoBehaviour
             {
                 if ((UnityEngine.Random.Range(0, 60) < 1 && Manager.m.tutorial.inTutorial == false))
                 {
-                    Manager.m.createMission();
+                    createMission();
                 }
             }
             if (missions.Count == 2)
             {
                 if ((UnityEngine.Random.Range(0, 120) < 1 && Manager.m.tutorial.inTutorial == false))
                 {
-                    Manager.m.createMission();
+                    createMission();
                 }
             }
             if (missions.Count >= 3)
             {
                 if ((UnityEngine.Random.Range(0, 180) < 1 && Manager.m.tutorial.inTutorial == false))
                 {
-                    Manager.m.createMission();
+                    createMission();
                 }
             }
         }
@@ -188,5 +200,69 @@ public class MissionManager : MonoBehaviour
             m.transform.localPosition = new Vector3(0, 600, 0);
             missions.Add(m);
         }
+    }
+
+    public void createMission()
+    {
+        System.Random rand = new System.Random();
+        int missionOreMax = Manager.m.getHighestUnlockedType();
+        int missionOre = missionOreMax;
+        float changeProbability = 55;
+        for (int i = 0; i < missionOreMax; i++)
+        {
+            if (UnityEngine.Random.Range(0, 100) > changeProbability)
+            {
+                break;
+            }
+            else
+            {
+                changeProbability = changeProbability * 0.7f;
+                missionOre--;
+            }
+        }
+        if (missionOre < 0)
+            missionOre = 0;
+        else if (missionOre > 9)
+            missionOre = 9;
+
+        int unlockedUpgrades = (int)Mathf.Floor((missionOreMax + 1) / 3);
+        int missionUpgrade = rand.Next(0, unlockedUpgrades + 1);
+        if (missionUpgrade > 3)
+        {
+            missionUpgrade = 3;
+        }
+        else if (missionUpgrade < 0)
+        {
+            missionUpgrade = 0;
+        }
+
+        float timeDifficulty = UnityEngine.Random.Range(0.15f, 1.2f);
+        float missionTimePerOre = timeDifficulty * Manager.m.droppers[missionOre].GetComponent<RepairDropper>().dropSpeed;
+
+        int missionQuantity = (int)UnityEngine.Random.Range(0, 200 * (1 / Manager.m.droppers[missionOre].GetComponent<RepairDropper>().dropSpeed)) + (int)(100 / Manager.m.droppers[missionOre].GetComponent<RepairDropper>().dropSpeed * timeDifficulty);
+        if (missionQuantity < 1000)
+        {
+            missionQuantity = (int)Mathf.Round((float)missionQuantity / 10) * 10;
+        }
+        else if (missionQuantity >= 1000)
+        {
+            missionQuantity = (int)Mathf.Round((float)missionQuantity / 100) * 100;
+        }
+        int missionTime = (int)Mathf.Round(missionQuantity * missionTimePerOre);
+        if (missionTime > 600)
+        {
+            missionTime = 600;
+        }
+        string identification = Manager.m.droppers[missionOre].gameObject.name;
+        identification = identification.Replace("Dropper", "");
+        identification = identification.Replace("(Clone)", "");
+        double MissionReward = (Manager.m.droppers[missionOre].GetComponent<RepairDropper>().oreValue * missionQuantity * (1 + Manager.m.upgradeMultipliers[missionUpgrade])) / timeDifficulty;
+
+        AddMission(missionOre, missionUpgrade, missionQuantity, missionTime, MissionReward);
+    }
+
+    public void createMission(int missionOre, int missionUpgrade, int missionQuantity, int missionTime, double missionReward)
+    {
+        AddMission(missionOre, missionUpgrade, missionQuantity, missionTime, missionReward);
     }
 }

@@ -428,7 +428,7 @@ public class Tutorial : MonoBehaviour
                     StopSignal(1);
                     if(Manager.m.missionManager.missions.Count == 0)
                     {
-                        Manager.m.createMission();
+                        Manager.m.missionManager.createMission();
                     }
                     for (int i = 0; i < Manager.m.missionManager.missions.Count; i++)
                     {

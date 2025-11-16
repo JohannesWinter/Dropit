@@ -808,7 +808,7 @@ public class GameSave : MonoBehaviour
         PlayerPrefs.SetFloat(Manager.m.version + "_" + "Save" + saveNumber + "_Exp", (float)Manager.m.exp);
         PlayerPrefs.SetInt(Manager.m.version + "_" + "Save" + saveNumber + "_Playtime", Manager.m.playTime);
         PlayerPrefs.SetInt(Manager.m.version + "_" + "Save" + saveNumber + "_FactoryCamera", Array.IndexOf(Manager.m.factoryCameras, Manager.m.lastDropperCamera));
-        PlayerPrefs.SetInt(Manager.m.version + "_" + "Save" + saveNumber + "_DeclinedMission", Manager.m.declinedMission);
+        PlayerPrefs.SetInt(Manager.m.version + "_" + "Save" + saveNumber + "_DeclinedMission", Manager.m.missionManager.declinedMission);
         progress += 1.5f;
         loadingScreen.setStatus(0, 1, "Lorem", percentPerStep * progress);
         yield return new WaitForEndOfFrame();
@@ -1482,7 +1482,7 @@ public class GameSave : MonoBehaviour
         Manager.m.level = PlayerPrefs.GetInt(Manager.m.version + "_" + "Save" + saveNumber + "_Level");
         Manager.m.exp = PlayerPrefs.GetFloat(Manager.m.version + "_" + "Save" + saveNumber + "_Exp");
         Manager.m.setKamera(PlayerPrefs.GetInt(Manager.m.version + "_" + "Save" + saveNumber + "_FactoryCamera"), 0);
-        Manager.m.declinedMission = PlayerPrefs.GetInt(Manager.m.version + "_" + "Save" + saveNumber + "_DeclinedMission");
+        Manager.m.missionManager.declinedMission = PlayerPrefs.GetInt(Manager.m.version + "_" + "Save" + saveNumber + "_DeclinedMission");
         progress += 0.5f;
         loadingScreen.setStatus(0, 1, "Lorem", percentPerStep * progress);
         yield return new WaitForEndOfFrame();

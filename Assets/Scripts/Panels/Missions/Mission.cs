@@ -133,7 +133,7 @@ public class Mission : MonoBehaviour
 
         if (Manager.m.missionManager.missions.Count == 1)
         {
-            Manager.m.declinedMission = 60;
+            Manager.m.missionManager.declinedMission = 60;
         }
         declinedMission = true;
         acceptMission.gameObject.SetActive(false);
@@ -146,7 +146,7 @@ public class Mission : MonoBehaviour
 
         if (Manager.m.missionManager.missions.Count == 1)
         {
-            Manager.m.declinedMission = (int)(60 * (1 - (sold / quantity)));
+            Manager.m.missionManager.declinedMission = (int)(60 * (1 - (sold / quantity)));
         }
 
         canceldMission = true;
