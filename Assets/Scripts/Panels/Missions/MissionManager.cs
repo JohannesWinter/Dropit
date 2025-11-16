@@ -13,6 +13,7 @@ public class MissionManager : MonoBehaviour
     public GameObject noMissions;
     public GameObject missionFolder;
     public bool containsFinishedMission;
+    float currenttime;
     //public ObjectGlow objectGlow;
 
     void Start()
@@ -75,6 +76,55 @@ public class MissionManager : MonoBehaviour
         else
         {
             noMissions.SetActive(false);
+        }
+
+        if (currenttime < Time.time)
+        {
+            currenttime = Time.time + 1;
+
+            //Creating random missions
+            if (missions.Count == 0)
+            {
+                if (Manager.m.tutorial.inTutorial == false)
+                {
+                    if (Manager.m.declinedMission != 0)
+                    {
+                        if (UnityEngine.Random.Range(0, 60) < 1)
+                        {
+                            Manager.m.createMission();
+                        }
+                    }
+                    else
+                    {
+                        if (UnityEngine.Random.Range(0, 10) < 1)
+                        {
+                            Manager.m.createMission();
+                        }
+                    }
+                }
+            }
+            else
+            if (missions.Count == 1)
+            {
+                if ((UnityEngine.Random.Range(0, 60) < 1 && Manager.m.tutorial.inTutorial == false))
+                {
+                    Manager.m.createMission();
+                }
+            }
+            if (missions.Count == 2)
+            {
+                if ((UnityEngine.Random.Range(0, 120) < 1 && Manager.m.tutorial.inTutorial == false))
+                {
+                    Manager.m.createMission();
+                }
+            }
+            if (missions.Count >= 3)
+            {
+                if ((UnityEngine.Random.Range(0, 180) < 1 && Manager.m.tutorial.inTutorial == false))
+                {
+                    Manager.m.createMission();
+                }
+            }
         }
     }
     void Exit()
