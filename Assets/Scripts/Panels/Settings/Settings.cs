@@ -36,6 +36,9 @@ public class Settings : MonoBehaviour
     public TextMeshProUGUI headline;
     public GameObject emptyText;
 
+    public RectTransform[] mainMenuButtonPositions;
+    public RectTransform[] inGameButtonPositions;
+
     public List<GameObject> saveGames = new List<GameObject>();
 
     void Start()
@@ -146,25 +149,13 @@ public class Settings : MonoBehaviour
         }
         if (Manager.m.inSettings == true && Manager.m.inMainMenu == true)
         {
-            save.GetComponent<RawImage>().color = new Color(220f / 255, 220f / 255, 220f / 255, 1);
-            save.GetComponent<Button>().enabled = false;
-            mainMenu.GetComponent<RawImage>().color = new Color(220f / 255, 220f / 255, 220f / 255, 1);
-            mainMenu.GetComponent<Button>().enabled = false;
-            reset.GetComponent<RawImage>().color = new Color(220f / 255, 220f / 255, 220f / 255, 1);
-            reset.GetComponent<Button>().enabled = false;
-            ore_reset.GetComponent<RawImage>().color = new Color(220f / 255, 220f / 255, 220f / 255, 1);
-            ore_reset.GetComponent<Button>().enabled = false;
+            save.gameObject.SetActive(false);
+            mainMenu.gameObject.SetActive(false);
         }
         else
         {
-            save.GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
-            save.GetComponent<Button>().enabled = true;
-            mainMenu.GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
-            mainMenu.GetComponent<Button>().enabled = true;
-            reset.GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
-            reset.GetComponent<Button>().enabled = true;
-            ore_reset.GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
-            ore_reset.GetComponent<Button>().enabled = true;
+            save.gameObject.SetActive(true);
+            mainMenu.gameObject.SetActive(true);
         }
     }
     void OptionsSave()
