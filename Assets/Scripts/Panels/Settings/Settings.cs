@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
     public GameObject overlay;
+    public GameObject buttonsOverlay;
     public bool inMainMenue;
 
     public GameObject save;
@@ -300,6 +301,7 @@ public class Settings : MonoBehaviour
         for (int i = 0; i < saveGames.Count; i++) { saveGames[i].GetComponent<GameSave>().SetUiActive(false); }
         DisableEverything();
 
+        buttonsOverlay.SetActive(true);
         save.SetActive(true);
         load.SetActive(true);
         sound.SetActive(true);
@@ -327,7 +329,7 @@ public class Settings : MonoBehaviour
 
     void DisableEverything()
     {
-
+        buttonsOverlay.SetActive(false);
         save.SetActive(false);
         load.SetActive(false);
         sound.SetActive(false);
