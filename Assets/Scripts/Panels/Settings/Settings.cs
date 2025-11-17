@@ -21,6 +21,7 @@ public class Settings : MonoBehaviour
 
     public GameObject back;
     public GameObject close;
+    public GameObject continueIngame;
 
     public GameObject volumesOverlay;
     public GameObject helpMenueOverlay;
@@ -53,6 +54,7 @@ public class Settings : MonoBehaviour
         mainMenu.GetComponent<Button>().onClick.AddListener(OptionsMainMenu);
 
         close.GetComponent<Button>().onClick.AddListener(OptionClose);
+        continueIngame.GetComponent<Button>().onClick.AddListener(OptionClose);
         back.GetComponent<Button>().onClick.AddListener(OptionBack);
 
         ore_reset.GetComponent<Button>().onClick.AddListener(Ore_Reset);
@@ -69,6 +71,7 @@ public class Settings : MonoBehaviour
         allButtonTransforms[5] = sound.GetComponent<RectTransform>();
         allButtonTransforms[6] = help.GetComponent<RectTransform>();
         allButtonTransforms[7] = mainMenu.GetComponent<RectTransform>();
+        allButtonTransforms[8] = continueIngame.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -160,17 +163,6 @@ public class Settings : MonoBehaviour
         {
             Ore_Reset();
         }
-        if (Manager.m.inSettings == true && Manager.m.inMainMenu == true)
-        {
-            save.gameObject.SetActive(false);
-            mainMenu.gameObject.SetActive(false);
-        }
-        else
-        {
-            save.gameObject.SetActive(true);
-            mainMenu.gameObject.SetActive(true);
-        }
-
         UpdateButtonPositions();
 
     }
@@ -360,7 +352,15 @@ public class Settings : MonoBehaviour
             {
                 if (allButtonTransforms[i] != null)
                 {
-                    allButtonTransforms[i].position = mainMenuButtonPositions[i].position;
+                    if (mainMenuButtonPositions[i].gameObject.activeSelf)
+                    {
+                        allButtonTransforms[i].gameObject.SetActive(true);
+                        allButtonTransforms[i].position = mainMenuButtonPositions[i].position;
+                    }
+                    else
+                    {
+                        allButtonTransforms[i].gameObject.SetActive(false);
+                    }
                 }
                 else
                 {
@@ -374,7 +374,15 @@ public class Settings : MonoBehaviour
             {
                 if (allButtonTransforms[i] != null)
                 {
-                    allButtonTransforms[i].position = inGameButtonPositions[i].position;
+                    if (inGameButtonPositions[i].gameObject.activeSelf)
+                    {
+                        allButtonTransforms[i].gameObject.SetActive(true);
+                        allButtonTransforms[i].position = inGameButtonPositions[i].position;
+                    }
+                    else
+                    {
+                        allButtonTransforms[i].gameObject.SetActive(false);
+                    }
                 }
                 else
                 {
