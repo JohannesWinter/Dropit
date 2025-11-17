@@ -38,6 +38,7 @@ public class Settings : MonoBehaviour
 
     public RectTransform[] mainMenuButtonPositions;
     public RectTransform[] inGameButtonPositions;
+    RectTransform[] allButtonTransforms;
 
     public List<GameObject> saveGames = new List<GameObject>();
 
@@ -56,6 +57,18 @@ public class Settings : MonoBehaviour
 
         ore_reset.GetComponent<Button>().onClick.AddListener(Ore_Reset);
         reset.GetComponent<Button>().onClick.AddListener(Reset);
+
+        //static order:
+
+        allButtonTransforms = new RectTransform[10];
+        allButtonTransforms[0] = close.GetComponent<RectTransform>();
+        allButtonTransforms[1] = save.GetComponent<RectTransform>();
+        allButtonTransforms[2] = load.GetComponent<RectTransform>();
+        allButtonTransforms[3] = hotkeys.GetComponent<RectTransform>();
+        allButtonTransforms[4] = graphics.GetComponent<RectTransform>();
+        allButtonTransforms[5] = sound.GetComponent<RectTransform>();
+        allButtonTransforms[6] = help.GetComponent<RectTransform>();
+        allButtonTransforms[7] = mainMenu.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -157,6 +170,9 @@ public class Settings : MonoBehaviour
             save.gameObject.SetActive(true);
             mainMenu.gameObject.SetActive(true);
         }
+
+        UpdateButtonPositions();
+
     }
     void OptionsSave()
     {
@@ -334,5 +350,37 @@ public class Settings : MonoBehaviour
         changeHotkeysOverlay.SetActive(false);
         graphicsOverlay.SetActive(false);
         close.SetActive(false);
+    }
+
+    void UpdateButtonPositions()
+    {
+        if (Manager.m.inMainMenu) 
+        {
+            for (int i = 0; i < mainMenuButtonPositions.Length; i++)
+            {
+                if (allButtonTransforms[i] != null)
+                {
+                    allButtonTransforms[i].position = mainMenuButtonPositions[i].position;
+                }
+                else
+                {
+                    Debug.Log("Error: Settings button not found");
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < inGameButtonPositions.Length; i++)
+            {
+                if (allButtonTransforms[i] != null)
+                {
+                    allButtonTransforms[i].position = inGameButtonPositions[i].position;
+                }
+                else
+                {
+                    Debug.Log("Error: Settings button not found");
+                }
+            }
+        }
     }
 }
