@@ -23,16 +23,13 @@ public class StringsGUI : MonoBehaviour
         {
             if (moving[i] == false)
             {
-                if (UnityEngine.Random.Range(0, (int)(100/Time.unscaledDeltaTime)) == 0)
-                {
-                    move[i] = true;
-                }
+                move[i] = true;
             }
 
-            if (moving[i] == true)
+            if (move[i] == true)
             {
-                moving[i] = false;
-                StartCoroutine(moveString(strings[i], directions[i], speeds[i], i));
+                move[i] = false;
+                StartCoroutine(moveString(strings[i], directions[i], speeds[i] * UnityEngine.Random.Range(0.85f, 1.15f), i));
             }
         }
     }
@@ -41,24 +38,29 @@ public class StringsGUI : MonoBehaviour
 
     IEnumerator moveString(GameObject toMove, Vector3 direction, float speed, int index)
     {
+        if (moving[index])
+        {
+            yield return null;
+        }
         moving[index] = true;
         Vector3 oldPosition = toMove.transform.position;
         Vector3 toMovePosition = oldPosition + direction;
         Stack positions = new Stack();
-        for (int i = 0; i < 20; i++)
+        float restDistance = float.MaxValue;
+        while (restDistance > 0.1)
         {
-            positions.Push(toMove.transform.position);
+            positions.Push(toMove.transform.localPosition);
             Vector3 currentPosition = toMove.transform.position;
             Vector3 restVector = toMovePosition - currentPosition;
+            restDistance = Vector3.Magnitude(restVector);
             toMove.transform.Translate(restVector * speed);
             yield return new WaitForSecondsRealtime(0.05f);
         }
         while (positions.Count > 0)
         {
-            toMove.transform.position = (Vector3) positions.Pop();
+            toMove.transform.localPosition = (Vector3) positions.Pop();
             yield return new WaitForSecondsRealtime(0.035f);
         }
-        toMove.transform.position = oldPosition;
         moving[index] = false;
     }
 }
