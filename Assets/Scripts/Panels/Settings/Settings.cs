@@ -81,7 +81,7 @@ public class Settings : MonoBehaviour
         saveGames = Manager.m.saveGameManager.saveGames;
         overlay.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
 
-        if (Manager.m.inOptionSave || Manager.m.inOptionLoad || Manager.m.inOptionClear || Manager.m.inMainMenuLoad)
+        if (Manager.m.settings_save || Manager.m.settings_load || Manager.m.settings_clear || Manager.m.inMainMenuLoad)
         {
             for (int i = 0; i < saveGames.Count; i++)
             {
@@ -103,7 +103,7 @@ public class Settings : MonoBehaviour
         {
             inMainMenue = false;
         }
-        if (Manager.m.inOptionLoad == false && Manager.m.inOptionClear == false)
+        if (Manager.m.settings_load == false && Manager.m.settings_clear == false)
         {
             emptyText.SetActive(false);
         }
@@ -122,10 +122,10 @@ public class Settings : MonoBehaviour
         if (Manager.m.inSettings == false)
         {
             overlay.SetActive(false);
-            Manager.m.inOptionSave = false;
-            Manager.m.inOptionLoad = false;
-            Manager.m.inOptionClear = false;
-            Manager.m.inOptionAutosave = false;
+            Manager.m.settings_save = false;
+            Manager.m.settings_load = false;
+            Manager.m.settings_clear = false;
+            Manager.m.settings_autosave = false;
         }
         else
         {
@@ -169,10 +169,10 @@ public class Settings : MonoBehaviour
     }
     void OptionsSave()
     {
-        Manager.m.inOptionSave = true;
-        Manager.m.inOptionLoad = false;
-        Manager.m.inOptionClear = true;
-        Manager.m.inOptionAutosave = false;
+        Manager.m.settings_save = true;
+        Manager.m.settings_load = false;
+        Manager.m.settings_clear = true;
+        Manager.m.settings_autosave = false;
         Manager.m.saveGameManager.saveGames.ForEach(x => x.GetComponent<GameSave>().counter = 30); //reloads saves
 
         for(int i = 0; i < saveGames.Count; i++) { saveGames[i].GetComponent<GameSave>().SetUiActive(true); }
@@ -184,10 +184,10 @@ public class Settings : MonoBehaviour
     }
     void OptionsLoad()
     {
-        Manager.m.inOptionSave = false;
-        Manager.m.inOptionLoad = true;
-        Manager.m.inOptionClear = true;
-        Manager.m.inOptionAutosave = false;
+        Manager.m.settings_save = false;
+        Manager.m.settings_load = true;
+        Manager.m.settings_clear = true;
+        Manager.m.settings_autosave = false;
         Manager.m.saveGameManager.saveGames.ForEach(x => x.GetComponent<GameSave>().counter = 30); //reloads saves
 
         for (int i = 0; i < saveGames.Count; i++) { saveGames[i].GetComponent<GameSave>().SetUiActive(true); }
@@ -199,10 +199,10 @@ public class Settings : MonoBehaviour
     }
     void OptionsClear()
     {
-        Manager.m.inOptionSave = false;
-        Manager.m.inOptionLoad = false;
-        Manager.m.inOptionClear = true;
-        Manager.m.inOptionAutosave = false;
+        Manager.m.settings_save = false;
+        Manager.m.settings_load = false;
+        Manager.m.settings_clear = true;
+        Manager.m.settings_autosave = false;
         Manager.m.saveGameManager.saveGames.ForEach(x => x.GetComponent<GameSave>().counter = 30); //reloads saves
 
         for (int i = 0; i < saveGames.Count; i++) { saveGames[i].GetComponent<GameSave>().SetUiActive(true); }
@@ -230,9 +230,9 @@ public class Settings : MonoBehaviour
     }
     void OptionsSound()
     {
-        Manager.m.inOptionSave = false;
-        Manager.m.inOptionLoad = false;
-        Manager.m.inOptionClear = false;
+        Manager.m.settings_save = false;
+        Manager.m.settings_load = false;
+        Manager.m.settings_clear = false;
 
         DisableEverything();
 
@@ -244,9 +244,9 @@ public class Settings : MonoBehaviour
     }
     void OptionsGraphics()
     {
-        Manager.m.inOptionSave = false;
-        Manager.m.inOptionLoad = false;
-        Manager.m.inOptionClear = false;
+        Manager.m.settings_save = false;
+        Manager.m.settings_load = false;
+        Manager.m.settings_clear = false;
 
         DisableEverything();
 
@@ -266,9 +266,9 @@ public class Settings : MonoBehaviour
     }
     void OptionHelp()
     {
-        Manager.m.inOptionSave = false;
-        Manager.m.inOptionLoad = false;
-        Manager.m.inOptionClear = false;
+        Manager.m.settings_save = false;
+        Manager.m.settings_load = false;
+        Manager.m.settings_clear = false;
 
         DisableEverything();
 
@@ -279,10 +279,10 @@ public class Settings : MonoBehaviour
     }
     void OptionHotkeys()
     {
-        Manager.m.inOptionSave = false;
-        Manager.m.inOptionLoad = false;
-        Manager.m.inOptionClear = false;
-        Manager.m.inOptionHotkeys = true;
+        Manager.m.settings_save = false;
+        Manager.m.settings_load = false;
+        Manager.m.settings_clear = false;
+        Manager.m.settings_hotkeys = true;
 
         DisableEverything();
 
@@ -293,10 +293,10 @@ public class Settings : MonoBehaviour
     }
     public void OptionBack()
     {
-        Manager.m.inOptionSave = false;
-        Manager.m.inOptionLoad = false;
-        Manager.m.inOptionClear = false;
-        Manager.m.inOptionHotkeys = false;
+        Manager.m.settings_save = false;
+        Manager.m.settings_load = false;
+        Manager.m.settings_clear = false;
+        Manager.m.settings_hotkeys = false;
 
         for (int i = 0; i < saveGames.Count; i++) { saveGames[i].GetComponent<GameSave>().SetUiActive(false); }
         DisableEverything();

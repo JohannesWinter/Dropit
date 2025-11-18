@@ -122,7 +122,7 @@ public class ChangeHotkey : MonoBehaviour
                 Manager.m.keyActionTrigger[Array.IndexOf(Manager.m.keyActions, hotkeyDef)] = hotkey;
                 glimmer.enabled = false;
 
-                if (Manager.m.inOptionHotkeys)
+                if (Manager.m.settings_hotkeys)
                 {
                     currentCombination = hotkey.Split('+').ToList();
                     bool foundSame = false;

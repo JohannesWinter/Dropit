@@ -122,7 +122,7 @@ public class GameSaveManager : MonoBehaviour
             PlayerPrefs.SetInt(Manager.m.version + "_" + "SaveNumber" + saveGames[i].GetComponent<GameSave>().saveNumber + "_Position", i);
         }
 
-        if (Manager.m.inOptionSave || Manager.m.inOptionLoad || Manager.m.inOptionClear || Manager.m.inOptionAutosave || Manager.m.inMainMenuLoad)
+        if (Manager.m.settings_save || Manager.m.settings_load || Manager.m.settings_clear || Manager.m.settings_autosave || Manager.m.inMainMenuLoad)
         {
             if (onScrollbarEnter == true)
             {
@@ -134,10 +134,10 @@ public class GameSaveManager : MonoBehaviour
             List<GameObject> currentMenuObjects = new List<GameObject>();
             Vector3 offset = new Vector3(0, 0, 0);
 
-            if (Manager.m.inOptionSave  || Manager.m.inOptionLoad || Manager.m.inOptionClear)
+            if (Manager.m.settings_save  || Manager.m.settings_load || Manager.m.settings_clear)
             {
                 scrollbar.transform.localPosition = new Vector3(250, 0, 0);
-                if (Manager.m.inOptionSave == true)
+                if (Manager.m.settings_save == true)
                 {
                     for (int i = 0; i < saveGames.Count; i++)
                     {
@@ -197,7 +197,7 @@ public class GameSaveManager : MonoBehaviour
                     currentMenuObjects.AddRange(autoSaveList);
                 }
             }
-            else if (Manager.m.inOptionAutosave)
+            else if (Manager.m.settings_autosave)
             {
                 scrollbar.transform.localPosition = new Vector3(250, 0, 0);
                 for (int i = 0; i < autoSaveGames.Count; i++)

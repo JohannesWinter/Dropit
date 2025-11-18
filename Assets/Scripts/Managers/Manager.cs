@@ -88,11 +88,12 @@ public sealed class Manager : MonoBehaviour
     public bool editMode_placeDropper;
     public bool editMode_placeMachine;
     public bool editMode_repair;
-    public bool inOptionSave;
-    public bool inOptionLoad;
-    public bool inOptionClear;
-    public bool inOptionAutosave;
-    public bool inOptionHotkeys;
+    public bool settings_save;
+    public bool settings_load;
+    public bool settings_clear;
+    public bool settings_autosave;
+    public bool settings_hotkeys;
+    public bool settings_help;
     public bool inMainMenuLoad;
     public bool inMarket;
     public bool inMissions;

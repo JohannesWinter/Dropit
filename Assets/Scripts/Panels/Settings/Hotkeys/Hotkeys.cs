@@ -32,7 +32,7 @@ public class Hotkeys : MonoBehaviour
 
     void Update()
     {
-        if (Manager.m.inOptionHotkeys == true)
+        if (Manager.m.settings_hotkeys == true)
         {
             if (onHotkeyEnter == true)
             {

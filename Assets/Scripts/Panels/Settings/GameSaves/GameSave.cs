@@ -83,7 +83,7 @@ public class GameSave : MonoBehaviour
         }
         else
         {
-            if (Manager.m.inOptionSave == true)
+            if (Manager.m.settings_save == true)
             {
                 saveButton1.SetActive(true);
                 saveButton2.SetActive(true);
@@ -92,7 +92,7 @@ public class GameSave : MonoBehaviour
 
                 clearButton1.SetActive(true);
             }
-            else if (Manager.m.inOptionLoad == true || Manager.m.inMainMenuLoad == true)
+            else if (Manager.m.settings_load == true || Manager.m.inMainMenuLoad == true)
             {
                 saveButton1.SetActive(false);
                 saveButton2.SetActive(false);
