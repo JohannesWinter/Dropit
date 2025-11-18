@@ -14,7 +14,9 @@ public class Help : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        b1.onClick.AddListener(B1);
+        b2.onClick.AddListener(B2);
+        b3.onClick.AddListener(B3);
     }
 
     // Update is called once per frame

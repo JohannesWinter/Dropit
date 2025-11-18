@@ -25,7 +25,6 @@ public class Settings : MonoBehaviour
     public GameObject continueIngame;
 
     public GameObject volumesOverlay;
-    public GameObject helpMenueOverlay;
     public GameObject graphicsOverlay;
     public GameObject ore_reset;
     public GameObject reset;
@@ -341,7 +340,6 @@ public class Settings : MonoBehaviour
         mainMenu.SetActive(false);
         back.SetActive(false);
         volumesOverlay.SetActive(false);
-        helpMenueOverlay.SetActive(false);
         changeHotkeysOverlay.SetActive(false);
         graphicsOverlay.SetActive(false);
         close.SetActive(false);
