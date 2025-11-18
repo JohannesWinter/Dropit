@@ -272,7 +272,7 @@ public class Settings : MonoBehaviour
 
         DisableEverything();
 
-        helpMenueOverlay.SetActive(true);
+        Manager.m.settings_help = true;
         back.SetActive(true);
         Manager.m.effectSpeaker.click();
         headline.text = "Help";
@@ -297,6 +297,7 @@ public class Settings : MonoBehaviour
         Manager.m.settings_load = false;
         Manager.m.settings_clear = false;
         Manager.m.settings_hotkeys = false;
+        Manager.m.settings_help = false;
 
         for (int i = 0; i < saveGames.Count; i++) { saveGames[i].GetComponent<GameSave>().SetUiActive(false); }
         DisableEverything();
