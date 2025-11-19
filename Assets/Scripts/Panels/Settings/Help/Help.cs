@@ -25,6 +25,23 @@ public class Help : MonoBehaviour
             buttons[i].onClick.AddListener(() => { SetHelpPage(index); });
         }
     }
+    /*
+    Pages
+    #01 Introduction
+    #02 Miners
+    #03 Conveyors
+    #04 Furnaces
+    #05 Upgrading
+    #06 EditMode
+    #07 Selling
+    #08 Repairing
+    #09 Market
+    #10 Missions
+    #11 Factory Halls
+    #12 Events
+    #13 Attacks
+    #14 The End
+     */
 
     // Update is called once per frame
     void Update()
