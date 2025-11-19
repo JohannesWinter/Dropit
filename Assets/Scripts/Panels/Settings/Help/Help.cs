@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class Help : MonoBehaviour
     public Scrollbar scrollbar;
     public float buttonDistance;
     public float visibleButtons;
+    float currentHeightValue;
+    public float correctionSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,35 +32,57 @@ public class Help : MonoBehaviour
         if (Manager.m.settings_help)
         {
             overlay.SetActive(true);
-            for (int i = 0; i < pages.Length; i++)
+            for (int i = 0; i < buttons.Length; i++)
             {
                 if (currentPage != i)
                 {
-                    pages[i].SetActive(false);
+                    if (pages.Length > i)
+                    {
+                        pages[i].SetActive(false);
+                    }
+                    buttons[i].gameObject.GetComponent<RawImage>().color = Color.white;
                 }
                 else
                 {
-                    pages[i].SetActive(true);
+                    if (pages.Length > i)
+                    {
+                        pages[i].SetActive(true);
+                    }
+                    buttons[i].gameObject.GetComponent<RawImage>().color = new Color(0.8f, 0.8f, 0.8f);
+                    buttons[i].gameObject.transform.SetSiblingIndex(buttons[i].gameObject.transform.parent.childCount);
                 }
             }
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                scrollbar.value += Input.mouseScrollDelta.y * (-1f) * (1f / buttons.Length);
+                if (scrollbar.value < 0) { scrollbar.value = 0; }
+                else if (scrollbar.value > 1f) { scrollbar.value = 1f; }
+            }
+            UpdateHightValue();
+            UpdateButtonSizesAndScale();
         }
         else
         {
             overlay.SetActive(false);
+            currentHeightValue = scrollbar.value;
         }
-        UpdateButtonSizesAndScale();
     }
 
     void SetHelpPage(int page)
     {
+        Manager.m.effectSpeaker.click();
         this.currentPage = page;
     }
 
-    void SetButtonPositionsInBar()
+    void UpdateHightValue()
     {
-        for (int i = 0; i < buttons.Length; i++)
+        float difference = scrollbar.value - currentHeightValue;
+        if (Mathf.Abs(difference) < 0.0001f)
         {
+            currentHeightValue = scrollbar.value;
+            return;
         }
+        currentHeightValue += difference * Time.unscaledDeltaTime * correctionSpeed;
     }
     void UpdateButtonSizesAndScale()
     {
@@ -65,7 +90,7 @@ public class Help : MonoBehaviour
         {
             //position
             Vector3 startPosition = Vector3.zero - new Vector3(0, i * buttonDistance, 0);
-            Vector3 actualPosition = startPosition + new Vector3(0, Mathf.Max(0, buttonDistance * ((buttons.Length - 1 - visibleButtons) * scrollbar.value)), 0);
+            Vector3 actualPosition = startPosition + new Vector3(0, Mathf.Max(0, buttonDistance * ((buttons.Length - 1 - visibleButtons) * currentHeightValue)), 0);
 
             Button currentButton = buttons[i];
             RectTransform currentButtonTransfrom = currentButton.GetComponent<RectTransform>();
@@ -88,6 +113,21 @@ public class Help : MonoBehaviour
                 currentButtonTransfrom.Translate(0, +(1 - buttonHeight) * currentButtonTransfrom.rect.height * 0.5f, 0, Space.Self);
             }
             currentButtonTransfrom.localScale = new Vector3(currentButtonTransfrom.localScale.x, buttonHeight, currentButtonTransfrom.localScale.z);
+            if (buttonHeight == 0)
+            {
+                if (currentButton.gameObject.activeSelf)
+                {
+                    currentButton.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                if (currentButton.gameObject.activeSelf == false)
+                {
+                    currentButton.gameObject.SetActive(true);
+                    Manager.m.effectSpeaker.changePlaySoundParameters(Manager.m.effectSpeaker.beep, 1 / ((currentHeightValue + 1.5f) * 0.5f));
+                }
+            }
         }
     }
 }
