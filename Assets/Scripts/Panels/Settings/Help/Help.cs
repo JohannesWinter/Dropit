@@ -6,17 +6,19 @@ using UnityEngine.UI;
 public class Help : MonoBehaviour
 {
     public GameObject overlay;
-    public Button b1;
-    public Button b2;
-    public Button b3;
     public int currentPage = 0;
+    public Button[] buttons;
     public GameObject[] pages;
+    public RectTransform buttonBar;
+    Vector3 barStart;
     // Start is called before the first frame update
     void Start()
     {
-        b1.onClick.AddListener(B1);
-        b2.onClick.AddListener(B2);
-        b3.onClick.AddListener(B3);
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].onClick.AddListener(() => { SetHelpPage(i); });
+        }
+        barStart = buttonBar.localPosition + new Vector3(buttonBar.localScale.x * 0.5f, 0, 0);
     }
 
     // Update is called once per frame
@@ -41,20 +43,19 @@ public class Help : MonoBehaviour
         {
             overlay.SetActive(false);
         }
-
+        SetButtonPositionsInBar();
     }
 
+    void SetHelpPage(int page)
+    {
+        this.currentPage = page;
+    }
 
-    void B1()
+    void SetButtonPositionsInBar()
     {
-        currentPage = 0;
-    }
-    void B2()
-    {
-        currentPage = 1;
-    }
-    void B3()
-    {
-        currentPage = 2;
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].gameObject.GetComponent<RectTransform>().localPosition = barStart - new Vector3(i * 150f, 0, 0);
+        }
     }
 }
