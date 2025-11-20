@@ -127,7 +127,7 @@ public class Help : MonoBehaviour
             else
             {
                 buttonHeight = Mathf.Max(0, 1 - Mathf.Abs(currentButtonTransfrom.localPosition.y + visibleButtons * buttonDistance) / buttonDistance);
-                currentButtonTransfrom.Translate(0, +(1 - buttonHeight) * currentButtonTransfrom.rect.height * 0.5f * currentButtonTransfrom.localScale.y * -1, 0, Space.Self);
+                currentButtonTransfrom.transform.localPosition = currentButtonTransfrom.transform.localPosition + new Vector3(0, +(1 - buttonHeight) * currentButtonTransfrom.rect.height * 0.5f, 0);
             }
             currentButtonTransfrom.localScale = new Vector3(currentButtonTransfrom.localScale.x, buttonHeight, currentButtonTransfrom.localScale.z);
             if (buttonHeight == 0)
