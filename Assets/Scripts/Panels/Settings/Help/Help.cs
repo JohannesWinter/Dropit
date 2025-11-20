@@ -28,7 +28,7 @@ public class Help : MonoBehaviour
     /*
     Pages
     #01 Introduction
-    #02 Miners
+    #02 Production --Done
     #03 Conveyors
     #04 Furnaces
     #05 Upgrading
