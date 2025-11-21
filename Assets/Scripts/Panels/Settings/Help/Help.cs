@@ -33,7 +33,7 @@ public class Help : MonoBehaviour
     #04 Furnaces --Done
     #05 Upgrading --Done
     #06 EditMode --Done
-    #07 Selling
+    #07 Selling --Selling
     #08 Repairing
     #09 Market
     #10 Missions
