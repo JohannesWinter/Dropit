@@ -38,7 +38,7 @@ public class Help : MonoBehaviour
     #09 Market --Done
     #10 Missions --Done
     #11 Factory Halls --Done
-    #12 Events
+    #12 Events --Done
     #13 Attacks
     #14 The End
      */
