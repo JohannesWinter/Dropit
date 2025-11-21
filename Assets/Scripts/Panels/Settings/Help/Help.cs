@@ -29,7 +29,7 @@ public class Help : MonoBehaviour
     Pages
     #01 Introduction
     #02 Production --Done
-    #03 Conveyors
+    #03 Conveyors --Done
     #04 Furnaces
     #05 Upgrading
     #06 EditMode
