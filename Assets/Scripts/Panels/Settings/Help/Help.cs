@@ -31,7 +31,7 @@ public class Help : MonoBehaviour
     #02 Production --Done
     #03 Conveyors --Done
     #04 Furnaces --Done
-    #05 Upgrading
+    #05 Upgrading --Done
     #06 EditMode
     #07 Selling
     #08 Repairing
