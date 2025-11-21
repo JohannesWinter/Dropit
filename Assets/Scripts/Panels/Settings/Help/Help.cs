@@ -33,8 +33,8 @@ public class Help : MonoBehaviour
     #04 Furnaces --Done
     #05 Upgrading --Done
     #06 EditMode --Done
-    #07 Selling --Selling
-    #08 Repairing
+    #07 Selling --Done
+    #08 Repairing --Done
     #09 Market
     #10 Missions
     #11 Factory Halls
