@@ -32,7 +32,7 @@ public class Help : MonoBehaviour
     #03 Conveyors --Done
     #04 Furnaces --Done
     #05 Upgrading --Done
-    #06 EditMode
+    #06 EditMode --Done
     #07 Selling
     #08 Repairing
     #09 Market
