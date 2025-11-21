@@ -36,7 +36,7 @@ public class Help : MonoBehaviour
     #07 Selling --Done
     #08 Repairing --Done
     #09 Market --Done
-    #10 Missions
+    #10 Missions --Done
     #11 Factory Halls
     #12 Events
     #13 Attacks
