@@ -68,7 +68,7 @@ public class PriorCheck : MonoBehaviour
                     }
                 }
             }
-            else if (other.gameObject.GetComponent<RepairDropper>().furnaceMultiplier != 0)
+            else if (other.gameObject.GetComponent<RepairDropper>().furnaceMultiplier != 0 && other.gameObject.GetComponent<RepairDropper>().machineNumber != 2)
             {
                 if (Manager.standardRotation(other.gameObject.transform.rotation.eulerAngles.y) != Manager.standardRotation(this.gameObject.transform.rotation.eulerAngles.y + 180))
                 {
