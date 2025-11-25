@@ -85,9 +85,9 @@ public class ShopCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        informationBoard.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
-        leftArrow.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
-        rightArrow.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
+        informationBoard.GetComponent<RectTransform>().localScale = new Vector3(Mathf.Max(Manager.m.graphicManager.gUIScaleFactor, 1), Mathf.Max(Manager.m.graphicManager.gUIScaleFactor, 1), Mathf.Max(Manager.m.graphicManager.gUIScaleFactor,1));
+        leftArrow.GetComponent<RectTransform>().localScale = new Vector3(Mathf.Max(Manager.m.graphicManager.gUIScaleFactor, 1), Mathf.Max(Manager.m.graphicManager.gUIScaleFactor, 1), Mathf.Max(Manager.m.graphicManager.gUIScaleFactor, 1));
+        rightArrow.GetComponent<RectTransform>().localScale = new Vector3(Mathf.Max(Manager.m.graphicManager.gUIScaleFactor, 1), Mathf.Max(Manager.m.graphicManager.gUIScaleFactor, 1), Mathf.Max(Manager.m.graphicManager.gUIScaleFactor, 1));
         lockObjects.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
         buyButtonEnabled.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
         buyButtonDisabled.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
