@@ -35,13 +35,14 @@ public class NotificationManager : MonoBehaviour
                 {
                     notificationQueue[i].enable = true;
                     notificationQueue[i].Slide(to: endPositions[i], 3f);
+                    notificationQueue[i].shown = true;
                 }
                 if (notificationQueue[i].elapsed > notificationQueue[i].lifetime && notificationQueue[i].state == 1)
                 {
                     notificationQueue[i].Slide(to:startPositions[i], 4f);
                     notificationQueue[i].state = 2;
                 }
-                if (notificationQueue[i].state == 2 && Vector3.Distance(notificationQueue[i].gameObject.transform.localPosition, notificationQueue[i].slideTarget) < 50)
+                if (notificationQueue[i].state == 2 && notificationQueue[i].elapsed > notificationQueue[i].lifetime)
                 {
                     notificationQueue[i].state = 3;
                     Destroy(notificationQueue[i].gameObject, 3f);

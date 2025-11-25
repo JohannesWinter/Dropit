@@ -16,6 +16,7 @@ public class Notification : MonoBehaviour
 
     public Vector3 slideTarget;
     public float slideSpeed;
+    public bool shown;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,10 @@ public class Notification : MonoBehaviour
     {
         if (enable)
         {
-            elapsed += Time.unscaledDeltaTime;
+            if (shown)
+            {
+                elapsed += Time.unscaledDeltaTime;
+            }
 
             if (slideTarget != gameObject.GetComponent<RectTransform>().localPosition)
             {
