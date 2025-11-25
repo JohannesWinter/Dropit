@@ -25,6 +25,7 @@ public class MainMenue : MonoBehaviour
     public GameObject mainMenuOverlay_NO;
     public GameObject mainMenuOverlay_N;
     public GameObject mainMenuOverlay_W;
+    public GameObject mainMenuOverlay_S;
     //public GameObject blackBoard;
     int lastSaveGameNumber;
 
@@ -79,15 +80,22 @@ public class MainMenue : MonoBehaviour
         {
             mainMenuOverlay_N.SetActive(false);
             mainMenuOverlay_W.SetActive(false);
+            mainMenuOverlay_S.SetActive(false);
         }
         else
         {
             mainMenuOverlay_N.SetActive(true);
             mainMenuOverlay_W.SetActive(true);
-        }
+            mainMenuOverlay_S.SetActive(true);
+            mainMenuOverlay_N.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
+            mainMenuOverlay_W.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
+            mainMenuOverlay_S.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
 
-        mainMenuOverlay_N.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
-        mainMenuOverlay_W.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
+
+            if (Manager.m.graphicManager.gUIScaleFactor == 1)
+            {
+            }
+        }
 
 
         lastSaveGameNumber = Manager.m.lastSaveNumber;
