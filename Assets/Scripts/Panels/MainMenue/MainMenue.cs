@@ -76,25 +76,31 @@ public class MainMenue : MonoBehaviour
         mainMenuOverlay_SO.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
         mainMenuOverlay_NO.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
         
+        mainMenuOverlay_S.SetActive(true);
+        mainMenuOverlay_N.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
+        mainMenuOverlay_W.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
+        mainMenuOverlay_S.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
+
         if (Manager.m.graphicManager.gUIScaleFactor > 1)
         {
-            mainMenuOverlay_N.SetActive(false);
-            mainMenuOverlay_W.SetActive(false);
-            mainMenuOverlay_S.SetActive(false);
+            mainMenuOverlay_N.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+            mainMenuOverlay_N.GetComponent<RectTransform>().sizeDelta = new Vector2(1100, 632);
+            mainMenuOverlay_W.GetComponent<RectTransform>().sizeDelta = new Vector2(1124, 600);
+            mainMenuOverlay_S.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 632);
+        }
+        else if (Manager.m.graphicManager.gUIScaleFactor == 1)
+        {
+            mainMenuOverlay_N.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+            mainMenuOverlay_N.GetComponent<RectTransform>().sizeDelta = new Vector2(1700, 632);
+            mainMenuOverlay_W.GetComponent<RectTransform>().sizeDelta = new Vector2(1124, 900);
+            mainMenuOverlay_S.GetComponent<RectTransform>().sizeDelta = new Vector2(600, 632);
         }
         else
         {
-            mainMenuOverlay_N.SetActive(true);
-            mainMenuOverlay_W.SetActive(true);
-            mainMenuOverlay_S.SetActive(true);
-            mainMenuOverlay_N.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
-            mainMenuOverlay_W.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
-            mainMenuOverlay_S.GetComponent<RectTransform>().localScale = new Vector3(Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor, Manager.m.graphicManager.gUIScaleFactor);
-
-
-            if (Manager.m.graphicManager.gUIScaleFactor == 1)
-            {
-            }
+            mainMenuOverlay_N.GetComponent<RectTransform>().localPosition = new Vector3(-200, 0, 0);
+            mainMenuOverlay_N.GetComponent<RectTransform>().sizeDelta = new Vector2(3500, 632);
+            mainMenuOverlay_W.GetComponent<RectTransform>().sizeDelta = new Vector2(1124, 1700);
+            mainMenuOverlay_S.GetComponent<RectTransform>().sizeDelta = new Vector2(2400, 632);
         }
 
 
