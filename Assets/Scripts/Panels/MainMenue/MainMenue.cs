@@ -83,21 +83,18 @@ public class MainMenue : MonoBehaviour
 
         if (Manager.m.graphicManager.gUIScaleFactor > 1)
         {
-            mainMenuOverlay_N.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
-            mainMenuOverlay_N.GetComponent<RectTransform>().sizeDelta = new Vector2(1100, 632);
+            mainMenuOverlay_N.GetComponent<RectTransform>().sizeDelta = new Vector2(1700, 632);
             mainMenuOverlay_W.GetComponent<RectTransform>().sizeDelta = new Vector2(1124, 600);
             mainMenuOverlay_S.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 632);
         }
         else if (Manager.m.graphicManager.gUIScaleFactor == 1)
         {
-            mainMenuOverlay_N.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
-            mainMenuOverlay_N.GetComponent<RectTransform>().sizeDelta = new Vector2(1700, 632);
+            mainMenuOverlay_N.GetComponent<RectTransform>().sizeDelta = new Vector2(2200, 632);
             mainMenuOverlay_W.GetComponent<RectTransform>().sizeDelta = new Vector2(1124, 900);
             mainMenuOverlay_S.GetComponent<RectTransform>().sizeDelta = new Vector2(600, 632);
         }
         else
         {
-            mainMenuOverlay_N.GetComponent<RectTransform>().localPosition = new Vector3(-200, 0, 0);
             mainMenuOverlay_N.GetComponent<RectTransform>().sizeDelta = new Vector2(3500, 632);
             mainMenuOverlay_W.GetComponent<RectTransform>().sizeDelta = new Vector2(1124, 1700);
             mainMenuOverlay_S.GetComponent<RectTransform>().sizeDelta = new Vector2(2400, 632);
