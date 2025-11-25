@@ -10,7 +10,9 @@ public class Notification : MonoBehaviour
     public RawImage notificationImage;
     public GameObject overlay;
     public float lifetime;
-    public float elapsed { get; private set; }
+    public float deathTime;
+    public float totalElapsed { get; private set; }
+    public float shownElapsed;
     public bool enable;
     public int state;
 
@@ -28,9 +30,10 @@ public class Notification : MonoBehaviour
     {
         if (enable)
         {
+            totalElapsed += Time.unscaledDeltaTime;
             if (shown)
             {
-                elapsed += Time.unscaledDeltaTime;
+                shownElapsed += Time.unscaledDeltaTime;
             }
 
             if (slideTarget != gameObject.GetComponent<RectTransform>().localPosition)

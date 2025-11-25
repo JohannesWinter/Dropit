@@ -36,16 +36,16 @@ public class NotificationManager : MonoBehaviour
                     notificationQueue[i].enable = true;
                     notificationQueue[i].Slide(to: endPositions[i], 3f);
                 }
-                if (notificationQueue[i].elapsed > notificationQueue[i].lifetime && notificationQueue[i].state == 1)
+                if (notificationQueue[i].totalElapsed > notificationQueue[i].lifetime && notificationQueue[i].state == 1)
                 {
                     notificationQueue[i].Slide(to:startPositions[i], 4f);
                     notificationQueue[i].state = 2;
                     notificationQueue[i].shown = true;
                 }
-                if (notificationQueue[i].state == 2 && notificationQueue[i].elapsed > notificationQueue[i].lifetime)
+                if (notificationQueue[i].state == 2 && notificationQueue[i].shownElapsed > notificationQueue[i].deathTime)
                 {
                     notificationQueue[i].state = 3;
-                    DestroyImmediate(notificationQueue[i].gameObject);
+                    DestroyImmediate(notificationQueue[i]);
                     notificationQueue.RemoveAt(i);
                 }
 
@@ -67,6 +67,7 @@ public class NotificationManager : MonoBehaviour
         notification.notificationText.text = description;
         notification.notificationImage.texture = image;
         notification.lifetime = 5f;
+        notification.deathTime = 0.5f;
         notificationQueue.Add(notification);
     }
 }
