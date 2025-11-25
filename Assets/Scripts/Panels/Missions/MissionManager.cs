@@ -50,7 +50,7 @@ public class MissionManager : MonoBehaviour
             }
             else
             {
-                missions[i].transform.localPosition = new Vector3(0, 600, 0);
+                missions[i].transform.localPosition = new Vector3(0, 1080, 0);
             }
             float screenSizeDiffrence = Manager.m.canvas.GetComponent<RectTransform>().rect.width / Manager.m.canvas.GetComponent<CanvasScaler>().referenceResolution.x;
             missions[i].transform.localScale = new Vector3(screenSizeDiffrence * 0.6f, screenSizeDiffrence * 0.6f, 1);
