@@ -47,13 +47,13 @@ public class StringsGUI : MonoBehaviour
         Vector3 toMovePosition = oldPosition + direction;
         Stack positions = new Stack();
         float restDistance = float.MaxValue;
-        while (restDistance > 0.1)
+        while (restDistance > 0.15f)
         {
             positions.Push(toMove.transform.localPosition);
             Vector3 currentPosition = toMove.transform.localPosition;
             Vector3 restVector = toMovePosition - currentPosition;
             restDistance = Vector3.Magnitude(restVector);
-            toMove.transform.Translate(restVector * speed);
+            toMove.transform.Translate(restVector * speed * Manager.m.graphicManager.gUIScaleFactor);
             yield return new WaitForSecondsRealtime(0.05f);
         }
         while (positions.Count > 0)
