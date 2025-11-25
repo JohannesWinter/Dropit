@@ -43,21 +43,21 @@ public class StringsGUI : MonoBehaviour
             yield return null;
         }
         moving[index] = true;
-        Vector3 oldPosition = toMove.transform.position;
+        Vector3 oldPosition = toMove.transform.localPosition;
         Vector3 toMovePosition = oldPosition + direction;
         Stack positions = new Stack();
         float restDistance = float.MaxValue;
         while (restDistance > 0.1)
         {
             positions.Push(toMove.transform.localPosition);
-            Vector3 currentPosition = toMove.transform.position;
+            Vector3 currentPosition = toMove.transform.localPosition;
             Vector3 restVector = toMovePosition - currentPosition;
             restDistance = Vector3.Magnitude(restVector);
             toMove.transform.Translate(restVector * speed);
             yield return new WaitForSecondsRealtime(0.05f);
         }
         while (positions.Count > 0)
-        {
+        {   
             toMove.transform.localPosition = (Vector3) positions.Pop();
             yield return new WaitForSecondsRealtime(0.035f);
         }
