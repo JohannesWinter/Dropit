@@ -15,6 +15,7 @@ public class QuickTimeEventManager : MonoBehaviour
     public GameObject displayFolder;
     public GameObject noEventsDisplay;
     public bool addRandomQuickTimeEvent;
+    public int nextQuickTimeEventID;
 
     float currenttime;
     //public float cooldown;
@@ -86,7 +87,16 @@ public class QuickTimeEventManager : MonoBehaviour
                 addRandomQuickTimeEvent = false;
                 float intensity = Random.Range(0.0f, 0.55f + Manager.m.getHighestUnlockedType() * 0.05f);
                 intensity = Mathf.Round(intensity * 10) / 10;
-                var qte = generateQuickTimeEventInitiator(1, Manager.m.getHighestUnlockedQteType(), 120, 240, intensity);
+                QuickTimeEvent qte;
+                if (nextQuickTimeEventID == 0)
+                {
+                    qte = generateQuickTimeEventInitiator(1, Manager.m.getHighestUnlockedQteType(), 120, 240, intensity);
+                }
+                else
+                {
+                    qte = generateQuickTimeEventInitiator(1, nextQuickTimeEventID, 120, 240, intensity);
+                    nextQuickTimeEventID = 0;
+                }
                 if (qte != null)
                 {
                     currentEvents.Add(qte);
