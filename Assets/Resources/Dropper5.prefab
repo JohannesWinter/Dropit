@@ -1396,7 +1396,7 @@ MonoBehaviour:
   stopTimeReset: 0
   quickTimeEventClocking: 0
   quickTimeEventEfficiency: 0
---- !u!1 &7435075505944361377
+--- !u!1 &6441797217207877246
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1404,9 +1404,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6793193131484570939}
-  - component: {fileID: 1178438093811323468}
-  - component: {fileID: 4492953523025127869}
+  - component: {fileID: 8084573931354980918}
+  - component: {fileID: 7871688804529433876}
+  - component: {fileID: 7016427199925860594}
   m_Layer: 0
   m_Name: Part (22)
   m_TagString: Untagged
@@ -1414,35 +1414,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6793193131484570939
+--- !u!4 &8084573931354980918
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7435075505944361377}
+  m_GameObject: {fileID: 6441797217207877246}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.57, z: 0}
-  m_LocalScale: {x: 3.6, y: 0.3, z: 3.6}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 9, y: 0.7500002, z: 9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6469135133957422535}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!108 &1178438093811323468
+--- !u!108 &7871688804529433876
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7435075505944361377}
+  m_GameObject: {fileID: 6441797217207877246}
   m_Enabled: 1
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Intensity: 785.9503
-  m_Range: 20
+  m_Intensity: 15915.494
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1482,28 +1482,28 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 4.5, y: 4.5}
+  m_AreaSize: {x: 20, y: 20}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 20}
-  m_UseBoundingSphereOverride: 1
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 30}
+  m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &4492953523025127869
+--- !u!114 &7016427199925860594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7435075505944361377}
+  m_GameObject: {fileID: 6441797217207877246}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 50000
+  m_Intensity: 200000
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -1516,8 +1516,8 @@ MonoBehaviour:
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
   m_NonLightmappedOnly: 0
-  m_ShapeWidth: 4.5
-  m_ShapeHeight: 4.5
+  m_ShapeWidth: 20
+  m_ShapeHeight: 20
   m_AspectRatio: 1
   m_ShapeRadius: 0.025
   m_SoftnessScale: 1
@@ -1610,7 +1610,7 @@ MonoBehaviour:
   m_ObsoleteUseShadowQualitySettings: 0
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
-  m_PointlightHDType: 1
+  m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
 --- !u!1 &8797861928204645270
@@ -3688,6 +3688,7 @@ MonoBehaviour:
   durability: 100
   dropSpeed: 4
   conveyorBeltSpeed: 0
+  conveyorBeltType: 
   furnaceMultiplier: 0
   upgradeLevelMax: 0
   isScrap: 0
@@ -3760,6 +3761,6 @@ Transform:
   - {fileID: 7855218271052297346}
   - {fileID: 4104233622390249908}
   - {fileID: 1248396862477752399}
-  - {fileID: 6793193131484570939}
+  - {fileID: 8084573931354980918}
   m_Father: {fileID: 8949228575841295394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
