@@ -16,6 +16,7 @@ public class QuickTimeEventManager : MonoBehaviour
     public GameObject noEventsDisplay;
     public bool addRandomQuickTimeEvent;
     public int nextQuickTimeEventID;
+    public bool resetEvents;
 
     float currenttime;
     //public float cooldown;
@@ -109,6 +110,15 @@ public class QuickTimeEventManager : MonoBehaviour
                 if (Random.Range(0, 120 + (30 * currentEvents.Count) - 30 * (Manager.m.level / 11)) == 0 && Manager.m.acessQTEs == true && Manager.m.tutorial.inTutorial2 == false && Manager.m.tutorial.inTutorial3 == false)
                 {
                     addRandomQuickTimeEvent = true;
+                }
+            }
+            if (resetEvents == true)
+            {
+                resetEvents = false;
+                for (int i = currentEvents.Count - 1; i >= 0; i--)
+                {
+                    currentEvents[i].end();
+                    currentEvents.Remove(currentEvents[i]);
                 }
             }
         }
@@ -242,6 +252,7 @@ public class QuickTimeEventManager : MonoBehaviour
                 print("Invalid state: " + initiationTimeType);
                 return null;
         }
+        initiationTime = 1;
         var qTEInitiate = new QTEInitiate(initiationTime, qTE);
         return qTEInitiate;
     }
