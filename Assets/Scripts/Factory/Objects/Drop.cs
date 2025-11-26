@@ -547,7 +547,7 @@ public class Drop : MonoBehaviour
                                 i.gameObject.GetComponent<Ore>().baseValue = oreValue;
                                 i.gameObject.GetComponent<Ore>().exp = exp;
                                 i.gameObject.transform.parent = Manager.m.oreFolder.transform;
-                                i.transform.Translate(5f, 20f, 0);
+                                i.transform.Translate(7f, 20f, 0);
                             }
                             bool filled = true;
                             for (int i = 0; i < repairDropperScript.inputOres.Length; i++)
