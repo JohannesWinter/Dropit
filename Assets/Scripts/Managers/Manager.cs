@@ -937,10 +937,6 @@ public sealed class Manager : MonoBehaviour
         incomeLastMinute = new List<double>();
         missionManager.missions.Clear();
         missionManager.declinedMission = 0;
-        if (restartGame)
-        {
-            missionManager.AddMission(0, 0, 50, 600, 200);
-        }
         for (int i = quickTimeEventManager.currentEvents.Count - 1; i >= quickTimeEventManager.currentEvents.Count; i--)
         {
             quickTimeEventManager.currentEvents.RemoveAt(i);
@@ -951,7 +947,10 @@ public sealed class Manager : MonoBehaviour
             Destroy(qTEdisplays[i].gameObject);
         }
         quickTimeEventManager.currentEvents.Clear();
-
+        for (int i = 0; i < hallUpgrader.Length; i++)
+        {
+            hallUpgrader[i].ResetUpgrader();
+        }
         qTECheapMiners = 1;
         qTECheapMinersNumber = 0;
         qTEExpensiveMiners = 1;

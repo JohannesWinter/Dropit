@@ -42,6 +42,8 @@ public class HallUpgrade : MonoBehaviour
     Vector3 rightSidePlatePosition;
     Vector3 leftSidePlateScale;
     Vector3 rightSidePlateScale;
+
+    Coroutine opening;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +80,7 @@ public class HallUpgrade : MonoBehaviour
                 {
                     if (startedFilling == false && finishedFilling == false)
                     {
-                        StartCoroutine(open());
+                        opening = StartCoroutine(open());
                     }
 
                     startedFilling = true;
@@ -313,6 +315,10 @@ public class HallUpgrade : MonoBehaviour
     }
     public void ResetUpgrader()
     {
+        if (opening != null)
+        {
+            StopCoroutine(opening);
+        }
         self.SetActive(true);
         if (field != null)
         {
