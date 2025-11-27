@@ -51,6 +51,7 @@ public class FactoryButtons : MonoBehaviour
     public GameObject options;
 
     public Texture lockIcon;
+    public Texture missionsIcon;
     public Texture factoryHallsIcon;
     public Texture qTEsIcon;
     public Texture repairOffIcon;
@@ -403,6 +404,14 @@ public class FactoryButtons : MonoBehaviour
         machineTypeButton.transform.rotation = Quaternion.Euler(0, 0, (Manager.m.dropperRotation + editRotation) * -1);
 
         //locked Buttons
+        if (Manager.m.acessMissions == true)
+        {
+            missionsButton.GetComponent<RawImage>().texture = missionsIcon;
+        }
+        else
+        {
+            missionsButton.GetComponent<RawImage>().texture = lockIcon;
+        }
         if (Manager.m.acessFactoryHalls == true)
         {
             factoryHallsButton.GetComponent<RawImage>().texture = factoryHallsIcon;
@@ -843,8 +852,15 @@ public class FactoryButtons : MonoBehaviour
 
     void Missions()
     {
-        Manager.m.effectSpeaker.click();
-        Manager.m.inMissions = true;
+        if (Manager.m.acessMissions)
+        {
+            Manager.m.effectSpeaker.click();
+            Manager.m.inMissions = true;
+        }
+        else
+        {
+            Manager.m.effectSpeaker.error();
+        }
     }
     void QuickTimeEvents()
     {

@@ -252,7 +252,6 @@ public class QuickTimeEventManager : MonoBehaviour
                 print("Invalid state: " + initiationTimeType);
                 return null;
         }
-        initiationTime = 1;
         var qTEInitiate = new QTEInitiate(initiationTime, qTE);
         return qTEInitiate;
     }

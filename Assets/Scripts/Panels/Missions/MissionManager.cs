@@ -146,28 +146,31 @@ public class MissionManager : MonoBehaviour
     }
     public void AddMission(int oreNumber, int upgradeLevel, int quantity, int seconds, double reward)
     {
-        if (missions.Count < positions.Length)
+        if (Manager.m.acessMissions)
         {
-            GameObject m = Instantiate(mission);
-            m.GetComponent<Mission>().quantity = quantity;
-            m.GetComponent<Mission>().upgradeLevel = upgradeLevel;
-            m.GetComponent<Mission>().reward = reward;
-            m.GetComponent<Mission>().oreNumber = oreNumber;
-            m.GetComponent<Mission>().time = seconds;
-            m.GetComponent<Mission>().sold = 0;
-            m.GetComponent<Mission>().acceptedMission = false;
-            m.GetComponent<Mission>().canceldMission = false;
-            m.GetComponent<Mission>().finishedMission = false;
-            m.GetComponent<Mission>().deliveredMission = false;
-            m.GetComponent<Mission>().acceptMission.gameObject.SetActive(true);
-            m.GetComponent<Mission>().declineMission.gameObject.SetActive(true);
-            m.GetComponent<Mission>().cancelMission.gameObject.SetActive(false);
-            m.GetComponent<Mission>().deliverMission.gameObject.SetActive(false);
-            m.transform.SetParent(Manager.m.canvas.transform);
-            m.transform.localPosition = new Vector3(0, 600, 0);
-            m.transform.SetParent(missionFolder.transform);
-            missions.Add(m);
-            Manager.m.notificationManager.AddNotification("!Info!\nther is a new Order for\n" + quantity + " * " + Manager.m.oreIdentifications[oreNumber], Manager.m.eventImages[25]);
+            if (missions.Count < positions.Length)
+            {
+                GameObject m = Instantiate(mission);
+                m.GetComponent<Mission>().quantity = quantity;
+                m.GetComponent<Mission>().upgradeLevel = upgradeLevel;
+                m.GetComponent<Mission>().reward = reward;
+                m.GetComponent<Mission>().oreNumber = oreNumber;
+                m.GetComponent<Mission>().time = seconds;
+                m.GetComponent<Mission>().sold = 0;
+                m.GetComponent<Mission>().acceptedMission = false;
+                m.GetComponent<Mission>().canceldMission = false;
+                m.GetComponent<Mission>().finishedMission = false;
+                m.GetComponent<Mission>().deliveredMission = false;
+                m.GetComponent<Mission>().acceptMission.gameObject.SetActive(true);
+                m.GetComponent<Mission>().declineMission.gameObject.SetActive(true);
+                m.GetComponent<Mission>().cancelMission.gameObject.SetActive(false);
+                m.GetComponent<Mission>().deliverMission.gameObject.SetActive(false);
+                m.transform.SetParent(Manager.m.canvas.transform);
+                m.transform.localPosition = new Vector3(0, 600, 0);
+                m.transform.SetParent(missionFolder.transform);
+                missions.Add(m);
+                Manager.m.notificationManager.AddNotification("!Info!\nther is a new Order for\n" + quantity + " * " + Manager.m.oreIdentifications[oreNumber], Manager.m.eventImages[25]);
+            }
         }
     }
     public void LoadMission(int oreNumber, int upgradeLevel, int quantity, int seconds, double reward, float sold, bool accepted)

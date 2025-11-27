@@ -103,6 +103,7 @@ public sealed class Manager : MonoBehaviour
     public bool inHotkeySet;
     public bool hideFactoryButtons;
     public bool hideFactoryUI;
+    public bool acessMissions;
     public bool acessFactoryHalls;
     public bool acessQTEs;
     public bool acessRepair;
@@ -776,11 +777,25 @@ public sealed class Manager : MonoBehaviour
             if (level >= 2)
             {
                 acessFactoryHalls = true;
-                acessQTEs = true;
             }
             else
             {
                 acessFactoryHalls = false;
+            }
+            if (level >= 3)
+            {
+                acessMissions = true;
+            }
+            else
+            {
+                acessMissions = false;
+            }
+            if (level >= 4)
+            {
+                acessQTEs = true;
+            }
+            else
+            {
                 acessQTEs = false;
             }
             if (tutorial.inTutorial2 || tutorial.finishedTutorial2)
