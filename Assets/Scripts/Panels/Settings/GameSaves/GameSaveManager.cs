@@ -19,7 +19,7 @@ public class GameSaveManager : MonoBehaviour
     public Button autoSaveButton;
     public TextMeshProUGUI autoSaveButtonText;
     float currenttime;
-    public int countdownAutoSave = 300;
+    public int countdownAutoSave = 60;
     int lastCountdownAnimation;
     int autoSaveState = 5;
 
@@ -377,31 +377,55 @@ public class GameSaveManager : MonoBehaviour
             case 1:
                 {
                     autoSaveButtonText.text = "1<br><size=10>MIN";
+                    if (countdownAutoSave > 60)
+                    {
+                        countdownAutoSave = 60;
+                    }
                     break;
                 }
             case 3:
                 {
                     autoSaveButtonText.text = "3<br><size=10>MIN";
+                    if (countdownAutoSave > 180)
+                    {
+                        countdownAutoSave = 180;
+                    }
                     break;
                 }
             case 5:
                 {
                     autoSaveButtonText.text = "5<br><size=10>MIN";
+                    if (countdownAutoSave > 300)
+                    {
+                        countdownAutoSave = 300;
+                    }
                     break;
                 }
             case 15:
                 {
                     autoSaveButtonText.text = "15<br><size=10>MIN";
+                    if (countdownAutoSave > 900)
+                    {
+                        countdownAutoSave = 900;
+                    }
                     break;
                 }
             case 30:
                 {
                     autoSaveButtonText.text = "30<br><size=10>MIN";
+                    if (countdownAutoSave > 1800)
+                    {
+                        countdownAutoSave = 1800;
+                    }
                     break;
                 }
             case 60:
                 {
                     autoSaveButtonText.text = "60<br><size=10>MIN";
+                    if (countdownAutoSave > 3600)
+                    {
+                        countdownAutoSave = 3600;
+                    }
                     break;
                 }
             default:
