@@ -205,36 +205,36 @@ public class GameSaveManager : MonoBehaviour
                     currentMenuObjects.AddRange(autoSaveList);
                 }
             }
-            else if (Manager.m.settings_autosave)
-            {
-                scrollbar.transform.localPosition = new Vector3(250, 0, 0);
-                for (int i = 0; i < autoSaveGames.Count; i++)
-                {
-                    currentMenuObjects.Add(autoSaveGames[i]);
-                    autoSaveGames[i].GetComponent<GameSave>().SetUiActive(true);
-                }
-                float[] ages = new float[autoSaveGames.Count];
-                for (int i = 0; i < autoSaveGames.Count; i++)
-                {
-                    ages[i] = autoSaveGames[i].GetComponent<GameSave>().age;
-                }
-                for (int i = 0; i < ages.Length; i++)
-                {
-                    for (int j = 0; j < ages.Length; j++)
-                    {
-                        if (ages[i] > ages[j])
-                        {
-                            float h = ages[i];
-                            ages[i] = ages[j];
-                            ages[j] = h;
+            //else if (Manager.m.settings_autosave)
+            //{
+            //    scrollbar.transform.localPosition = new Vector3(250, 0, 0);
+            //    for (int i = 0; i < autoSaveGames.Count; i++)
+            //    {
+            //        currentMenuObjects.Add(autoSaveGames[i]);
+            //        autoSaveGames[i].GetComponent<GameSave>().SetUiActive(true);
+            //    }
+            //    float[] ages = new float[autoSaveGames.Count];
+            //    for (int i = 0; i < autoSaveGames.Count; i++)
+            //    {
+            //        ages[i] = autoSaveGames[i].GetComponent<GameSave>().age;
+            //    }
+            //    for (int i = 0; i < ages.Length; i++)
+            //    {
+            //        for (int j = 0; j < ages.Length; j++)
+            //        {
+            //            if (ages[i] > ages[j])
+            //            {
+            //                float h = ages[i];
+            //                ages[i] = ages[j];
+            //                ages[j] = h;
 
-                            GameObject gh = currentMenuObjects[i];
-                            currentMenuObjects[i] = currentMenuObjects[j];
-                            currentMenuObjects[j] = gh;
-                        }
-                    }
-                }
-            }
+            //                GameObject gh = currentMenuObjects[i];
+            //                currentMenuObjects[i] = currentMenuObjects[j];
+            //                currentMenuObjects[j] = gh;
+            //            }
+            //        }
+            //    }
+            //}
             else if (Manager.m.inMainMenuLoad)
             {
                 offset = new Vector3(80, 90, 0);
