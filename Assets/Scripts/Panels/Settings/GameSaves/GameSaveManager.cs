@@ -585,7 +585,7 @@ public class GameSaveManager : MonoBehaviour
         confirmationTime.text = "";
         confirmationBackround.GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
         confirmationCheckmark.GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
-        confirmationOverlay.transform.localPosition = new Vector3(0, 100, 0);
+        confirmationOverlay.GetComponent<RectTransform>().localPosition = new Vector3(0, 100, 0);
 
         float rotation = 1440;
         float size = 0.0f;
@@ -595,9 +595,9 @@ public class GameSaveManager : MonoBehaviour
         {
             confirmationBackround.GetComponent<RawImage>().color = new Color(1, 1, 1, confirmationBackround.GetComponent<RawImage>().color.a + 1f / steps);
             confirmationCheckmark.GetComponent<RawImage>().color = new Color(1, 1, 1, confirmationCheckmark.GetComponent<RawImage>().color.a + 1f / steps);
-            confirmationCheckmark.transform.rotation = Quaternion.Euler(0, 0, -rotation);
-            confirmationCheckmark.transform.localScale = new Vector3(size, size, size);
-            confirmationOverlay.transform.localPosition = new Vector3(0, confirmationOverlay.transform.localPosition.y * 0.95f, 0);
+            confirmationCheckmark.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -rotation);
+            confirmationCheckmark.GetComponent<RectTransform>().localScale = new Vector3(size, size, size);
+            confirmationOverlay.GetComponent<RectTransform>().localPosition = new Vector3(0, confirmationOverlay.transform.localPosition.y * 0.95f, 0);
             rotation = rotation * 0.9f;
             if (i < steps / 2)
             {
@@ -612,8 +612,8 @@ public class GameSaveManager : MonoBehaviour
         {
             confirmationBackround.GetComponent<RawImage>().color = new Color(1, 1, 1, confirmationBackround.GetComponent<RawImage>().color.a - 1.5f / (steps / 2));
             confirmationCheckmark.GetComponent<RawImage>().color = new Color(1, 1, 1, confirmationCheckmark.GetComponent<RawImage>().color.a - 1.5f / (steps / 2));
-            confirmationCheckmark.transform.localScale = new Vector3(size, size, size);
-            confirmationOverlay.transform.localPosition = new Vector3(0, confirmationOverlay.transform.localPosition.y * 1.5f, 0);
+            confirmationCheckmark.GetComponent<RectTransform>().localScale = new Vector3(size, size, size);
+            confirmationOverlay.GetComponent<RectTransform>().localPosition = new Vector3(0, confirmationOverlay.transform.localPosition.y * 1.5f, 0);
             size = size * 0.95f;
             yield return new WaitForSecondsRealtime(0.05f);
         }
@@ -627,21 +627,21 @@ public class GameSaveManager : MonoBehaviour
         confirmationBackround.GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
         confirmationTime.color = new Color(0, 1, 0, 0);
         confirmationTime.text = restTime;
-        confirmationOverlay.transform.localPosition = new Vector3(0, 100, 0);
+        confirmationOverlay.GetComponent<RectTransform>().localPosition = new Vector3(0, 100, 0);
 
         int steps = 80;
         for (int i = 0; i <= steps; i++)
         {
             confirmationBackround.GetComponent<RawImage>().color = new Color(1, 1, 1, confirmationBackround.GetComponent<RawImage>().color.a + 1f/steps);
             confirmationTime.color = new Color(0, 1, 0, confirmationTime.color.a + 1f/steps);
-            confirmationOverlay.transform.localPosition = new Vector3(0, confirmationOverlay.transform.localPosition.y * 0.95f, 0);
+            confirmationOverlay.GetComponent<RectTransform>().localPosition = new Vector3(0, confirmationOverlay.GetComponent<RectTransform>().localPosition.y * 0.95f, 0);
             yield return new WaitForSecondsRealtime(0.05f);
         }
         for (int i = 0; i <= steps / 2; i++)
         {
             confirmationBackround.GetComponent<RawImage>().color = new Color(1, 1, 1, confirmationBackround.GetComponent<RawImage>().color.a - 1.5f / (steps / 2));
             confirmationTime.color = new Color(0, 1, 0, confirmationTime.color.a - 1.5f / (steps / 2));
-            confirmationOverlay.transform.localPosition = new Vector3(0, confirmationOverlay.transform.localPosition.y * 1.5f, 0);
+            confirmationOverlay.GetComponent<RectTransform>().localPosition = new Vector3(0, confirmationOverlay.GetComponent<RectTransform>().localPosition.y * 1.5f, 0);
             yield return new WaitForSecondsRealtime(0.05f);
         }
         confirmationOverlay.SetActive(false);
