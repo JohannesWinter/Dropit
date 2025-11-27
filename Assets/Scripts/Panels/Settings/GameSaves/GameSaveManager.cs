@@ -181,27 +181,7 @@ public class GameSaveManager : MonoBehaviour
                         autoSaveList.Add(autoSaveGames[i]);
                         autoSaveGames[i].GetComponent<GameSave>().SetUiActive(true);
                     }
-                    float[] ages = new float[autoSaveGames.Count];
-                    for (int i = 0; i < autoSaveGames.Count; i++)
-                    {
-                        ages[i] = autoSaveGames[i].GetComponent<GameSave>().age;
-                    }
-                    for (int i = 0; i < ages.Length; i++)
-                    {
-                        for (int j = 0; j < ages.Length; j++)
-                        {
-                            if (ages[i] > ages[j])
-                            {
-                                float h = ages[i];
-                                ages[i] = ages[j];
-                                ages[j] = h;
-
-                                GameObject gh = autoSaveList[i];
-                                autoSaveList[i] = autoSaveList[j];
-                                autoSaveList[j] = gh;
-                            }
-                        }
-                    }
+                    autoSaveList = sortByAge(autoSaveList);
                     currentMenuObjects.AddRange(autoSaveList);
                 }
             }
@@ -247,10 +227,13 @@ public class GameSaveManager : MonoBehaviour
                     currentMenuObjects.Add(menuLoadNoPlayersave);
                     menuLoadNoPlayersave.SetActive(true);
                 }
+                List<GameObject> playerSaveList = new List<GameObject>();
                 for (int i = 0; i < saveGames.Count; i++)
                 {
-                    currentMenuObjects.Add(saveGames[i]);
+                    playerSaveList.Add(saveGames[i]);
                 }
+                playerSaveList = sortByAge(playerSaveList);
+                currentMenuObjects.AddRange(playerSaveList);
 
                 currentMenuObjects.Add(menuLoadAutosave);
 
@@ -261,27 +244,7 @@ public class GameSaveManager : MonoBehaviour
                     autoSaveObjects.Add(autoSaveGames[i]);
                     autoSaveGames[i].GetComponent<GameSave>().SetUiActive(true);
                 }
-                float[] ages = new float[autoSaveGames.Count];
-                for (int i = 0; i < autoSaveGames.Count; i++)
-                {
-                    ages[i] = autoSaveGames[i].GetComponent<GameSave>().age;
-                }
-                for (int i = 0; i < ages.Length; i++)
-                {
-                    for (int j = 0; j < ages.Length; j++)
-                    {
-                        if (ages[i] > ages[j])
-                        {
-                            float h = ages[i];
-                            ages[i] = ages[j];
-                            ages[j] = h;
-
-                            GameObject gh = autoSaveObjects[i];
-                            autoSaveObjects[i] = autoSaveObjects[j];
-                            autoSaveObjects[j] = gh;
-                        }
-                    }
-                }
+                autoSaveObjects = sortByAge(autoSaveObjects);
                 currentMenuObjects.AddRange(autoSaveObjects);
             }
 
