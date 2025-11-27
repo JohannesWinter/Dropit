@@ -139,10 +139,13 @@ public class GameSaveManager : MonoBehaviour
                 scrollbar.transform.localPosition = new Vector3(250, 0, 0);
                 if (Manager.m.settings_save == true)
                 {
+                    List<GameObject> playerSaveList = new List<GameObject>();
                     for (int i = 0; i < saveGames.Count; i++)
                     {
-                        currentMenuObjects.Add(saveGames[i]);
+                        playerSaveList.Add(saveGames[i]);
                     }
+                    playerSaveList = sortByAge(playerSaveList);
+                    currentMenuObjects.AddRange(playerSaveList);
                     currentMenuObjects.Add(newSave);
                     newSave.SetActive(true);
                     if (currentMenuObjects.Count == 0)
@@ -155,15 +158,20 @@ public class GameSaveManager : MonoBehaviour
                 {
                     currentMenuObjects.Add(menuLoadPlayersave);
                     menuLoadPlayersave.SetActive(true);
+                    List<GameObject> playerSaveList = new List<GameObject>();
                     for (int i = 0; i < saveGames.Count; i++)
                     {
-                        currentMenuObjects.Add(saveGames[i]);
+                        playerSaveList.Add(saveGames[i]);
                     }
+                    playerSaveList = sortByAge(playerSaveList);
+                    currentMenuObjects.AddRange(playerSaveList);
+
                     if (currentMenuObjects.Count <= 1)
                     {
                         menuLoadNoPlayersave.SetActive(true);
                         currentMenuObjects.Add(menuLoadNoPlayersave);
                     }
+
                     currentMenuObjects.Add(menuLoadAutosave);
                     menuLoadAutosave.SetActive(true);
 
@@ -671,5 +679,39 @@ public class GameSaveManager : MonoBehaviour
         confirmationOverlay.SetActive(false);
 
         yield return null;
+    }
+
+    List<GameObject> sortByAge(List<GameObject> list)
+    {
+        float[] ages = new float[list.Count];
+        try
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                ages[i] = list[i].GetComponent<GameSave>().age;
+            }
+        }
+        catch 
+        {
+            Debug.Log("Error: Tried <sortByAge> for non-Gamesave object");
+            return null;
+        }
+        for (int i = 0; i < ages.Length; i++)
+        {
+            for (int j = 0; j < ages.Length; j++)
+            {
+                if (ages[i] > ages[j])
+                {
+                    float h = ages[i];
+                    ages[i] = ages[j];
+                    ages[j] = h;
+
+                    GameObject gh = list[i];
+                    list[i] = list[j];
+                    list[j] = gh;
+                }
+            }
+        }
+        return list;
     }
 }
