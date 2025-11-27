@@ -615,6 +615,7 @@ public class FactoryButtons : MonoBehaviour
                 historyButtons.SetActive(false);
                 sellingTMP.gameObject.SetActive(false);
                 placingTMP.gameObject.SetActive(false);
+                repairingTMP.gameObject.SetActive(false);
                 Manager.m.editMode_sell = false;
                 Manager.m.editMode_placeDropper = false;
                 Manager.m.editMode_placeMachine = false;
