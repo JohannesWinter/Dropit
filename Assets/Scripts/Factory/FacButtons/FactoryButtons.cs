@@ -111,7 +111,7 @@ public class FactoryButtons : MonoBehaviour
 
         if (GameInputManager.GetKeyDown(Manager.m.ActionKey("Settings")))
         {
-            if (Manager.m.tutorial.inTutorial == false && Manager.m.tutorial.inTutorial2 == false && Manager.m.tutorial.inTutorial3 == false && Manager.m.introScene.inIntroScene == false && Manager.m.inFinalSequence == false)
+            if (Manager.m.tutorial.inTutorial == 0 && Manager.m.introScene.inIntroScene == false && Manager.m.inFinalSequence == false)
             {
                 if (Manager.m.inMarket == true)
                 {
@@ -155,7 +155,7 @@ public class FactoryButtons : MonoBehaviour
             }
         }
 
-        if (Manager.m.tutorial.inTutorial == false && Manager.m.tutorial.inTutorial2 == false && Manager.m.tutorial.inTutorial3 == false && Manager.m.introScene.inIntroScene == false && Manager.m.inFinalSequence == false)
+        if (Manager.m.tutorial.inTutorial == 0 && Manager.m.introScene.inIntroScene == false && Manager.m.inFinalSequence == false)
         {
             if ((GameInputManager.GetKeyDown(Manager.m.ActionKey("Shop1")) || GameInputManager.GetKeyDown(Manager.m.ActionKey("Shop2"))) && (Manager.m.editMode_placeDropper || Manager.m.editMode_placeMachine))
             {

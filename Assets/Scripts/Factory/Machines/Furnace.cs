@@ -29,7 +29,7 @@ public class Furnace : MonoBehaviour
                         int dropNumber = int.Parse(identification) - 1;
                         if (dropNumber == missions[i].GetComponent<Mission>().oreNumber && collision.gameObject.GetComponent<Ore>().upgradeLevel == missions[i].GetComponent<Mission>().upgradeLevel)
                         {
-                            if (Manager.m.tutorial.inTutorial == false)
+                            if (Manager.m.tutorial.inTutorial != 0)
                             {
                                 Manager.m.exp = Manager.m.exp + (collision.gameObject.GetComponent<Ore>().exp);
                             }
@@ -110,7 +110,7 @@ public class Furnace : MonoBehaviour
                 {
                     Manager.m.money = Manager.m.money + (collision.gameObject.GetComponent<Ore>().value * (furnaceMultiplier + Manager.m.upgradeMultipliers[collision.gameObject.GetComponent<Ore>().upgradeLevel] + (marketMultiplier - 1)) * inversion);
                 }
-                if (Manager.m.tutorial.inTutorial == false)
+                if (Manager.m.tutorial.inTutorial != 0)
                 {
                     Manager.m.exp = Manager.m.exp + (collision.gameObject.GetComponent<Ore>().exp);
                 }

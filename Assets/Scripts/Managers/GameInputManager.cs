@@ -322,7 +322,7 @@ public static class GameInputManager
         string[] keys = keyMap.Split('+');
 
         if (string.IsNullOrEmpty(keyMap) || Manager.m.inHotkeySet || Manager.m.introScene.inIntroScene ||
-            Manager.m.tutorial.inTutorial || Manager.m.tutorial.inTutorial2 || Manager.m.tutorial.inTutorial3 ||
+            Manager.m.tutorial.inTutorial != 0 ||
             Manager.m.inFinalSequence || Manager.m.inMainMenu || Manager.m.loading)
         {
             return false;

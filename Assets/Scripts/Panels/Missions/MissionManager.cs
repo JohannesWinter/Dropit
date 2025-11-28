@@ -97,7 +97,7 @@ public class MissionManager : MonoBehaviour
             //Creating random missions
             if (missions.Count == 0)
             {
-                if (Manager.m.tutorial.inTutorial == false)
+                if (Manager.m.tutorial.inTutorial == 0)
                 {
                     if (declinedMission != 0)
                     {
@@ -118,21 +118,21 @@ public class MissionManager : MonoBehaviour
             else
             if (missions.Count == 1)
             {
-                if ((UnityEngine.Random.Range(0, 60) < 1 && Manager.m.tutorial.inTutorial == false))
+                if ((UnityEngine.Random.Range(0, 60) < 1 && Manager.m.tutorial.inTutorial == 0))
                 {
                     createMission();
                 }
             }
             if (missions.Count == 2)
             {
-                if ((UnityEngine.Random.Range(0, 120) < 1 && Manager.m.tutorial.inTutorial == false))
+                if ((UnityEngine.Random.Range(0, 120) < 1 && Manager.m.tutorial.inTutorial == 0))
                 {
                     createMission();
                 }
             }
             if (missions.Count >= 3)
             {
-                if ((UnityEngine.Random.Range(0, 180) < 1 && Manager.m.tutorial.inTutorial == false))
+                if ((UnityEngine.Random.Range(0, 180) < 1 && Manager.m.tutorial.inTutorial == 0))
                 {
                     createMission();
                 }

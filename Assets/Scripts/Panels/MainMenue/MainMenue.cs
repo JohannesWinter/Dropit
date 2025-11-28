@@ -261,8 +261,7 @@ public class MainMenue : MonoBehaviour
         }
         else
         {
-            Manager.m.tutorial.finishedTutorial2 = true;
-            Manager.m.tutorial.finishedTutorial3 = true;
+
         }
         Manager.m.Reset(true);
     }

@@ -642,12 +642,12 @@ public sealed class Manager : MonoBehaviour
         {
             hideFactoryUI = false;
         }
-        if (GameInputManager.GetKeyDown(ActionKey("RotateLeft")) && tutorial.inTutorial == false)
+        if (GameInputManager.GetKeyDown(ActionKey("RotateLeft")) && tutorial.inTutorial != 0)
         {
             dropperRotation -= 90;
         }
 
-        if (GameInputManager.GetKeyDown(ActionKey("RotateRight")) && tutorial.inTutorial == false)
+        if (GameInputManager.GetKeyDown(ActionKey("RotateRight")) && tutorial.inTutorial != 0)
         {
             dropperRotation += 90;
         }
@@ -798,14 +798,7 @@ public sealed class Manager : MonoBehaviour
             {
                 acessQTEs = false;
             }
-            if (tutorial.inTutorial2 || tutorial.finishedTutorial2)
-            {
-                acessRepair = true;
-            }
-            else
-            {
-                acessRepair = false;
-            }
+            acessRepair = true;
         }
     }
 

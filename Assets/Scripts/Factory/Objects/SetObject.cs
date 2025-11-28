@@ -85,7 +85,6 @@ public class SetObject : MonoBehaviour
     //bool EmptyField = true;
     public bool allowPlace = false;
     //public float Rotation = 0;
-    public GameObject tutorialStep;
     public Quaternion QRotation;
     Collider OtherObject;
     bool triggered;
@@ -160,11 +159,6 @@ public class SetObject : MonoBehaviour
         Dropper9Blueprint = Manager.m.Dropper9Blueprint;
         Dropper10 = Manager.m.Dropper10;
         Dropper10Blueprint = Manager.m.Dropper10Blueprint;
-
-        if (tutorialStep == null)
-        {
-            tutorialStep = Manager.m.tutorial.steps[0];
-        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -185,7 +179,7 @@ public class SetObject : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        if ((Manager.m.editMode_placeDropper == true && Manager.m.inSettings == false && Manager.m.inMarket == false && Manager.m.inFactoryHalls == false && Manager.m.chain.activeSelf == false && Manager.m.tutorial.inTutorial == false) || (Manager.m.editMode_placeDropper == true && Manager.m.tutorial.inTutorial == true && tutorialStep == Manager.m.tutorial.activeStep))
+        if ((Manager.m.editMode_placeDropper == true && Manager.m.inSettings == false && Manager.m.inMarket == false && Manager.m.inFactoryHalls == false && Manager.m.chain.activeSelf == false))
         {
             Physics.SyncTransforms();
             Collider[] hits = Physics.OverlapBox(transform.position, GetComponent<BoxCollider>().size / 2, transform.rotation);
@@ -341,7 +335,7 @@ public class SetObject : MonoBehaviour
             //i.GetComponent<RepairDropper>().enabled = false;
 
         }
-        if ((Manager.m.editMode_placeMachine == true && Manager.m.inSettings == false && Manager.m.inMarket == false && Manager.m.inFactoryHalls == false && Manager.m.chain.activeSelf == false && Manager.m.tutorial.inTutorial == false) || (Manager.m.editMode_placeMachine == true && Manager.m.tutorial.inTutorial == true && tutorialStep == Manager.m.tutorial.activeStep))
+        if ((Manager.m.editMode_placeMachine == true && Manager.m.inSettings == false && Manager.m.inMarket == false && Manager.m.inFactoryHalls == false && Manager.m.chain.activeSelf == false))
         {
             Physics.SyncTransforms();
             Collider[] hits = Physics.OverlapBox(transform.position, GetComponent<BoxCollider>().size / 2, transform.rotation);

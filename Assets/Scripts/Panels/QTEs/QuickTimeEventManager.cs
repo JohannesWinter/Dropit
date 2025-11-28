@@ -107,7 +107,7 @@ public class QuickTimeEventManager : MonoBehaviour
             if (currenttime < Time.time)
             {
                 currenttime = Time.time + 1;
-                if (Random.Range(0, 120 + (30 * currentEvents.Count) - 30 * (Manager.m.level / 11)) == 0 && Manager.m.acessQTEs == true && Manager.m.tutorial.inTutorial2 == false && Manager.m.tutorial.inTutorial3 == false)
+                if (Random.Range(0, 120 + (30 * currentEvents.Count) - 30 * (Manager.m.level / 11)) == 0 && Manager.m.acessQTEs == true && Manager.m.tutorial.inTutorial == 0)
                 {
                     addRandomQuickTimeEvent = true;
                 }
