@@ -720,6 +720,14 @@ public class GameSave : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         //save finished sequences
+        if (Manager.m.tutorial.enabledTutorials)
+        {
+            PlayerPrefs.SetInt(Manager.m.version + "_" + "Save" + saveNumber + "_EnabledTutorials", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(Manager.m.version + "_" + "Save" + saveNumber + "_EnabledTutorials", 0);
+        }
         if (Manager.m.finishedFinalSequence == true)
         {
             PlayerPrefs.SetInt(Manager.m.version + "_" + "Save" + saveNumber + "_FinishedFinalSequence", 1);
@@ -1291,6 +1299,14 @@ public class GameSave : MonoBehaviour
         progress += 32;
 
         //load finished sequences
+        if (PlayerPrefs.GetInt(Manager.m.version + "_" + "Save" + saveNumber + "_EnabledTutorials") == 1)
+        {
+            Manager.m.tutorial.enabledTutorials = true;
+        }
+        else
+        {
+            Manager.m.tutorial.enabledTutorials = false;
+        }
         if (PlayerPrefs.GetInt(Manager.m.version + "_" + "Save" + saveNumber + "_FinishedFinalSequence") == 1)
         {
             Manager.m.finishedFinalSequence = true;
