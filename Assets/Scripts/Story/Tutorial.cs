@@ -7,8 +7,103 @@ using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
-
+    public bool enabledTutorials;
     public int inTutorial;
+    public bool pauseGame;
+    
+
+    private void Start()
+    {
+        pauseGame = false;
+        inTutorial = 0;
+    }
+    private void Update()
+    {
+        
+    }
+    public void StartTutorial(int number)
+    {
+        if (number <= 0) 
+        {
+            return;
+        }
+        switch (number)
+        {
+            case 0:
+                {
+                    break;
+                }
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+            case 5:
+                {
+                    break;
+                }
+            case 6:
+                {
+                    break;
+                }
+            case 7:
+                {
+                    break;
+                }
+            case 8:
+                {
+                    break;
+                }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //public bool inTutorial2;
     //public bool inTutorial3;
     //public bool finishedTutorial2;
@@ -31,7 +126,7 @@ public class Tutorial : MonoBehaviour
     //public GameObject activeStep3;
     //public GameObject[] steps3;
     //GameObject tutorial2Trigger;
-    
+
     //// Start is called before the first frame update
     //void Start()
     //{
@@ -627,7 +722,7 @@ public class Tutorial : MonoBehaviour
     //            inTutorial2 = false;
     //        }
     //    }
-        
+
 
     //    //Tutorial 3
     //    if (Manager.m.level >= 2 && Manager.m.inMainMenu == false && steps3[1].activeSelf == false && finishedTutorial3 == false && inTutorial == false && inTutorial2 == false && inTutorial3 == false && Manager.m.changeSaveTimer == 0 && Manager.m.inUIMenu() == false)
@@ -709,7 +804,7 @@ public class Tutorial : MonoBehaviour
     //    }
     //    if (steps3[3].activeSelf == true)
     //    {
-            
+
     //        if (Input.GetButtonDown("ClickLeft") && waitingTime <= Time.time)
     //        {
     //            steps3[3].SetActive(false);
@@ -719,7 +814,7 @@ public class Tutorial : MonoBehaviour
     //    }
     //    if (steps3[4].activeSelf == true)
     //    {
-            
+
     //        if (Input.GetButtonDown("ClickLeft") && waitingTime <= Time.time)
     //        {
     //            steps3[4].SetActive(false);
@@ -818,7 +913,7 @@ public class Tutorial : MonoBehaviour
     //    drop2Example.GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
     //    drop2Example.GetComponent<RectTransform>().localPosition = new Vector3(0, 30, 0);
     //    drop2Example.SetActive(true);
-     
+
     //    while (drop2Example.GetComponent<RectTransform>().localScale.x > 1)
     //    {
     //        drop2Example.GetComponent<RectTransform>().localScale = new Vector3(drop2Example.GetComponent<RectTransform>().localScale.x - 0.05f, drop2Example.GetComponent<RectTransform>().localScale.y - 0.05f, 1);
@@ -837,8 +932,4 @@ public class Tutorial : MonoBehaviour
     //    }
     //    startedRotation = false;
     //}
-    public void StartTutorial()
-    {
-
-    }
 }

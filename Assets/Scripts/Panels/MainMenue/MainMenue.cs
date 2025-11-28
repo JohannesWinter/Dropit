@@ -255,15 +255,16 @@ public class MainMenue : MonoBehaviour
         StartCoroutine(blackIn(blackBoardPos));;
         Manager.m.inMainMenu = false;
         Manager.m.inMainMenuLoad = false;
+        Manager.m.Reset(true);
         if (enableTutorial == true)
         {
-            Manager.m.tutorial.StartTutorial();
+            Manager.m.tutorial.StartTutorial(1);
+            Manager.m.tutorial.enabledTutorials = true;
         }
         else
         {
-
+            Manager.m.tutorial.enabledTutorials = false;
         }
-        Manager.m.Reset(true);
     }
     public IEnumerator blackOutReturnMainMenu()
     {

@@ -110,7 +110,6 @@ public sealed class Manager : MonoBehaviour
     public bool startFinalSequence;
     public bool inFinalSequence;
     public bool finishedFinalSequence;
-    public bool startTutorialInNewGame;
 
     public String objectType;
 
@@ -1046,7 +1045,7 @@ public sealed class Manager : MonoBehaviour
 
     public bool UpdatePause()
     {
-        if (inSettings || inMainMenu || loading || inFinalSequence || editMode)
+        if (inSettings || inMainMenu || loading || inFinalSequence || editMode || tutorial.pauseGame)
         {
             return true;
         }
