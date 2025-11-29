@@ -56,6 +56,10 @@ public class Tutorial : MonoBehaviour
     }
     void CheckTutorial1Switch(int tutorial, int step)
     {
+        if (tutorial <= 0)
+        {
+            Debug.Log("Error - tutorial <" + tutorial + "> does not exist");
+        }
         if (tutorial == 1)
         {
             switch (step)
