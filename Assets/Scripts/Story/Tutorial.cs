@@ -11,15 +11,22 @@ public class Tutorial : MonoBehaviour
     public int inTutorial;
     public bool pauseGame;
     public GameObject[] tutorial1Steps;
-    
 
+
+
+    public GameObject[][] allTutorialSteps;
     private void Start()
     {
         pauseGame = false;
         inTutorial = 0;
-        for (int i = 0; i < tutorial1Steps.Length; i++)
+        allTutorialSteps = new GameObject[1][];
+        allTutorialSteps[0] = tutorial1Steps;
+        for (int i = 0; i < allTutorialSteps.Length;i++)
         {
-            tutorial1Steps[i].SetActive(false);
+            for (int x = 0; x < allTutorialSteps[x].Length; x++)
+            {
+                allTutorialSteps[i][x].SetActive(false);
+            }
         }
     }
     private void Update()
@@ -34,31 +41,74 @@ public class Tutorial : MonoBehaviour
         return step.activeSelf;
     }
     
-    public void CheckTutorial1()
+    void CheckTutorial()
     {
         for (int i = 0; i < tutorial1Steps.Length; i++)
         {
             if (CheckActiveStep(tutorial1Steps[i]))
             {
-
+                CheckTutorial1Switch(i);
             }
         }
     }
+    void CheckTutorial1Switch(int step)
+    {
+        switch (step)
+        {
+            case 0:
+                {
+                    if (Input.GetKeyDown("ClickLeft")) 
+                    {
+                        NextStep(tutorial1Steps);
+                    }
+                    break;
+                }
+            case 1:
+                {
+                    break;
+                }
+        }
+    }
+
+    void NextStep(GameObject[] tutorialSteps)
+    {
+        for (int i = 0; i < tutorial1Steps.Length; i++)
+        {
+            if (tutorial1Steps[i].activeSelf)
+            {
+                if (i < tutorial1Steps.Length - 1)
+                {
+                    tutorial1Steps[i + 1].SetActive(true);
+                    tutorial1Steps[i].SetActive(false);
+                }
+                else
+                {
+                    inTutorial = 0;
+                    tutorial1Steps[i].SetActive(false);
+                }
+            }
+        }
+    }
+
 
     public void StartTutorial(int number)
     {
         if (number <= 0) 
         {
+            Debug.Log("Error - Tutorial <" +  number + "> not existent");
             return;
         }
+        if (inTutorial != 0)
+        {
+            return;
+        }
+
+        inTutorial = number;
         switch (number)
         {
-            case 0:
-                {
-                    break;
-                }
             case 1:
                 {
+                    tutorial1Steps[0].SetActive(true);
                     break;
                 }
             case 2:
