@@ -49,12 +49,12 @@ public class Tutorial : MonoBehaviour
             {
                 if (CheckActiveStep(allTutorialSteps[i][x]))
                 {
-                    CheckTutorial1Switch(i + 1, x);
+                    CheckTutorialSwitch(i + 1, x);
                 }
             }
         }
     }
-    void CheckTutorial1Switch(int tutorial, int step)
+    void CheckTutorialSwitch(int tutorial, int step)
     {
         if (tutorial <= 0)
         {
@@ -68,7 +68,7 @@ public class Tutorial : MonoBehaviour
                     {
                         if (Input.GetKeyDown("ClickLeft"))
                         {
-                            NextStep(tutorial1Steps);
+                            NextStep(1, allTutorialSteps[tutorial - 1]);
                         }
                         break;
                     }
@@ -84,11 +84,11 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    void NextStep(GameObject[] tutorialSteps)
+    void NextStep(int tutorialNumber, GameObject[] tutorialSteps)
     {
-        for (int i = 0; i < tutorial1Steps.Length; i++)
+        for (int i = 0; i < tutorialSteps.Length; i++)
         {
-            if (tutorial1Steps[i].activeSelf)
+            if (tutorialSteps[i].activeSelf)
             {
                 if (i < tutorial1Steps.Length - 1)
                 {
