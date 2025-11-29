@@ -31,9 +31,9 @@ public class Tutorial : MonoBehaviour
     }
     private void Update()
     {
-        if (inTutorial == 1)
+        if (inTutorial != 0)
         {
-            CheckTutorial1();
+            CheckTutorial();
         }
     }
     public bool CheckActiveStep(GameObject step)
@@ -43,30 +43,40 @@ public class Tutorial : MonoBehaviour
     
     void CheckTutorial()
     {
-        for (int i = 0; i < tutorial1Steps.Length; i++)
+        for (int i = 0; i < allTutorialSteps.Length; i++)
         {
-            if (CheckActiveStep(tutorial1Steps[i]))
+            for (int x = 0; x < allTutorialSteps[i].Length; x++)
             {
-                CheckTutorial1Switch(i);
+                if (CheckActiveStep(allTutorialSteps[i][x]))
+                {
+                    CheckTutorial1Switch(i + 1, x);
+                }
             }
         }
     }
-    void CheckTutorial1Switch(int step)
+    void CheckTutorial1Switch(int tutorial, int step)
     {
-        switch (step)
+        if (tutorial == 1)
         {
-            case 0:
-                {
-                    if (Input.GetKeyDown("ClickLeft")) 
+            switch (step)
+            {
+                case 0:
                     {
-                        NextStep(tutorial1Steps);
+                        if (Input.GetKeyDown("ClickLeft"))
+                        {
+                            NextStep(tutorial1Steps);
+                        }
+                        break;
                     }
-                    break;
-                }
-            case 1:
-                {
-                    break;
-                }
+                case 1:
+                    {
+                        break;
+                    }
+            }
+        }
+        else if (tutorial == 2)
+        {
+
         }
     }
 
