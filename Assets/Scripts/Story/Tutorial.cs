@@ -10,17 +10,41 @@ public class Tutorial : MonoBehaviour
     public bool enabledTutorials;
     public int inTutorial;
     public bool pauseGame;
+    public GameObject[] tutorial1Steps;
     
 
     private void Start()
     {
         pauseGame = false;
         inTutorial = 0;
+        for (int i = 0; i < tutorial1Steps.Length; i++)
+        {
+            tutorial1Steps[i].SetActive(false);
+        }
     }
     private void Update()
     {
-        
+        if (inTutorial == 1)
+        {
+            CheckTutorial1();
+        }
     }
+    public bool CheckActiveStep(GameObject step)
+    {
+        return step.activeSelf;
+    }
+    
+    public void CheckTutorial1()
+    {
+        for (int i = 0; i < tutorial1Steps.Length; i++)
+        {
+            if (CheckActiveStep(tutorial1Steps[i]))
+            {
+
+            }
+        }
+    }
+
     public void StartTutorial(int number)
     {
         if (number <= 0) 
