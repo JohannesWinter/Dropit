@@ -10,13 +10,14 @@ public class Tutorial : MonoBehaviour
     public bool enabledTutorials;
     public int inTutorial;
     public bool pauseGame;
-    public GameObject[] tutorial1Steps;
+    public Transform tutorial1;
     public float minWait;
     float currentWait;
 
     //Testing
     public bool testStartTutorial;
-    public int testStartNumber;
+    public int testTutorialNumber;
+    public bool testNextStep;
 
 
 
@@ -26,14 +27,26 @@ public class Tutorial : MonoBehaviour
         pauseGame = false;
         inTutorial = 0;
         allTutorialSteps = new GameObject[1][];
-        allTutorialSteps[0] = tutorial1Steps;
+
+        allTutorialSteps[0] = GetChildren(tutorial1);
         for (int i = 0; i < allTutorialSteps.Length;i++)
         {
-            for (int x = 0; x < allTutorialSteps[x].Length; x++)
+            for (int x = 0; x < allTutorialSteps[i].Length; x++)
             {
                 allTutorialSteps[i][x].SetActive(false);
             }
         }
+    }
+
+    GameObject[] GetChildren(Transform parent)
+    {
+        GameObject[] children = new GameObject[parent.childCount];
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            children[i] = parent.GetChild(i).gameObject;
+            print(children[i].name);
+        }
+        return children;
     }
     private void Update()
     {
@@ -45,8 +58,13 @@ public class Tutorial : MonoBehaviour
 
         if (testStartTutorial)
         {
-            StartCoroutine(StartTutorial(testStartNumber));
             testStartTutorial = false;
+            StartCoroutine(StartTutorial(testTutorialNumber));
+        }
+        if (testNextStep)
+        {
+            testNextStep = false;
+            NextStep(allTutorialSteps[testTutorialNumber - 1]);
         }
     }
     public bool CheckActiveStep(GameObject step)
@@ -79,7 +97,7 @@ public class Tutorial : MonoBehaviour
             {
                 case 0:
                     {
-                        if (Input.GetKeyDown("ClickLeft"))
+                        if (Input.GetButton("ClickLeft"))
                         {
                             NextStep(allTutorialSteps[tutorial]);
                         }
@@ -104,15 +122,15 @@ public class Tutorial : MonoBehaviour
         {
             if (tutorialSteps[i].activeSelf)
             {
-                if (i < tutorial1Steps.Length - 1)
+                if (i < tutorialSteps.Length - 1)
                 {
-                    tutorial1Steps[i + 1].SetActive(true);
-                    tutorial1Steps[i].SetActive(false);
+                    tutorialSteps[i + 1].SetActive(true);
+                    tutorialSteps[i].SetActive(false);
                 }
                 else
                 {
                     inTutorial = 0;
-                    tutorial1Steps[i].SetActive(false);
+                    tutorialSteps[i].SetActive(false);
                 }
             }
         }
@@ -136,7 +154,7 @@ public class Tutorial : MonoBehaviour
         }
         currentWait = 0;
         inTutorial = number;
-        allTutorialSteps[number][0].SetActive(true);
+        allTutorialSteps[number-1][0].SetActive(true);
     }
 
 
