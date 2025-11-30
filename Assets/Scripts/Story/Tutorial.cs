@@ -44,7 +44,6 @@ public class Tutorial : MonoBehaviour
         for (int i = 0; i < parent.childCount; i++)
         {
             children[i] = parent.GetChild(i).gameObject;
-            print(children[i].name);
         }
         return children;
     }
@@ -80,31 +79,40 @@ public class Tutorial : MonoBehaviour
             {
                 if (CheckActiveStep(allTutorialSteps[i][x]))
                 {
-                    CheckTutorialSwitch(i, x);
+                    if (CheckTutorialSwitch(i, x))
+                    {
+                        currentWait = 0;
+                        break;
+                    }
                 }
             }
         }
     }
-    void CheckTutorialSwitch(int tutorial, int step)
+    bool CheckTutorialSwitch(int tutorial, int step)
     {
         if (tutorial < 0)
         {
             Debug.Log("Error - tutorial <" + tutorial + "> does not exist");
         }
+        bool switched = false;
         if (tutorial == 0)
         {
             switch (step)
             {
                 case 0:
                     {
-                        if (Input.GetButton("ClickLeft"))
+                        if (Input.GetButtonDown("ClickLeft"))
                         {
-                            NextStep(allTutorialSteps[tutorial]);
+                            switched = NextStep(allTutorialSteps[tutorial]);
                         }
                         break;
                     }
                 case 1:
                     {
+                        if (Input.GetButtonDown("ClickLeft"))
+                        {
+                            switched = NextStep(allTutorialSteps[tutorial]);
+                        }
                         break;
                     }
             }
@@ -113,11 +121,11 @@ public class Tutorial : MonoBehaviour
         {
 
         }
+        return switched;
     }
 
-    void NextStep(GameObject[] tutorialSteps)
+    bool NextStep(GameObject[] tutorialSteps)
     {
-        currentWait = 0;
         for (int i = 0; i < tutorialSteps.Length; i++)
         {
             if (tutorialSteps[i].activeSelf)
@@ -132,8 +140,10 @@ public class Tutorial : MonoBehaviour
                     inTutorial = 0;
                     tutorialSteps[i].SetActive(false);
                 }
+                break;
             }
         }
+        return true;
     }
 
 
