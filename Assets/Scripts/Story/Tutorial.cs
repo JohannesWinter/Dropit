@@ -49,18 +49,18 @@ public class Tutorial : MonoBehaviour
             {
                 if (CheckActiveStep(allTutorialSteps[i][x]))
                 {
-                    CheckTutorialSwitch(i + 1, x);
+                    CheckTutorialSwitch(i, x);
                 }
             }
         }
     }
     void CheckTutorialSwitch(int tutorial, int step)
     {
-        if (tutorial <= 0)
+        if (tutorial < 0)
         {
             Debug.Log("Error - tutorial <" + tutorial + "> does not exist");
         }
-        if (tutorial == 1)
+        if (tutorial == 0)
         {
             switch (step)
             {
@@ -68,7 +68,7 @@ public class Tutorial : MonoBehaviour
                     {
                         if (Input.GetKeyDown("ClickLeft"))
                         {
-                            NextStep(1, allTutorialSteps[tutorial - 1]);
+                            NextStep(1, allTutorialSteps[tutorial]);
                         }
                         break;
                     }
@@ -78,7 +78,7 @@ public class Tutorial : MonoBehaviour
                     }
             }
         }
-        else if (tutorial == 2)
+        else if (tutorial == 1)
         {
 
         }
@@ -118,42 +118,7 @@ public class Tutorial : MonoBehaviour
         }
 
         inTutorial = number;
-        switch (number)
-        {
-            case 1:
-                {
-                    tutorial1Steps[0].SetActive(true);
-                    break;
-                }
-            case 2:
-                {
-                    break;
-                }
-            case 3:
-                {
-                    break;
-                }
-            case 4:
-                {
-                    break;
-                }
-            case 5:
-                {
-                    break;
-                }
-            case 6:
-                {
-                    break;
-                }
-            case 7:
-                {
-                    break;
-                }
-            case 8:
-                {
-                    break;
-                }
-        }
+        allTutorialSteps[number][0].SetActive(true);
     }
 
 
