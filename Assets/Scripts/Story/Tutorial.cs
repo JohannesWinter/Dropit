@@ -11,6 +11,8 @@ public class Tutorial : MonoBehaviour
     public int inTutorial;
     public bool pauseGame;
     public GameObject[] tutorial1Steps;
+    public float minWait;
+    float currentWait;
 
 
 
@@ -31,10 +33,11 @@ public class Tutorial : MonoBehaviour
     }
     private void Update()
     {
-        if (inTutorial != 0)
+        if (inTutorial != 0 && minWait <= currentWait)
         {
             CheckTutorial();
         }
+        currentWait += Time.unscaledDeltaTime;
     }
     public bool CheckActiveStep(GameObject step)
     {
@@ -68,7 +71,7 @@ public class Tutorial : MonoBehaviour
                     {
                         if (Input.GetKeyDown("ClickLeft"))
                         {
-                            NextStep(1, allTutorialSteps[tutorial]);
+                            NextStep(allTutorialSteps[tutorial]);
                         }
                         break;
                     }
@@ -84,8 +87,9 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    void NextStep(int tutorialNumber, GameObject[] tutorialSteps)
+    void NextStep(GameObject[] tutorialSteps)
     {
+        currentWait = 0;
         for (int i = 0; i < tutorialSteps.Length; i++)
         {
             if (tutorialSteps[i].activeSelf)
@@ -120,6 +124,7 @@ public class Tutorial : MonoBehaviour
             }
             yield return null;
         }
+        currentWait = 0;
         inTutorial = number;
         allTutorialSteps[number][0].SetActive(true);
     }
