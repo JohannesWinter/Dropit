@@ -105,18 +105,21 @@ public class Tutorial : MonoBehaviour
     }
 
 
-    public void StartTutorial(int number)
+    public IEnumerator StartTutorial(int number)
     {
         if (number <= 0) 
         {
             Debug.Log("Error - Tutorial <" +  number + "> not existent");
-            return;
+            yield break;
         }
-        if (inTutorial != 0)
+        while (inTutorial != 0)
         {
-            return;
+            if (inTutorial == number)
+            {
+                yield break;
+            }
+            yield return null;
         }
-
         inTutorial = number;
         allTutorialSteps[number][0].SetActive(true);
     }
