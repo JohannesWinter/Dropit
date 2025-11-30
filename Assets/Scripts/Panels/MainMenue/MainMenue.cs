@@ -258,7 +258,7 @@ public class MainMenue : MonoBehaviour
         Manager.m.Reset(true);
         if (enableTutorial == true)
         {
-            Manager.m.tutorial.StartTutorial(1);
+            StartCoroutine(Manager.m.tutorial.StartTutorial(1));
             Manager.m.tutorial.enabledTutorials = true;
         }
         else

@@ -31,7 +31,7 @@ public class Level : MonoBehaviour
                 {
                     Manager.m.level += 1;
                     Manager.m.exp -= expPerLevel[i];
-                    Manager.m.tutorial.StartTutorial(i);
+                    StartCoroutine(Manager.m.tutorial.StartTutorial(i));
                 }
                 expBar.transform.localScale = new Vector3((float)(Manager.m.exp / expPerLevel[i]), expBar.transform.localScale.y, expBar.transform.localScale.z);
                 expBar.transform.localPosition = new Vector3((1-(float)(Manager.m.exp / expPerLevel[i])) * expBar.GetComponent<RectTransform>().rect.width * -0.5f, 0, 0);

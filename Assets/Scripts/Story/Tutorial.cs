@@ -14,6 +14,10 @@ public class Tutorial : MonoBehaviour
     public float minWait;
     float currentWait;
 
+    //Testing
+    public bool testStartTutorial;
+    public int testStartNumber;
+
 
 
     public GameObject[][] allTutorialSteps;
@@ -38,6 +42,12 @@ public class Tutorial : MonoBehaviour
             CheckTutorial();
         }
         currentWait += Time.unscaledDeltaTime;
+
+        if (testStartTutorial)
+        {
+            StartCoroutine(StartTutorial(testStartNumber));
+            testStartTutorial = false;
+        }
     }
     public bool CheckActiveStep(GameObject step)
     {
