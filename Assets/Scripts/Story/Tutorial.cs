@@ -119,7 +119,25 @@ public class Tutorial : MonoBehaviour
         }
         else if (tutorial == 1)
         {
-
+            switch (step)
+            {
+                case 0:
+                    {
+                        if (Input.GetButtonDown("ClickLeft"))
+                        {
+                            switched = NextStep(allTutorialSteps[tutorial]);
+                        }
+                        break;
+                    }
+                case 1:
+                    {
+                        if (Input.GetButtonDown("ClickLeft"))
+                        {
+                            switched = NextStep(allTutorialSteps[tutorial]);
+                        }
+                        break;
+                    }
+            }
         }
         return switched;
     }
