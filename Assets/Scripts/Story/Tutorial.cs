@@ -101,6 +101,8 @@ public class Tutorial : MonoBehaviour
             {
                 case 0:
                     {
+                        //setInitialValue
+                        pauseGame = true;
                         //repeatOnFirstStep
                         if (Input.GetButtonDown("ClickLeft"))
                         {
@@ -158,6 +160,7 @@ public class Tutorial : MonoBehaviour
                 else
                 {
                     inTutorial = 0;
+                    pauseGame = false;
                     tutorialSteps[i].SetActive(false);
                 }
                 break;
