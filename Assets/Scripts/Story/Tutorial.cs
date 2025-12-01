@@ -101,8 +101,10 @@ public class Tutorial : MonoBehaviour
             {
                 case 0:
                     {
+                        //repeatOnFirstStep
                         if (Input.GetButtonDown("ClickLeft"))
                         {
+                            //doOnSwitchOnce
                             switched = NextStep(allTutorialSteps[tutorial]);
                         }
                         break;
