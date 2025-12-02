@@ -146,6 +146,11 @@ public class Tutorial : MonoBehaviour
         return switched;
     }
 
+    void ActOnStop(int tutorial, int step, TutorialActType act)
+    {
+
+    }
+
     bool NextStep(GameObject[] tutorialSteps)
     {
         for (int i = 0; i < tutorialSteps.Length; i++)
@@ -1054,4 +1059,12 @@ public class Tutorial : MonoBehaviour
     //    }
     //    startedRotation = false;
     //}
+}
+
+
+public enum TutorialActType
+{
+    onStart;
+    onRepeat;
+    onEnd;
 }
