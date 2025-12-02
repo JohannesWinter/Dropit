@@ -95,60 +95,73 @@ public class Tutorial : MonoBehaviour
             Debug.Log("Error - tutorial <" + tutorial + "> does not exist");
         }
         bool switched = false;
-        if (tutorial == 0)
+
+        ActOnStep(tutorial, step, TutorialActType.onRepeat);
+        if (ActOnStep(tutorial, step, TutorialActType.switchCond))
         {
-            switch (step)
+            ActOnStep(tutorial, step, TutorialActType.onEnd);
+            if (allTutorialSteps[tutorial].Length > step + 1)
             {
-                case 0:
-                    {
-                        //setInitialValue
-                        pauseGame = true;
-                        //repeatOnFirstStep
-                        if (Input.GetButtonDown("ClickLeft"))
-                        {
-                            //doOnSwitchOnce
-                            switched = NextStep(allTutorialSteps[tutorial]);
-                        }
-                        break;
-                    }
-                case 1:
-                    {
-                        if (Input.GetButtonDown("ClickLeft"))
-                        {
-                            switched = NextStep(allTutorialSteps[tutorial]);
-                        }
-                        break;
-                    }
+                ActOnStep(tutorial, step + 1, TutorialActType.onStart);
             }
-        }
-        else if (tutorial == 1)
-        {
-            switch (step)
-            {
-                case 0:
-                    {
-                        if (Input.GetButtonDown("ClickLeft"))
-                        {
-                            switched = NextStep(allTutorialSteps[tutorial]);
-                        }
-                        break;
-                    }
-                case 1:
-                    {
-                        if (Input.GetButtonDown("ClickLeft"))
-                        {
-                            switched = NextStep(allTutorialSteps[tutorial]);
-                        }
-                        break;
-                    }
-            }
+            switched = NextStep(allTutorialSteps[tutorial]);
         }
         return switched;
     }
 
-    void ActOnStop(int tutorial, int step, TutorialActType act)
+    bool ActOnStep(int tutorial, int step, TutorialActType act)
     {
+        switch (tutorial)
+        {
+            case 0:
+                {
+                    switch (step)
+                    {
+                        case 0:
+                            {
+                                if (act == TutorialActType.onStart)
+                                {
 
+                                }
+                                else if (act == TutorialActType.onRepeat)
+                                {
+
+                                }
+                                else if (act == TutorialActType.onEnd)
+                                {
+
+                                }
+                                else if (act == TutorialActType.switchCond)
+                                {
+
+                                }
+                                break;
+                            }
+                        case 1:
+                            {
+                                if (act == TutorialActType.onStart)
+                                {
+
+                                }
+                                else if (act == TutorialActType.onRepeat)
+                                {
+
+                                }
+                                else if (act == TutorialActType.onEnd)
+                                {
+
+                                }
+                                else if (act == TutorialActType.switchCond)
+                                {
+
+                                }
+                                break;
+                            }
+                    }
+                    break;
+                }
+        }
+        return false;
     }
 
     bool NextStep(GameObject[] tutorialSteps)
@@ -1064,7 +1077,8 @@ public class Tutorial : MonoBehaviour
 
 public enum TutorialActType
 {
-    onStart;
-    onRepeat;
-    onEnd;
+    onStart,
+    onRepeat,
+    switchCond,
+    onEnd,
 }
