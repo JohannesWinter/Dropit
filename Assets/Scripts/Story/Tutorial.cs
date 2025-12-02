@@ -121,7 +121,7 @@ public class Tutorial : MonoBehaviour
                             {
                                 if (act == TutorialActType.onStart)
                                 {
-
+                                    Manager.m.effectSpeaker.beep();
                                 }
                                 else if (act == TutorialActType.onRepeat)
                                 {
@@ -133,7 +133,7 @@ public class Tutorial : MonoBehaviour
                                 }
                                 else if (act == TutorialActType.switchCond)
                                 {
-
+                                    return Input.GetButtonDown("ClickLeft");
                                 }
                                 break;
                             }
@@ -141,7 +141,7 @@ public class Tutorial : MonoBehaviour
                             {
                                 if (act == TutorialActType.onStart)
                                 {
-
+                                    Manager.m.effectSpeaker.beep();
                                 }
                                 else if (act == TutorialActType.onRepeat)
                                 {
@@ -149,11 +149,11 @@ public class Tutorial : MonoBehaviour
                                 }
                                 else if (act == TutorialActType.onEnd)
                                 {
-
+                                    Manager.m.effectSpeaker.accept();
                                 }
                                 else if (act == TutorialActType.switchCond)
                                 {
-
+                                    return Input.GetButtonDown("ClickLeft");
                                 }
                                 break;
                             }
@@ -206,6 +206,7 @@ public class Tutorial : MonoBehaviour
         currentWait = 0;
         inTutorial = number;
         allTutorialSteps[number-1][0].SetActive(true);
+        ActOnStep(number - 1, 0, TutorialActType.onStart);
     }
 
 
