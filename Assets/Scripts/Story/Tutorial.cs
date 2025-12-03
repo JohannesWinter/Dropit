@@ -12,6 +12,7 @@ public class Tutorial : MonoBehaviour
     public bool pauseGame;
     public Transform tutorial1;
     public GameObject[] tutorialObjects;
+    List<Button> allowedButtons;
     List<GameObject> blinkingUIs = new List<GameObject>();
     public float minWait;
     float currentStepTime;
@@ -291,6 +292,23 @@ public class Tutorial : MonoBehaviour
     bool WaitForTime(float minTime)
     {
         if (currentStepTime > minTime)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool IsButtonAllowed(GameObject button)
+    {
+        if (allowedButtons.Contains(button.GetComponent<Button>()))
+        {
+            return true;
+        }
+        return false;
+    }
+    public bool IsButtonAllowed(Button button)
+    {
+        if (allowedButtons.Contains(button))
         {
             return true;
         }
