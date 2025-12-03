@@ -11,6 +11,8 @@ public class Tutorial : MonoBehaviour
     public int inTutorial;
     public bool pauseGame;
     public Transform tutorial1;
+    public GameObject[] tutorialObjects;
+    List<GameObject> blinkingUIs = new List<GameObject>();
     public float minWait;
     float currentWait;
 
@@ -211,6 +213,42 @@ public class Tutorial : MonoBehaviour
         inTutorial = number;
         allTutorialSteps[number-1][0].SetActive(true);
         ActOnStep(number - 1, 0, TutorialActType.onStart);
+    }
+
+    public IEnumerator StartBlinkUI(GameObject blinking)
+    {
+        if (blinkingUIs.Contains(blinking))
+        {
+            yield break;
+        }
+        blinkingUIs.Add(blinking);
+        Image toBlinkImage = blinking.GetComponent<Image>();
+        float a = toBlinkImage.color.a;
+
+        while (blinkingUIs.Contains(blinking))
+        {
+            for (int i = 0; i < 40; i++)
+            {
+                toBlinkImage.color = toBlinkImage.color - new Color(0.01f, 0.01f, 0.01f, 0);
+                if (blinkingUIs.Contains(blinking) == false)
+                {
+                    toBlinkImage.color = new Color(1, 1, 1, a);
+                    yield break;
+                }
+                yield return new WaitForSecondsRealtime(0.05f);
+            }
+            for (int i = 0; i < 40; i++)
+            {
+                toBlinkImage.color = toBlinkImage.color + new Color(0.01f, 0.01f, 0.01f, 0);
+                if (blinkingUIs.Contains(blinking) == false)
+                {
+                    toBlinkImage.color = new Color(1, 1, 1, a);
+                    yield break;
+                }
+                yield return new WaitForSecondsRealtime(0.05f);
+            }
+        }
+
     }
 
 
