@@ -126,7 +126,7 @@ public class Tutorial : MonoBehaviour
                                 {
                                     Manager.m.effectSpeaker.beep();
                                     StartBlinkUI(Manager.m.factoryButtons.marketButton);
-                                    allowedButtons.Add(Manager.m.factoryButtons.marketButton);
+                                    //allowedButtons.Add(Manager.m.factoryButtons.marketButton);
                                 }
                                 else if (act == TutorialActType.onRepeat)
                                 {
@@ -320,7 +320,7 @@ public class Tutorial : MonoBehaviour
     {
         if (button == null || button.GetComponent<Button>() == null)
         {
-            Debug.Log("Error - Gameobject <" + button.transform.parent.name + "/" + button.name + "> has no <Button> component");
+            Debug.Log("Error - Gameobject <" + button.transform.parent.name + "/" + button.name + "> has no <Button> component or is null");
             return false;
         }
         if (allowedButtons.Contains(button.GetComponent<Button>()) == false)
@@ -331,6 +331,20 @@ public class Tutorial : MonoBehaviour
         return false;
     }
 
+    bool AddAllowedButton(Button button)
+    {
+        if (button == null)
+        {
+            Debug.Log("Error - Button <" + button.transform.parent.name + "/" + button.name + "> is null");
+            return false;
+        }
+        if (allowedButtons.Contains(button) == false)
+        {
+            allowedButtons.Add(button);
+            return true;
+        }
+        return false;
+    }
 
 
 
