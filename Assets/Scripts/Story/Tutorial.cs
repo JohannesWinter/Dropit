@@ -12,7 +12,7 @@ public class Tutorial : MonoBehaviour
     public bool pauseGame;
     public Transform tutorial1;
     public GameObject[] tutorialObjects;
-    List<Button> allowedButtons;
+    List<Button> allowedButtons = new List<Button>();
     List<GameObject> blinkingUIs = new List<GameObject>();
     public float minWait;
     float currentStepTime;
@@ -126,7 +126,7 @@ public class Tutorial : MonoBehaviour
                                 {
                                     Manager.m.effectSpeaker.beep();
                                     StartBlinkUI(Manager.m.factoryButtons.marketButton);
-                                    //allowedButtons.Add(Manager.m.factoryButtons.marketButton);
+                                    AddAllowedButton(Manager.m.factoryButtons.marketButton);
                                 }
                                 else if (act == TutorialActType.onRepeat)
                                 {
@@ -135,6 +135,7 @@ public class Tutorial : MonoBehaviour
                                 else if (act == TutorialActType.onEnd)
                                 {
                                     StopAllBlinkingUIs();
+                                    RemoveAllowedButton(Manager.m.factoryButtons.marketButton);     
                                 }
                                 else if (act == TutorialActType.switchCond)
                                 {
