@@ -260,7 +260,18 @@ public class Tutorial : MonoBehaviour
         return false;
     }
 
-
+    public bool StopAllBlinkingUIs()
+    {
+        if (blinkingUIs.Count > 0)
+        {
+            for (int i = blinkingUIs.Count - 1; i >= 0; i--)
+            {
+                blinkingUIs.RemoveAt(i);
+            }
+            return true;
+        }
+        return false;
+    }
 
 
 
