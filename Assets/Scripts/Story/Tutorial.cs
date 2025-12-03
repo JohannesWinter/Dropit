@@ -193,7 +193,6 @@ public class Tutorial : MonoBehaviour
         return true;
     }
 
-
     public IEnumerator StartTutorial(int number)
     {
         if (number <= 0) 
@@ -215,7 +214,7 @@ public class Tutorial : MonoBehaviour
         ActOnStep(number - 1, 0, TutorialActType.onStart);
     }
 
-    public IEnumerator StartBlinkUI(GameObject blinking)
+    IEnumerator StartBlinkUIRoutine(GameObject blinking)
     {
         if (blinkingUIs.Contains(blinking))
         {
@@ -250,7 +249,16 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    public bool StopBlinkUI(GameObject blinking)
+    Coroutine StartBlinkUI(GameObject blinking)
+    {
+        if (blinkingUIs.Contains(blinking))
+        {
+            return null;
+        }
+        return StartCoroutine(StartBlinkUIRoutine(blinking));
+    }
+
+    bool StopBlinkUI(GameObject blinking)
     {
         if (blinkingUIs.Contains(blinking))
         {
@@ -260,7 +268,7 @@ public class Tutorial : MonoBehaviour
         return false;
     }
 
-    public bool StopAllBlinkingUIs()
+    bool StopAllBlinkingUIs()
     {
         if (blinkingUIs.Count > 0)
         {
