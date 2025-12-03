@@ -125,7 +125,8 @@ public class Tutorial : MonoBehaviour
                                 if (act == TutorialActType.onStart)
                                 {
                                     Manager.m.effectSpeaker.beep();
-                                    StartBlinkUI(step);
+                                    StartBlinkUI(Manager.m.factoryButtons.marketButton);
+                                    allowedButtons.Add(Manager.m.factoryButtons.marketButton);
                                 }
                                 else if (act == TutorialActType.onRepeat)
                                 {
@@ -133,11 +134,11 @@ public class Tutorial : MonoBehaviour
                                 }
                                 else if (act == TutorialActType.onEnd)
                                 {
-                                    StopBlinkUI(step);
+                                    StopAllBlinkingUIs();
                                 }
                                 else if (act == TutorialActType.switchCond)
                                 {
-                                    return Input.GetButtonDown("ClickLeft") && WaitForTime(5) || WaitForTime(10);
+                                    return Manager.m.inMarket == true;
                                 }
                                 break;
                             }
@@ -310,6 +311,21 @@ public class Tutorial : MonoBehaviour
     {
         if (allowedButtons.Contains(button) || allowedButtons.Count == 0)
         {
+            return true;
+        }
+        return false;
+    }
+
+    bool AddAllowedButton(GameObject button)
+    {
+        if (button == null || button.GetComponent<Button>() == null)
+        {
+            Debug.Log("Error - Gameobject <" + button.transform.parent.name + "/" + button.name + "> has no <Button> component");
+            return false;
+        }
+        if (allowedButtons.Contains(button.GetComponent<Button>()) == false)
+        {
+            allowedButtons.Add(button.GetComponent<Button>());
             return true;
         }
         return false;
