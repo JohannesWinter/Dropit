@@ -624,6 +624,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void Shop1()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(shop1Button) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.setKamera(0, 1);
         Manager.m.inShopDropper = true;
@@ -632,6 +636,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void Shop2()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(shop2Button) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.setKamera(0, 1);
         Manager.m.inShopMachine = true;
@@ -640,24 +648,40 @@ public class FactoryButtons : MonoBehaviour
     }
     void EditOn()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(editOnButton) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.editMode = true;
         Manager.m.editHistoryManager.ResetEditHistory();
     }
     void EditOff()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(editOnButton) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.editMode = false;
         Manager.m.editHistoryManager.ResetEditHistory();
     }
     void Done()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(doneButton) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.editMode_placeDropper = false;
         Manager.m.editMode_placeMachine = false;
     }
     void Repair()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(repairOff) == false && Manager.m.tutorial.IsButtonAllowed(repairOn) == false)
+        {
+            return;
+        }
         if (Manager.m.acessRepair == false && Manager.m.inUIMenu() == false)
         {
             //Manager.m.effectSpeaker.error();
@@ -681,11 +705,19 @@ public class FactoryButtons : MonoBehaviour
     }
     void Direction()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(directionButton) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.dropperRotation += 90;
     }
     void MachineType()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(machineTypeButton) == false)
+        {
+            return;
+        }
         if (Manager.m.editMode_placeMachine && (Manager.m.machineNumber == 1 || Manager.m.machineNumber == 4 || Manager.m.machineNumber == 7))
         {
             Manager.m.effectSpeaker.click();
@@ -823,6 +855,10 @@ public class FactoryButtons : MonoBehaviour
 
     void Undo()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(undoButtonEnabled) == false)
+        {
+            return;
+        }
         if (Manager.m.editHistoryManager.Undo(false))
         {
             Manager.m.effectSpeaker.click();
@@ -835,6 +871,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void Redo()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(redoButtonEnabled) == false)
+        {
+            return;
+        }
         if (Manager.m.editHistoryManager.Redo(false))
         {
             Manager.m.effectSpeaker.click();
@@ -847,12 +887,20 @@ public class FactoryButtons : MonoBehaviour
     }
     void Market()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(marketButton) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.inMarket = true;
     }
 
     void Missions()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(missionsButton) == false)
+        {
+            return;
+        }
         if (Manager.m.acessMissions)
         {
             Manager.m.effectSpeaker.click();
@@ -865,6 +913,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void QuickTimeEvents()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(quickTimeEventsButton) == false)
+        {
+            return;
+        }
         if (Manager.m.acessQTEs == true)
         {
             Manager.m.effectSpeaker.click();
@@ -877,6 +929,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void FactoryHalls()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(factoryHallsButton) == false)
+        {
+            return;
+        }
         if (Manager.m.acessFactoryHalls == true)
         {
             Manager.m.effectSpeaker.click();
@@ -889,6 +945,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void Options()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(optionsButton) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.inSettings = true;
         options.GetComponent<Settings>().OptionBack();
@@ -900,6 +960,10 @@ public class FactoryButtons : MonoBehaviour
 
     void ChangeHallRight()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(changeHallRight) == false)
+        {
+            return;
+        }
         int currentHall = Manager.m.getCurrentFactoryHall() + 1;
         if (currentHall != 5 && currentHall != 10)
         {
@@ -916,6 +980,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void ChangeHallDown()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(changeHallDown) == false)
+        {
+            return;
+        }
         int currentHall = Manager.m.getCurrentFactoryHall() + 1;
         if (currentHall >= 1 && currentHall <= 5)
         {
@@ -932,6 +1000,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void ChangeHallLeft()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(changeHallLeft) == false)
+        {
+            return;
+        }
         int currentHall = Manager.m.getCurrentFactoryHall() + 1;
         if (currentHall != 1 && currentHall != 6)
         {
@@ -948,6 +1020,10 @@ public class FactoryButtons : MonoBehaviour
     }
     void ChangeHallUp()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(changeHallUp) == false)
+        {
+            return;
+        }
         int currentHall = Manager.m.getCurrentFactoryHall() + 1;
         if (currentHall >= 6 && currentHall <= 10)
         {
