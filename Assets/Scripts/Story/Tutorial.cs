@@ -346,6 +346,35 @@ public class Tutorial : MonoBehaviour
         return false;
     }
 
+    bool RemoveAllowedButton(GameObject button) 
+    {
+        if (button == null || button.GetComponent<Button>() == null)
+        {
+            Debug.Log("Error - Gameobject <" + button.transform.parent.name + "/" + button.name + "> has no <Button> component or is null");
+            return false;
+        }
+        if (allowedButtons.Contains(button.GetComponent<Button>()) == true)
+        {
+            allowedButtons.Remove(button.GetComponent<Button>());
+            return true;
+        }
+        return false;
+    }
+
+    bool RemoveAllowedButton(Button button)
+    {
+        if (button == null)
+        {
+            Debug.Log("Error - Button <" + button.transform.parent.name + "/" + button.name + "> is null");
+            return false;
+        }
+        if (allowedButtons.Contains(button) == true)
+        {
+            allowedButtons.Remove(button);
+            return true;
+        }
+        return false;
+    }
 
 
 
