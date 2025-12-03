@@ -248,7 +248,16 @@ public class Tutorial : MonoBehaviour
                 yield return new WaitForSecondsRealtime(0.05f);
             }
         }
+    }
 
+    public bool StopBlinkUI(GameObject blinking)
+    {
+        if (blinkingUIs.Contains(blinking))
+        {
+            blinkingUIs.Remove(blinking);
+            return true;
+        }
+        return false;
     }
 
 
