@@ -376,6 +376,16 @@ public class Tutorial : MonoBehaviour
         return false;
     }
 
+    bool ResetAllowedButtons()
+    {
+        if (allowedButtons.Count == 0)
+        {
+            return false;
+        }
+        allowedButtons.Clear();
+        return true;
+    }
+
 
 
 
