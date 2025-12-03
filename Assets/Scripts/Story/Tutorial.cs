@@ -14,7 +14,7 @@ public class Tutorial : MonoBehaviour
     public GameObject[] tutorialObjects;
     List<GameObject> blinkingUIs = new List<GameObject>();
     public float minWait;
-    float currentWait;
+    float currentStepTime;
 
     //Testing
     public bool testStartTutorial;
@@ -51,11 +51,11 @@ public class Tutorial : MonoBehaviour
     }
     private void Update()
     {
-        if (inTutorial != 0 && minWait <= currentWait)
+        if (inTutorial != 0 && minWait <= currentStepTime)
         {
             CheckTutorial();
         }
-        currentWait += Time.unscaledDeltaTime;
+        currentStepTime += Time.unscaledDeltaTime;
 
         if (testStartTutorial)
         {
@@ -83,7 +83,6 @@ public class Tutorial : MonoBehaviour
                 {
                     if (CheckTutorialSwitch(i, x))
                     {
-                        currentWait = 0;
                         break;
                     }
                 }
@@ -137,7 +136,7 @@ public class Tutorial : MonoBehaviour
                                 }
                                 else if (act == TutorialActType.switchCond)
                                 {
-                                    return Input.GetButtonDown("ClickLeft");
+                                    return Input.GetButtonDown("ClickLeft") && WaitForTime(5) || WaitForTime(10);
                                 }
                                 break;
                             }
@@ -174,6 +173,7 @@ public class Tutorial : MonoBehaviour
 
     bool NextStep(GameObject[] tutorialSteps)
     {
+        currentStepTime = 0;
         for (int i = 0; i < tutorialSteps.Length; i++)
         {
             if (tutorialSteps[i].activeSelf)
@@ -210,7 +210,7 @@ public class Tutorial : MonoBehaviour
             }
             yield return null;
         }
-        currentWait = 0;
+        currentStepTime = 0;
         inTutorial = number;
         allTutorialSteps[number-1][0].SetActive(true);
         ActOnStep(number - 1, 0, TutorialActType.onStart);
@@ -283,6 +283,15 @@ public class Tutorial : MonoBehaviour
             {
                 blinkingUIs.RemoveAt(i);
             }
+            return true;
+        }
+        return false;
+    }
+
+    bool WaitForTime(float minTime)
+    {
+        if (currentStepTime > minTime)
+        {
             return true;
         }
         return false;
