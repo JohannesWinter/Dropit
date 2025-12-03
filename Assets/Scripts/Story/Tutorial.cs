@@ -111,19 +111,21 @@ public class Tutorial : MonoBehaviour
         return switched;
     }
 
-    bool ActOnStep(int tutorial, int step, TutorialActType act)
+    bool ActOnStep(int tutorialNr, int stepNr, TutorialActType act)
     {
-        switch (tutorial)
+        GameObject step = allTutorialSteps[tutorialNr][stepNr];
+        switch (tutorialNr)
         {
             case 0:
                 {
-                    switch (step)
+                    switch (stepNr)
                     {
                         case 0:
                             {
                                 if (act == TutorialActType.onStart)
                                 {
                                     Manager.m.effectSpeaker.beep();
+                                    StartBlinkUI(step);
                                 }
                                 else if (act == TutorialActType.onRepeat)
                                 {
@@ -131,7 +133,7 @@ public class Tutorial : MonoBehaviour
                                 }
                                 else if (act == TutorialActType.onEnd)
                                 {
-
+                                    StopBlinkUI(step);
                                 }
                                 else if (act == TutorialActType.switchCond)
                                 {
@@ -222,29 +224,34 @@ public class Tutorial : MonoBehaviour
         }
         blinkingUIs.Add(blinking);
         Image toBlinkImage = blinking.GetComponent<Image>();
+        if (toBlinkImage == null)
+        {
+            Debug.Log("Error - Gameobject <" + blinking.transform.parent.name + "/" + blinking.name + "> does not contain <Image> Component");
+            yield break;
+        }
         float a = toBlinkImage.color.a;
 
         while (blinkingUIs.Contains(blinking))
         {
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 10; i++)
             {
-                toBlinkImage.color = toBlinkImage.color - new Color(0.01f, 0.01f, 0.01f, 0);
+                toBlinkImage.color = toBlinkImage.color - new Color(0.06f, 0.06f, 0.06f, 0);
                 if (blinkingUIs.Contains(blinking) == false)
                 {
                     toBlinkImage.color = new Color(1, 1, 1, a);
                     yield break;
                 }
-                yield return new WaitForSecondsRealtime(0.05f);
+                yield return new WaitForSecondsRealtime(0.025f);
             }
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 10; i++)
             {
-                toBlinkImage.color = toBlinkImage.color + new Color(0.01f, 0.01f, 0.01f, 0);
+                toBlinkImage.color = toBlinkImage.color + new Color(0.06f, 0.06f, 0.06f, 0);
                 if (blinkingUIs.Contains(blinking) == false)
                 {
                     toBlinkImage.color = new Color(1, 1, 1, a);
                     yield break;
                 }
-                yield return new WaitForSecondsRealtime(0.05f);
+                yield return new WaitForSecondsRealtime(0.025f);
             }
         }
     }
