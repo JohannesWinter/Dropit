@@ -405,6 +405,10 @@ public class ShopCamera : MonoBehaviour
     }
     void Right()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(rightArrow) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.swipe();
         if (Manager.m.inShopDropper == true)
         {
@@ -431,6 +435,10 @@ public class ShopCamera : MonoBehaviour
     }
     void Left()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(leftArrow) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.swipe();
         if (Manager.m.inShopDropper == true)
         {
@@ -462,6 +470,10 @@ public class ShopCamera : MonoBehaviour
     }
     void SwitchAutoRepair()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(switchAutoRepair) == false)
+        {
+            return;
+        }
         if (Manager.m.inShopDropper == true)
         {
             if (Manager.m.autoRepairDroppers[Manager.m.dropperNumber - 1] == true)

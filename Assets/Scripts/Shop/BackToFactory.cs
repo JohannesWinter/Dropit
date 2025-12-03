@@ -32,6 +32,10 @@ public class BackToFactory : MonoBehaviour
 
     public void Back()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(backButton) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.setKamera(Manager.m.lastDropperCamera);
         Manager.m.inShopDropper = false;

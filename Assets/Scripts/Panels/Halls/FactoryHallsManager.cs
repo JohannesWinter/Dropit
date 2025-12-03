@@ -128,45 +128,48 @@ public class FactoryHallsManager : MonoBehaviour
         hall9Button.GetComponent<FactoryHallButton>().numberTxt.GetComponent<TextMeshProUGUI>().color = getTextColor(hallAttacked(9), signal, hall9Button.GetComponent<FactoryHallButton>().lastVisited);
         hall10Button.GetComponent<FactoryHallButton>().numberTxt.GetComponent<TextMeshProUGUI>().color = getTextColor(hallAttacked(10), signal, hall10Button.GetComponent<FactoryHallButton>().lastVisited);
 
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall1")))
+        if (Manager.m.tutorial.inTutorial == 0)
         {
-            Hall1();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall2")))
-        {
-            Hall2();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall3")))
-        {
-            Hall3();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall4")))
-        {
-            Hall4();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall5")))
-        {
-            Hall5();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall6")))
-        {
-            Hall6();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall7")))
-        {
-            Hall7();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall8")))
-        {
-            Hall8();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall9")))
-        {
-            Hall9();
-        }
-        if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall10")))
-        {
-            Hall10();
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall1")))
+            {
+                Hall1();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall2")))
+            {
+                Hall2();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall3")))
+            {
+                Hall3();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall4")))
+            {
+                Hall4();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall5")))
+            {
+                Hall5();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall6")))
+            {
+                Hall6();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall7")))
+            {
+                Hall7();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall8")))
+            {
+                Hall8();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall9")))
+            {
+                Hall9();
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("FactoryHall10")))
+            {
+                Hall10();
+            }
         }
         if (Manager.m.inFactoryHalls == true)
         {
@@ -278,52 +281,92 @@ public class FactoryHallsManager : MonoBehaviour
         {
             case 1:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall1Button) == false)
+                    {
+                        return;
+                    }
                     Hall1();
                     break;
                 }
             case 2:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall2Button) == false)
+                    {
+                        return;
+                    }
                     Hall2();
                     break;
                 }
             case 3:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall3Button) == false)
+                    {
+                        return;
+                    }
                     Hall3();
                     break;
                 }
             case 4:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall4Button) == false)
+                    {
+                        return;
+                    }
                     Hall4();
                     break;
                 }
             case 5:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall5Button) == false)
+                    {
+                        return;
+                    }
                     Hall5();
                     break;
                 }
             case 6:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall6Button) == false)
+                    {
+                        return;
+                    }
                     Hall6();
                     break;
                 }
             case 7:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall7Button) == false)
+                    {
+                        return;
+                    }
                     Hall7();
                     break;
                 }
             case 8:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall8Button) == false)
+                    {
+                        return;
+                    }
                     Hall8();
                     break;
                 }
             case 9:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall9Button) == false)
+                    {
+                        return;
+                    }
                     Hall9();
                     break;
 
                 }
             case 10:
                 {
+                    if (Manager.m.tutorial.IsButtonAllowed(hall10Button) == false)
+                    {
+                        return;
+                    }
                     Hall10();
                     break;
                 }

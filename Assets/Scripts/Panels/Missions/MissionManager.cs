@@ -141,6 +141,10 @@ public class MissionManager : MonoBehaviour
     }
     void Exit()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(exitButton) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.inMissions = false;
     }

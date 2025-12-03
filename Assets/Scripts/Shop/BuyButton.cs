@@ -37,6 +37,10 @@ public class BuyButton : MonoBehaviour
     }
     public void Buy()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(buyButton) == false)
+        {
+            return;
+        }
         if (Manager.m.inShopDropper)
         {
             if (Manager.m.upgradeRessources[Manager.m.dropperNumber - 1] == true)

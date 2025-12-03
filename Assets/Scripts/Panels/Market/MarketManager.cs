@@ -176,6 +176,10 @@ public class MarketManager : MonoBehaviour
     }
     void Exit()
     {
+        if (Manager.m.tutorial.IsButtonAllowed(exit) == false)
+        {
+            return;
+        }
         Manager.m.effectSpeaker.click();
         Manager.m.inMarket = false;
     }

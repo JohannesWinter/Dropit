@@ -300,7 +300,7 @@ public class Tutorial : MonoBehaviour
 
     public bool IsButtonAllowed(GameObject button)
     {
-        if (allowedButtons.Contains(button.GetComponent<Button>()))
+        if (allowedButtons.Contains(button.GetComponent<Button>()) || allowedButtons.Count == 0)
         {
             return true;
         }
@@ -308,7 +308,7 @@ public class Tutorial : MonoBehaviour
     }
     public bool IsButtonAllowed(Button button)
     {
-        if (allowedButtons.Contains(button))
+        if (allowedButtons.Contains(button) || allowedButtons.Count == 0)
         {
             return true;
         }
