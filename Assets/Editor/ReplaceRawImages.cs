@@ -34,44 +34,40 @@ public class ReplaceRawImages : EditorWindow
 
     private static void ConvertRawImage(RawImage raw)
     {
-        Texture tex = raw.texture;
-        Color color = raw.color;
+        if (raw == null)
+            return;
 
-        // Neues Image hinzufügen
-        Image img = raw.gameObject.AddComponent<Image>();
-
-        // Sprite zuweisen (falls möglich)
+        // --- Schritt 1: Daten auslesen ---
+        Color oldColor = raw.color;
+        Texture oldTexture = raw.texture;
         Sprite sprite = null;
 
-        if (tex != null)
+        if (oldTexture != null)
         {
-            // Asset-Pfad der Texture holen
-            string path = AssetDatabase.GetAssetPath(tex);
-
+            string path = AssetDatabase.GetAssetPath(oldTexture);
             if (!string.IsNullOrEmpty(path))
             {
-                // Versuchen das Sprite aus dem Asset zu laden
                 sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
             }
         }
 
-        if (sprite == null && tex != null)
-        {
-            Debug.LogWarning($"Warning - Konnte kein Sprite für Texture '{tex.name}' finden. " +
-                             $"Stelle sicher, dass der Import Mode auf 'Sprite (2D and UI)' steht.", raw);
-        }
-
-        if (sprite != null)
-        {
-            img.sprite = sprite;
-        }   
-        img.color = color;
-        img.preserveAspect = true;
-
-        // RawImage löschen
+        // --- Schritt 2: RawImage zuerst löschen ---
+        GameObject go = raw.gameObject;
         DestroyImmediate(raw, true);
+
+        // Wichtig, damit Unity die Komponentenliste aktualisiert
+        EditorUtility.SetDirty(go);
+
+        // --- Schritt 3: Neues Image hinzufügen ---
+        Image img = go.AddComponent<Image>();
+
+        // --- Schritt 4: Einstellungen übertragen ---
+        img.color = oldColor;
+        img.sprite = sprite;
+        img.preserveAspect = true;
 
         EditorUtility.SetDirty(img);
     }
+
 }
 
