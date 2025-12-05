@@ -60,7 +60,7 @@ public class GnomeManager : MonoBehaviour
                     gnomeSpawnTimer = 0;
 
                     int factoryHall = Manager.m.getCurrentFactoryHall() + 1;
-                    int entrance = factoryHall + 10 * Random.Range(0, 6);
+                    int entrance = Manager.m.getCurrentFactoryHall() + 10 * Random.Range(0, 6);
                     float speed = 1 + Random.Range(0.0f, 1.5f);
                     float damage = 1.5f + Random.Range(0.0f, 0.5f + 0.15f * (Manager.m.getHighestUnlockedType() + 1));
                     int attacks = 1 + (int)(Random.Range(0, Manager.m.getHighestUnlockedType() * 0.3f));
