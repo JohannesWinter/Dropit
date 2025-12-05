@@ -167,11 +167,7 @@ public class Tutorial : MonoBehaviour
                     break;
                 }
         }
-        if (act == TutorialActType.switchCond)
-        {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     bool NextStep(GameObject[] tutorialSteps)
