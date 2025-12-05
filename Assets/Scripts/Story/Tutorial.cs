@@ -24,6 +24,7 @@ public class Tutorial : MonoBehaviour
 
 
 
+
     public GameObject[][] allTutorialSteps;
     private void Start()
     {
@@ -213,6 +214,32 @@ public class Tutorial : MonoBehaviour
         inTutorial = number;
         allTutorialSteps[number-1][0].SetActive(true);
         ActOnStep(number - 1, 0, TutorialActType.onStart);
+    }
+
+    public bool StopTutorialEarly(int number)
+    {
+        if (number <= 0)
+        {
+            Debug.Log("Error - Tutorial <" + number + "> not existent");
+            return false;
+        }
+        else if (inTutorial != number)
+        {
+            Debug.Log("Warning - Cant stop Tutorial " + number + " that you are not in");
+            return false;
+        }
+        inTutorial = 0;
+        for (int i = 0; i < allTutorialSteps[number - 1].Length; i++)
+        {
+            if (allTutorialSteps[number - 1][i].activeSelf)
+            {
+                ActOnStep(number - 1, i, TutorialActType.onEnd);
+                allTutorialSteps[number - 1][i].SetActive(false);
+            }
+        }
+        StopAllBlinkingUIs();
+        ResetAllowedButtons();
+        return true;
     }
 
     IEnumerator StartBlinkUIRoutine(GameObject blinking)
