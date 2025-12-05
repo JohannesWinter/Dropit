@@ -21,7 +21,7 @@ public class Tutorial : MonoBehaviour
     public bool testStartTutorial;
     public int testTutorialNumber;
     public bool testNextStep;
-
+    public bool testStop;
 
 
 
@@ -68,6 +68,11 @@ public class Tutorial : MonoBehaviour
         {
             testNextStep = false;
             NextStep(allTutorialSteps[testTutorialNumber - 1]);
+        }
+        if (testStop)
+        {
+            testStop = false;
+            StopTutorialEarly(testTutorialNumber);
         }
     }
     public bool CheckActiveStep(GameObject step)
