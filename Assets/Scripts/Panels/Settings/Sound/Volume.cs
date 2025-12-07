@@ -37,6 +37,7 @@ public class Volume : MonoBehaviour
             Manager.m.generalVolume.volume = 10;
             Manager.m.factoryVolume.volume = 10;
             Manager.m.effectsVolume.volume = 10;
+            Manager.m.voiceVolume.volume = 10;
             Manager.m.musicVolume.volume = 10;
             if (PlayerPrefs.GetInt(Manager.m.version + "_" + "_GeneralVolume") != 0)
             {
@@ -49,6 +50,10 @@ public class Volume : MonoBehaviour
             if (PlayerPrefs.GetInt(Manager.m.version + "_" + "_EffectsVolume") != 0)
             {
                 Manager.m.effectsVolume.volume = PlayerPrefs.GetInt(Manager.m.version + "_" + "_EffectsVolume") - 1;
+            }
+            if (PlayerPrefs.GetInt(Manager.m.version + "_" + "_VoiceVolume") != 0)
+            {
+                Manager.m.voiceVolume.volume = PlayerPrefs.GetInt(Manager.m.version + "_" + "_VoiceVolume") - 1;
             }
             if (PlayerPrefs.GetInt(Manager.m.version + "_" + "_MusicVolume") != 0)
             {
@@ -84,6 +89,16 @@ public class Volume : MonoBehaviour
             {
                 Manager.m.effectsVolume.off.SetActive(false);
                 Manager.m.effectsVolume.on.SetActive(true);
+            }
+            if (PlayerPrefs.GetInt(Manager.m.version + "_" + "_VoiceVolume_Disabled") != 0)
+            {
+                Manager.m.voiceVolume.off.SetActive(true);
+                Manager.m.voiceVolume.on.SetActive(false);
+            }
+            else
+            {
+                Manager.m.voiceVolume.off.SetActive(false);
+                Manager.m.voiceVolume.on.SetActive(true);
             }
             if (PlayerPrefs.GetInt(Manager.m.version + "_" + "_MusicVolume_Disabled") != 0)
             {
@@ -126,6 +141,7 @@ public class Volume : MonoBehaviour
                 PlayerPrefs.SetInt(Manager.m.version + "_" + "_GeneralVolume", Manager.m.generalVolume.volume + 1);
                 PlayerPrefs.SetInt(Manager.m.version + "_" + "_FactoryVolume", Manager.m.factoryVolume.volume + 1);
                 PlayerPrefs.SetInt(Manager.m.version + "_" + "_EffectsVolume", Manager.m.effectsVolume.volume + 1);
+                PlayerPrefs.SetInt(Manager.m.version + "_" + "_VoiceVolume", Manager.m.voiceVolume.volume + 1);
                 PlayerPrefs.SetInt(Manager.m.version + "_" + "_MusicVolume", Manager.m.musicVolume.volume + 1);
 
                 if (Manager.m.generalVolume.off.activeSelf == false)
@@ -151,6 +167,14 @@ public class Volume : MonoBehaviour
                 else
                 {
                     PlayerPrefs.SetInt(Manager.m.version + "_" + "_EffectsVolume_Disabled", 1);
+                }
+                if (Manager.m.voiceVolume.off.activeSelf == false)
+                {
+                    PlayerPrefs.SetInt(Manager.m.version + "_" + "_VoiceVolume_Disabled", 0);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt(Manager.m.version + "_" + "_VoiceVolume_Disabled", 1);
                 }
                 if (Manager.m.musicVolume.off.activeSelf == false)
                 {

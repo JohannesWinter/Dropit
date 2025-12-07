@@ -15,7 +15,7 @@ public class CommunicationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        allVoiceLines = new AudioSource[1][];
+        allVoiceLines = new AudioSource[2][];
         allVoiceLines[0] = lines_person1;
         allVoiceLines[1] = lines_person2;
     }
@@ -23,6 +23,7 @@ public class CommunicationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(Manager.m.voiceVolume.publicVolume);
         //TODO: update all Voice line volumes when chaned
         if (currentCommunication != null && currentCommunication.isFinished == true)
         {

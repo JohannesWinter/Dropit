@@ -74,6 +74,7 @@ public sealed class Manager : MonoBehaviour
     public QuickTimeEventManager quickTimeEventManager;
     public GnomeManager gnomeManager;
     public NotificationManager notificationManager;
+    public CommunicationManager communicationManager;
     public EditHistoryManager editHistoryManager;
     public GraphicManager graphicManager;
     public DarknessController darknessController;
@@ -124,6 +125,7 @@ public sealed class Manager : MonoBehaviour
     public Volume generalVolume;
     public Volume factoryVolume;
     public Volume effectsVolume;
+    public Volume voiceVolume;
     public Volume musicVolume;
 
     public GameObject ConveyorBelt1;
