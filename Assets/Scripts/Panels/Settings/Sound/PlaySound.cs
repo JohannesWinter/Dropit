@@ -17,7 +17,8 @@ public class PlaySound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (soundtype == SoundType.Factory)
+        this.gameObject.GetComponent<AudioSource>().volume = audiosource.volume;
+        if (soundtype == SoundType.Factory || soundtype == SoundType.Voice)
         {
             if (Manager.m.paused)
             {
@@ -40,7 +41,6 @@ public class PlaySound : MonoBehaviour
         if (played == false)
         {
             this.gameObject.GetComponent<AudioSource>().clip = audiosource.clip;
-            this.gameObject.GetComponent<AudioSource>().volume = audiosource.volume;
             this.gameObject.GetComponent<AudioSource>().maxDistance = audiosource.maxDistance;
             this.gameObject.GetComponent<AudioSource>().pitch = pitch;
             audiosource = this.gameObject.GetComponent<AudioSource>();
@@ -55,4 +55,5 @@ public enum SoundType
     Factory,
     Effect,
     Music,
+    Voice,
 }

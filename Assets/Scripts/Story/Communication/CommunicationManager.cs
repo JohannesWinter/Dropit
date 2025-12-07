@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class CommunicationManager : MonoBehaviour
 {
+    public CommunicationMassage communicationMassageResource;
+    public PlaySound soundResource;
     CommunicationMassage currentCommunication;
-    public GameObject[] persons;
+    public GameObject[] personProfiles;
     public AudioSource[] lines_person1;
     public AudioSource[] lines_person2;
 
-    public AudioSource[][] allLines;
+    public AudioSource[][] allVoiceLines;
     // Start is called before the first frame update
     void Start()
     {
-        allLines = new AudioSource[1][];
-        allLines[0] = lines_person1;
-        allLines[1] = lines_person2;
+        allVoiceLines = new AudioSource[1][];
+        allVoiceLines[0] = lines_person1;
+        allVoiceLines[1] = lines_person2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //TODO: update all Voice line volumes when chaned
+        if (currentCommunication != null && currentCommunication.isFinished == true)
+        {
+            Destroy(currentCommunication);
+            currentCommunication = null;
+        }
     }
 
     public IEnumerator AddCommunicationMassage(int personID, int massageID)
@@ -40,8 +47,14 @@ public class CommunicationManager : MonoBehaviour
 
     CommunicationMassage InitializeMassage(int personID, int massageID)
     {
-        
-
-        return null;
+        CommunicationMassage newMassage = Instantiate(communicationMassageResource);
+        newMassage.gameObject.transform.parent = this.gameObject.transform;
+        newMassage.personID = personID;
+        newMassage.messageID = massageID;
+        newMassage.personProfile = personProfiles[personID];
+        PlaySound voice = Instantiate(soundResource);
+        voice.gameObject.transform.parent = newMassage.gameObject.transform;
+        voice.audiosource = allVoiceLines[personID][massageID];
+        return newMassage;
     }
 }

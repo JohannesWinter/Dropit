@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class CommunicationMassage : MonoBehaviour
 {
-    int personID;
-    int messageID;
-    PlaySound messageSound;
+    public int personID;
+    public int messageID;
+    public PlaySound messageSound;
+    public GameObject personProfile;
 
+
+    public bool isFinished { get; }
     void Start()
     {
         
