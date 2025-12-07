@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CommunicationManager : MonoBehaviour
 {
+    bool inCommunication = false;
     // Start is called before the first frame update
     void Start()
     {
