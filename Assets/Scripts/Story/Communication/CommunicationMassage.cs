@@ -27,5 +27,9 @@ public class CommunicationMassage : MonoBehaviour
             isFinished = true;
             overlay.SetActive(false);
         }
+        else
+        {
+            messageSound.GetComponent<AudioSource>().volume = Manager.m.voiceVolume.publicVolume;
+        }
     }
 }

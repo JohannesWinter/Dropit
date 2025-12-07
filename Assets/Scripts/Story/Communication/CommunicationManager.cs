@@ -23,8 +23,6 @@ public class CommunicationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Manager.m.voiceVolume.publicVolume);
-        //TODO: update all Voice line volumes when chaned
         if (currentCommunication != null && currentCommunication.isFinished == true)
         {
             Destroy(currentCommunication);
