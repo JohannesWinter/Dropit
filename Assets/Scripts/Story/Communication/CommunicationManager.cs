@@ -5,10 +5,17 @@ using UnityEngine;
 public class CommunicationManager : MonoBehaviour
 {
     CommunicationMassage currentCommunication;
+    public GameObject[] persons;
+    public AudioSource[] lines_person1;
+    public AudioSource[] lines_person2;
+
+    public AudioSource[][] allLines;
     // Start is called before the first frame update
     void Start()
     {
-        
+        allLines = new AudioSource[1][];
+        allLines[0] = lines_person1;
+        allLines[1] = lines_person2;
     }
 
     // Update is called once per frame
@@ -33,6 +40,8 @@ public class CommunicationManager : MonoBehaviour
 
     CommunicationMassage InitializeMassage(int personID, int massageID)
     {
+        
+
         return null;
     }
 }

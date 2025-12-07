@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CommunicationMassage : MonoBehaviour
 {
-    // Start is called before the first frame update
+    int personID;
+    int messageID;
+    PlaySound messageSound;
+
     void Start()
     {
         
