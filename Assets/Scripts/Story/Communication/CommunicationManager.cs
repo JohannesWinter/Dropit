@@ -12,7 +12,13 @@ public class CommunicationManager : MonoBehaviour
     public AudioSource[] lines_person2;
 
     public AudioSource[][] allVoiceLines;
-    // Start is called before the first frame update
+
+    //Test
+
+    public bool testMessage;
+    public int testPersonID;
+    public int testMassageID;
+
     void Start()
     {
         allVoiceLines = new AudioSource[2][];
@@ -20,13 +26,18 @@ public class CommunicationManager : MonoBehaviour
         allVoiceLines[1] = lines_person2;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (currentCommunication != null && currentCommunication.isFinished == true)
         {
             Destroy(currentCommunication);
             currentCommunication = null;
+        }
+
+        if (testMessage)
+        {
+            testMessage = false;
+            AddCommunicationMassage(testPersonID, testMassageID);
         }
     }
 
