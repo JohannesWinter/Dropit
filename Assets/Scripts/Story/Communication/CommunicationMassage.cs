@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CommunicationMassage : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CommunicationMassage : MonoBehaviour
     public int messageID;
     public PlaySound messageSound;
     public GameObject personProfile;
+    public TextMeshProUGUI personName;
     public bool isFinished;
 
     public GameObject overlay;
@@ -20,6 +22,7 @@ public class CommunicationMassage : MonoBehaviour
         personProfile.GetComponent<RectTransform>().localPosition = personProfilePosition.localPosition;
         personProfile.SetActive(true);
         this.gameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        personName.text = personProfile.gameObject.name; // gameobject has to have name of person
         overlay.SetActive(true);
     }
     void Update()
