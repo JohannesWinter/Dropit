@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CommunicationManager : MonoBehaviour
 {
-    public CommunicationMassage communicationMassageResource;
+    public GameObject communicationMassageResource;
     public PlaySound soundResource;
     CommunicationMassage currentCommunication;
     public GameObject[] personProfiles;
@@ -41,7 +41,11 @@ public class CommunicationManager : MonoBehaviour
         }
     }
 
-    public IEnumerator AddCommunicationMassage(int personID, int massageID)
+    public Coroutine AddCommunicationMassage(int personID, int massageID)
+    {
+        return StartCoroutine(AddCommunicationMassageRoutine(personID, massageID));
+    }
+    IEnumerator AddCommunicationMassageRoutine(int personID, int massageID)
     {
         if (personID < 0)
         {
@@ -57,7 +61,8 @@ public class CommunicationManager : MonoBehaviour
 
     CommunicationMassage InitializeMassage(int personID, int massageID)
     {
-        CommunicationMassage newMassage = Instantiate(communicationMassageResource);
+        GameObject newMassageObject = Instantiate(communicationMassageResource);
+        CommunicationMassage newMassage = newMassageObject.GetComponent<CommunicationMassage>();
         newMassage.gameObject.transform.parent = this.gameObject.transform;
         newMassage.personID = personID;
         newMassage.messageID = massageID;
