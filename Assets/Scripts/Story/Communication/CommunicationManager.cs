@@ -30,7 +30,7 @@ public class CommunicationManager : MonoBehaviour
     {
         if (currentCommunication != null && currentCommunication.isFinished == true)
         {
-            Destroy(currentCommunication);
+            Destroy(currentCommunication.gameObject);
             currentCommunication = null;
         }
 
@@ -63,13 +63,14 @@ public class CommunicationManager : MonoBehaviour
     {
         GameObject newMassageObject = Instantiate(communicationMassageResource);
         CommunicationMassage newMassage = newMassageObject.GetComponent<CommunicationMassage>();
-        newMassage.gameObject.transform.parent = this.gameObject.transform;
+        newMassage.gameObject.transform.SetParent(this.gameObject.transform);
         newMassage.personID = personID;
         newMassage.messageID = massageID;
         newMassage.personProfile = personProfiles[personID];
         PlaySound voice = Instantiate(soundResource);
         voice.gameObject.transform.parent = newMassage.gameObject.transform;
         voice.audiosource = allVoiceLines[personID][massageID];
+        newMassage.messageSound = voice;
         return newMassage;
     }
 }

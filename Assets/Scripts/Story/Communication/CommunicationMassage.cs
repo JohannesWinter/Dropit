@@ -12,14 +12,16 @@ public class CommunicationMassage : MonoBehaviour
 
     public GameObject overlay;
     public RectTransform personProfilePosition;
-    void Start()
+
+    // Update is called once per frame
+
+    private void Start()
     {
         personProfile.GetComponent<RectTransform>().localPosition = personProfilePosition.localPosition;
         personProfile.SetActive(true);
+        this.gameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
         overlay.SetActive(true);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (messageSound == null)
