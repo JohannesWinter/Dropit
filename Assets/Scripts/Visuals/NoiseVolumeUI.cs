@@ -14,7 +14,13 @@ public class NoiseVolumeUI : MonoBehaviour
     {
         
     }
+    public float GetCurrentPlaySoundVolume(PlaySound trackSound)
+    {
+        float time = trackSound.GetComponent<AudioSource>().time;
+        AudioClip clip = trackSound.GetComponent<AudioSource>().clip;
 
+        return GetSamplePeak(clip, time);
+    }
 
     float GetSamplePeak(AudioClip clip, float time)
     {
