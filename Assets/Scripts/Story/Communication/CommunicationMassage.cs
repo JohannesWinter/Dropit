@@ -14,6 +14,7 @@ public class CommunicationMassage : MonoBehaviour
 
     public GameObject overlay;
     public RectTransform personProfilePosition;
+    public NoiseVolumeUI noiseVolumeUI;
 
     // Update is called once per frame
 
@@ -23,6 +24,7 @@ public class CommunicationMassage : MonoBehaviour
         personProfile.SetActive(true);
         this.gameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
         personName.text = personProfile.gameObject.name; // gameobject has to have name of person
+        noiseVolumeUI.trackSound = messageSound;
         overlay.SetActive(true);
     }
     void Update()
