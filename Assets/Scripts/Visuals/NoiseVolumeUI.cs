@@ -14,4 +14,13 @@ public class NoiseVolumeUI : MonoBehaviour
     {
         
     }
+
+
+    float GetSamplePeak(AudioClip clip, float time)
+    {
+        int index = (int)(time * clip.frequency);
+        float[] sample = new float[1];
+        clip.GetData(sample, index);
+        return Mathf.Abs(sample[0]);
+    }
 }
