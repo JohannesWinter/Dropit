@@ -37,15 +37,15 @@ public class CommunicationManager : MonoBehaviour
         if (testMessage)
         {
             testMessage = false;
-            AddCommunicationMassage(testPersonID, testMassageID);
+            AddCommunicationMassage(testPersonID, testMassageID, true);
         }
     }
 
-    public Coroutine AddCommunicationMassage(int personID, int massageID)
+    public Coroutine AddCommunicationMassage(int personID, int massageID, bool waitForMassageEnd)
     {
-        return StartCoroutine(AddCommunicationMassageRoutine(personID, massageID));
+        return StartCoroutine(AddCommunicationMassageRoutine(personID, massageID, waitForMassageEnd));
     }
-    IEnumerator AddCommunicationMassageRoutine(int personID, int massageID)
+    IEnumerator AddCommunicationMassageRoutine(int personID, int massageID, bool waitForMassageEnd)
     {
         if (personID < 0)
         {
@@ -54,6 +54,10 @@ public class CommunicationManager : MonoBehaviour
         }
         while(currentCommunication != null)
         {
+            if (waitForMassageEnd == false)
+            {
+                yield break;
+            }
             yield return null;
         }
         currentCommunication = InitializeMassage(personID, massageID);
