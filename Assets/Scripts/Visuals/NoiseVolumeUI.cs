@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NoiseVolumeUI : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class NoiseVolumeUI : MonoBehaviour
         int x = noiseAmplitudes.Length / 2;
         for (int i = noiseAmplitudes.Length / 2; i >= 0; i--)
         {
-            noiseAmplitudes[i] = ((float)i / 1.2f + 0.17f) / (noiseAmplitudes.Length / 2);
-            noiseAmplitudes[x] = ((float)i / 1.2f + 0.17f) / (noiseAmplitudes.Length / 2);
+            noiseAmplitudes[i] = ((float)i / 1.2f) / (noiseAmplitudes.Length / 2) + 0.17f;
+            noiseAmplitudes[x] = ((float)i / 1.2f) / (noiseAmplitudes.Length / 2) + 0.17f;
             x++;
         }
     }
@@ -28,6 +29,7 @@ public class NoiseVolumeUI : MonoBehaviour
     {
         
     }
+
     public float GetCurrentPlaySoundVolume(PlaySound trackSound)
     {
         float time = trackSound.GetComponent<AudioSource>().time;
@@ -42,5 +44,12 @@ public class NoiseVolumeUI : MonoBehaviour
         float[] sample = new float[1];
         clip.GetData(sample, index);
         return Mathf.Abs(sample[0]);
+    }
+
+    void UpdateNoiseLine(GameObject noiseLine, float amplitude)
+    {
+        Image lineImage = noiseLine.GetComponent<Image>();
+        float noiseVolume = GetCurrentPlaySoundVolume(this.trackSound);
+        noiseLine.GetComponent<RectTransform>().localScale = new Vector3(1, noiseVolume * amplitude, 1);
     }
 }
