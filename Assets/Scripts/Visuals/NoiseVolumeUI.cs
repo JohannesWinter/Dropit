@@ -27,23 +27,40 @@ public class NoiseVolumeUI : MonoBehaviour
     }
     void Update()
     {
-        
+        UpdateAlleNoiseLines(noiseLines, noiseAmplitudes);
     }
 
     public float GetCurrentPlaySoundVolume(PlaySound trackSound)
     {
         float time = trackSound.GetComponent<AudioSource>().time;
-        AudioClip clip = trackSound.GetComponent<AudioSource>().clip;
+        AudioSource audioSource = trackSound.GetComponent<AudioSource>();
 
-        return GetSamplePeak(clip, time);
+        return GetSamplePeak(audioSource, time);
     }
 
-    float GetSamplePeak(AudioClip clip, float time)
+    float GetSamplePeak(AudioSource audiosource, float time)
     {
-        int index = (int)(time * clip.frequency);
-        float[] sample = new float[1];
-        clip.GetData(sample, index);
-        return Mathf.Abs(sample[0]);
+        if (audiosource == null || audiosource.clip == null) {
+            return 0;
+        }
+
+        float[] clipSampleData = new float[128];
+        audiosource.clip.GetData(clipSampleData, audiosource.timeSamples);
+        float clipLoudness = 0f;
+        foreach (var sample in clipSampleData)
+        {
+            clipLoudness += Mathf.Abs(sample);
+        }
+        clipLoudness /= clipSampleData.Length;
+        return clipLoudness;
+    }
+
+    void UpdateAlleNoiseLines(GameObject[] noiseLines, float[] noiseAmplitudes)
+    {
+        for (int i = 0; i < noiseLines.Length; i++)
+        {
+            UpdateNoiseLine(noiseLines[i], noiseAmplitudes[i]);
+        }
     }
 
     void UpdateNoiseLine(GameObject noiseLine, float amplitude)
