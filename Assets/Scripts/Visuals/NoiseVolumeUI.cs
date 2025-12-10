@@ -5,10 +5,15 @@ using UnityEngine;
 public class NoiseVolumeUI : MonoBehaviour
 {
     public PlaySound trackSound;
-
+    public Transform noiseLinesFolder;
+    GameObject[] noiseLines;
     void Start()
     {
-        
+        noiseLines = new GameObject[noiseLinesFolder.childCount];
+        for (int i = 0; i < noiseLinesFolder.childCount; i++)
+        {
+            noiseLines[i] = noiseLinesFolder.GetChild(i).gameObject;
+        }
     }
     void Update()
     {
