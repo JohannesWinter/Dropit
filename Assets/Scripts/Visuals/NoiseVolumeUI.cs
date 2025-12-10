@@ -27,7 +27,10 @@ public class NoiseVolumeUI : MonoBehaviour
     }
     void Update()
     {
-        UpdateAlleNoiseLines(noiseLines, noiseAmplitudes);
+        if (trackSound != null)
+        {
+            UpdateAlleNoiseLines(noiseLines, noiseAmplitudes);
+        }
     }
 
     public float GetCurrentPlaySoundVolume(PlaySound trackSound)
@@ -41,16 +44,22 @@ public class NoiseVolumeUI : MonoBehaviour
         if (audiosource == null || audiosource.clip == null) {
             return 0;
         }
-
-        float[] clipSampleData = new float[128];
-        audiosource.clip.GetData(clipSampleData, audiosource.timeSamples);
-        float clipLoudness = 0f;
-        foreach (var sample in clipSampleData)
+        try
         {
-            clipLoudness += Mathf.Abs(sample);
+            float[] clipSampleData = new float[128];
+            audiosource.clip.GetData(clipSampleData, audiosource.timeSamples);
+            float clipLoudness = 0f;
+            foreach (var sample in clipSampleData)
+            {
+                clipLoudness += Mathf.Abs(sample);
+            }
+            clipLoudness /= clipSampleData.Length;
+            return clipLoudness;
         }
-        clipLoudness /= clipSampleData.Length;
-        return clipLoudness;
+        catch
+        {
+            return 0;
+        }
     }
 
     void UpdateAlleNoiseLines(GameObject[] noiseLines, float[] noiseAmplitudes)
