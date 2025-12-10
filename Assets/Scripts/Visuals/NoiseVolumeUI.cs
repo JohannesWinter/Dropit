@@ -74,6 +74,7 @@ public class NoiseVolumeUI : MonoBehaviour
     {
         Image lineImage = noiseLine.GetComponent<Image>();
         float noiseVolume = GetCurrentPlaySoundVolume(this.trackSound);
-        noiseLine.GetComponent<RectTransform>().localScale = new Vector3(1, Mathf.Min(1, noiseVolume * amplitude * amplitudeMultiplier + 0.1f), 1);
+        float randomized = Mathf.Clamp(0, 2, Random.Range(1 - amplitudeRandomizer, 1 + amplitudeRandomizer));
+        noiseLine.GetComponent<RectTransform>().localScale = new Vector3(1, Mathf.Min(1, noiseVolume * amplitude * randomized * amplitudeMultiplier  + 0.1f), 1);
     }
 }
