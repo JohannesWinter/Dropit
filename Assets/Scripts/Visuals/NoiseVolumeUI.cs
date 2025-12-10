@@ -51,7 +51,7 @@ public class NoiseVolumeUI : MonoBehaviour
 
     float GetSamplePeak(AudioSource audioSource)
     {
-        float[] clipSampleData = new float[128];
+        float[] clipSampleData = new float[1024];
         audioSource.clip.GetData(clipSampleData, audioSource.timeSamples);
         float clipLoudness = 0f;
         foreach (var sample in clipSampleData)
