@@ -12,6 +12,8 @@ public class CommunicationManager : MonoBehaviour
     public AudioSource[] lines_person2;
 
     public AudioSource[][] allVoiceLines;
+    public float amplitudeMultiplier;
+    public float amplitudeRandomizer;
 
     //Test
 
@@ -71,6 +73,8 @@ public class CommunicationManager : MonoBehaviour
         newMassage.personID = personID;
         newMassage.messageID = massageID;
         newMassage.personProfile = personProfiles[personID];
+        newMassage.amplitudeMultiplier = amplitudeMultiplier;
+        newMassage.amplitudeRandomizer = amplitudeRandomizer;
         PlaySound voice = Instantiate(soundResource);
         voice.gameObject.transform.parent = newMassage.gameObject.transform;
         voice.audiosource = allVoiceLines[personID][massageID];

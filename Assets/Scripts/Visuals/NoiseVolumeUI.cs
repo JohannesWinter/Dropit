@@ -9,6 +9,8 @@ public class NoiseVolumeUI : MonoBehaviour
     public Transform noiseLinesFolder;
     GameObject[] noiseLines;
     public float[] noiseAmplitudes;
+    public float amplitudeMultiplier;
+    public float amplitudeRandomizer;
     void Start()
     {
         noiseLines = new GameObject[noiseLinesFolder.childCount];
@@ -72,6 +74,6 @@ public class NoiseVolumeUI : MonoBehaviour
     {
         Image lineImage = noiseLine.GetComponent<Image>();
         float noiseVolume = GetCurrentPlaySoundVolume(this.trackSound);
-        noiseLine.GetComponent<RectTransform>().localScale = new Vector3(1, noiseVolume * amplitude, 1);
+        noiseLine.GetComponent<RectTransform>().localScale = new Vector3(1, Mathf.Min(1, noiseVolume * amplitude * amplitudeMultiplier + 0.1f), 1);
     }
 }
