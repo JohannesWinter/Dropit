@@ -2125,6 +2125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4321399132110716593}
   - component: {fileID: 6222338130987319277}
+  - component: {fileID: 5756210075604385763}
   m_Layer: 5
   m_Name: VoiceMessage
   m_TagString: Untagged
@@ -2172,7 +2173,22 @@ MonoBehaviour:
   isFinished: 0
   overlay: {fileID: 1684671918406957783}
   personProfilePosition: {fileID: 2835709570264122738}
-  noiseVolumeUI: {fileID: 6681668304864080549}
+  noiseVolumeUI: {fileID: 5756210075604385763}
+--- !u!114 &5756210075604385763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321399132110716592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3dc0b0210c00546ad4103bbeb7c3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackSound: {fileID: 0}
+  noiseLinesFolder: {fileID: 1552851190035441843}
+  noiseAmplitudes: []
 --- !u!1 &4321399132453409021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,7 +4258,6 @@ GameObject:
   - component: {fileID: 5016701508950123283}
   - component: {fileID: 4120369699568799390}
   - component: {fileID: 318947134476222103}
-  - component: {fileID: 6681668304864080549}
   m_Layer: 5
   m_Name: NoiseVolumeUI
   m_TagString: Untagged
@@ -4291,19 +4306,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &6681668304864080549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7381632498598107848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b3dc0b0210c00546ad4103bbeb7c3e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackSound: {fileID: 0}
 --- !u!1 &7488719447543689720
 GameObject:
   m_ObjectHideFlags: 0
