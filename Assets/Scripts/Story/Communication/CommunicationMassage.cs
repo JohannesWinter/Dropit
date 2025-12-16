@@ -34,7 +34,7 @@ public class CommunicationMassage : MonoBehaviour
     void Update()
     {
         float guiScale = Manager.m.graphicManager.gUIScaleFactor;
-        this.gameObject.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
+        overlay.GetComponent<RectTransform>().localScale = new Vector3(guiScale, guiScale, guiScale);
         if (messageSound == null)
         {
             isFinished = true;
