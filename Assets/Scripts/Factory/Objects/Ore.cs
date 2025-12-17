@@ -93,7 +93,7 @@ public class Ore : MonoBehaviour
                         }
                         else if (upgradeLevel == 2)
                         {
-                            halo.color = new Color(0, 0, 200);
+                            halo.color = new Color(0, 0, 120);
                             halo.range = 2.5f;
                             halo.enabled = true;
                             halo.intensity = 0.3f;
