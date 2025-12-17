@@ -22,6 +22,7 @@ public class Tutorial : MonoBehaviour
     public int testTutorialNumber;
     public bool testNextStep;
     public bool testStop;
+    public Button[] testAccessAllowedButtons;
 
 
 
@@ -53,6 +54,7 @@ public class Tutorial : MonoBehaviour
     }
     private void Update()
     {
+        allowedButtons.CopyTo(testAccessAllowedButtons);
         if (inTutorial != 0 && minWait <= currentStepTime)
         {
             CheckTutorial();
