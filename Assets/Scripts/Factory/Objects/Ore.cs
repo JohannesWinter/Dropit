@@ -82,33 +82,58 @@ public class Ore : MonoBehaviour
                     {
                         halo.enabled = false;
                     }
-                    else if (Manager.m.graphicManager.enableHaloState == GraphicQuality.All || Manager.m.graphicManager.enableHaloState == GraphicQuality.Some && oreID % 3 == 0)
-                    {
-                        if (upgradeLevel == 1)
-                        {
-                            halo.color = new Color(0, 100, 0);
-                            halo.range = 2f;
-                            halo.enabled = true;
-                            halo.intensity = 0.3f;
-                        }
-                        else if (upgradeLevel == 2)
-                        {
-                            halo.color = new Color(0, 0, 120);
-                            halo.range = 2.5f;
-                            halo.enabled = true;
-                            halo.intensity = 0.3f;
-                        }
-                        else if (upgradeLevel == 3)
-                        {
-                            halo.color = new Color(140, 0, 200);
-                            halo.range = 3f;
-                            halo.enabled = true;
-                            halo.intensity = 0.3f;
-                        }
-                    }
                     else
                     {
-                        halo.enabled = false;
+                        GraphicQuality haloQuality = Manager.m.graphicManager.enableHaloState;
+
+                        if (haloQuality == GraphicQuality.All)
+                        {
+                            if (upgradeLevel == 1)
+                            {
+                                halo.color = new Color(0, 100, 0);
+                                halo.range = 2f;
+                                halo.enabled = true;
+                                halo.intensity = 0.3f;
+                            }
+                            else if (upgradeLevel == 2)
+                            {
+                                halo.color = new Color(0, 0, 120);
+                                halo.range = 2.5f;
+                                halo.enabled = true;
+                                halo.intensity = 0.3f;
+                            }
+                            else if (upgradeLevel == 3)
+                            {
+                                halo.color = new Color(140, 0, 200);
+                                halo.range = 3f;
+                                halo.enabled = true;
+                                halo.intensity = 0.3f;
+                            }
+                        }
+                        else if (haloQuality == GraphicQuality.Some)
+                        {
+                            if (upgradeLevel == 1)
+                            {
+                                halo.color = new Color(0, 100, 0);
+                                halo.range = 1.5f;
+                                halo.enabled = true;
+                                halo.intensity = 0.3f;
+                            }
+                            else if (upgradeLevel == 2)
+                            {
+                                halo.color = new Color(0, 0, 120);
+                                halo.range = 1.5f;
+                                halo.enabled = true;
+                                halo.intensity = 0.3f;
+                            }
+                            else if (upgradeLevel == 3)
+                            {
+                                halo.color = new Color(140, 0, 200);
+                                halo.range = 1.5f;
+                                halo.enabled = true;
+                                halo.intensity = 0.3f;
+                            }
+                        }
                     }
                 }
                 catch { }
