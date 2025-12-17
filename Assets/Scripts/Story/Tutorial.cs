@@ -12,7 +12,7 @@ public class Tutorial : MonoBehaviour
     public bool pauseGame;
     public Transform tutorial1;
     public GameObject[] tutorialObjects;
-    List<Button> allowedButtons = new List<Button>();
+    public List<Button> allowedButtons = new List<Button>();
     List<GameObject> blinkingUIs = new List<GameObject>();
     public float minWait;
     float currentStepTime;
@@ -22,7 +22,6 @@ public class Tutorial : MonoBehaviour
     public int testTutorialNumber;
     public bool testNextStep;
     public bool testStop;
-    public Button[] testAccessAllowedButtons;
 
 
 
@@ -54,7 +53,6 @@ public class Tutorial : MonoBehaviour
     }
     private void Update()
     {
-        allowedButtons.CopyTo(testAccessAllowedButtons);
         if (inTutorial != 0 && minWait <= currentStepTime)
         {
             CheckTutorial();
