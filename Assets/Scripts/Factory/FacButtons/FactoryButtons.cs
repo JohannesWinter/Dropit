@@ -774,8 +774,7 @@ public class FactoryButtons : MonoBehaviour
         }
         else
         {
-            print("A");
-            Manager.m.effectSpeaker.error();
+            //Manager.m.effectSpeaker.error();
         }
     }
 
@@ -849,13 +848,13 @@ public class FactoryButtons : MonoBehaviour
         }
         else
         {
-            Manager.m.effectSpeaker.error();
+            //Manager.m.effectSpeaker.error();
         }
     }
 
     void Undo()
     {
-        if (Manager.m.tutorial.IsButtonAllowed(undoButtonEnabled) == false)
+        if (Manager.m.tutorial.IsButtonAllowed(undoButtonEnabled) == false || Manager.m.editMode == false)
         {
             return;
         }
@@ -866,12 +865,12 @@ public class FactoryButtons : MonoBehaviour
         }
         else
         {
-            Manager.m.effectSpeaker.error();
+            //Manager.m.effectSpeaker.error();
         }
     }
     void Redo()
     {
-        if (Manager.m.tutorial.IsButtonAllowed(redoButtonEnabled) == false)
+        if (Manager.m.tutorial.IsButtonAllowed(redoButtonEnabled) == false || Manager.m.editMode == false)
         {
             return;
         }
@@ -882,7 +881,7 @@ public class FactoryButtons : MonoBehaviour
         }
         else
         {
-            Manager.m.effectSpeaker.error();
+            //Manager.m.effectSpeaker.error();
         }
     }
     void Market()
