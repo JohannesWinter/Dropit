@@ -712,7 +712,15 @@ async void Update()
         {
             Destroy(i);
         }
-        if ((OnField == true) && (GameInputManager.GetKeyDown(Manager.m.ActionKey("RotateLeft")) || GameInputManager.GetKeyDown(Manager.m.ActionKey("RotateRight"))))
+        if ((OnField == true) && (
+            GameInputManager.GetKeyDown(Manager.m.ActionKey("RotateLeft")) || 
+            GameInputManager.GetKeyDown(Manager.m.ActionKey("RotateRight")) ||
+            GameInputManager.GetKeyDown(Manager.m.ActionKey("Transform")) ||
+            GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform1")) ||
+            GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform2")) ||
+            GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform3")) ||
+            GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform4")) ||
+            GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform5"))))
         {
             Destroy(i);
             await Task.Delay((int)Mathf.Ceil(Time.unscaledDeltaTime * 1000 * 1f));
