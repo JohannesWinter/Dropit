@@ -701,12 +701,6 @@ async void Update()
             {
                 i.transform.rotation = Quaternion.Euler(0, Manager.m.dropperRotation - 90, 0);
             }
-            if ((GameInputManager.GetKeyDown(Manager.m.ActionKey("Transform")) || GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform1")) || GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform2")) || GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform3")) || GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform4")) || GameInputManager.GetKeyDown(Manager.m.ActionKey("SetTransform5"))) && OnField == true)
-            {
-                Destroy(i);
-                await Task.Delay((int)Mathf.Ceil(Time.unscaledTime * 1000 * 1f));
-                OnMouseEnter();
-            }
         }
         if (Manager.m.editMode_placeDropper == false && Manager.m.editMode_placeMachine == false)
         {
@@ -724,6 +718,7 @@ async void Update()
         {
             Destroy(i);
             await Task.Delay((int)Mathf.Ceil(Time.unscaledDeltaTime * 1000 * 1f));
+            print("hello there");
             OnMouseEnter();
         }
         if (Input.GetButton("ClickLeft"))
