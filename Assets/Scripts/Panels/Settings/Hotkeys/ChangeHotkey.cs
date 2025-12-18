@@ -80,7 +80,7 @@ public class ChangeHotkey : MonoBehaviour
                         }
                         hotkey = combination;
                         currentCombination = new List<string>(currentlyHold);
-                        print("set: " + combination);
+                        //print("set: " + combination);
                         if (hotkey == "ClickLeft")
                         {
                             Manager.m.effectSpeaker.error();
