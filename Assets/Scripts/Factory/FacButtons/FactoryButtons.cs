@@ -82,7 +82,7 @@ public class FactoryButtons : MonoBehaviour
 
         repairOn.GetComponent<Button>().onClick.AddListener(Repair);
         repairOff.GetComponent<Button>().onClick.AddListener(Repair);
-        directionButton.GetComponent<Button>().onClick.AddListener(Direction);
+        directionButton.GetComponent<Button>().onClick.AddListener(() => Direction(90));
         machineTypeButton.GetComponent<Button>().onClick.AddListener(MachineType);
         marketButton.GetComponent<Button>().onClick.AddListener(Market);
         missionsButton.GetComponent<Button>().onClick.AddListener(Missions);
@@ -299,6 +299,28 @@ public class FactoryButtons : MonoBehaviour
                 else
                 {
                     MachineType(5);
+                }
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("RotateRight")))
+            {
+                if (Manager.m.inUIMenu())
+                {
+                    //Manager.m.effectSpeaker.error();
+                }
+                else
+                {
+                    Direction(90);
+                }
+            }
+            if (GameInputManager.GetKeyDown(Manager.m.ActionKey("RotateLeft")))
+            {
+                if (Manager.m.inUIMenu())
+                {
+                    //Manager.m.effectSpeaker.error();
+                }
+                else
+                {
+                    Direction(-90);
                 }
             }
             if (GameInputManager.GetKeyDown(Manager.m.ActionKey("Market")))
@@ -703,14 +725,15 @@ public class FactoryButtons : MonoBehaviour
             }
         }
     }
-    void Direction()
+    void Direction(int rotation)
     {
-        if (Manager.m.tutorial.IsButtonAllowed(directionButton) == false)
+        if (Manager.m.tutorial.IsButtonAllowed(directionButton) == false || Manager.m.editMode == false || rotation % 90 != 0)
         {
             return;
         }
         Manager.m.effectSpeaker.click();
-        Manager.m.dropperRotation += 90;
+        Manager.m.dropperRotation += rotation;
+
     }
     void MachineType()
     {
