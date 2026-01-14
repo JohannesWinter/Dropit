@@ -718,7 +718,6 @@ async void Update()
         {
             Destroy(i);
             await Task.Delay((int)Mathf.Ceil(Time.unscaledDeltaTime * 1000 * 1f));
-            print("hello there");
             OnMouseEnter();
         }
         if (Input.GetButton("ClickLeft"))
